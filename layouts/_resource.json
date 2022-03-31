@@ -2,7 +2,7 @@
 	"name": "_resource",
 	"layers": [
 		{
-			"name": "Layer 0",
+			"name": "resource",
 			"overriden": 0,
 			"subLayers": [],
 			"instances": [
@@ -47,6 +47,35 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "Unit",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 5,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 160,
+						"y": 64,
+						"width": 65,
+						"height": 65,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 468561554826785,
@@ -60,9 +89,9 @@
 				1
 			],
 			"backgroundColor": [
-				1,
-				1,
-				1,
+				0.8196078431372549,
+				0.8196078431372549,
+				0.8196078431372549,
 				1
 			],
 			"isTransparent": false,

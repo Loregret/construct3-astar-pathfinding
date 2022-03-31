@@ -29,6 +29,14 @@
 			"author": "Scirra",
 			"version": "r285.3",
 			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Sprite",
+			"name": "Sprite",
+			"author": "Scirra",
+			"version": "r285.3",
+			"bundled": false
 		}
 	],
 	"uniqueId": "93ythsvn5zn",
@@ -36,7 +44,8 @@
 		"items": [
 			"DrawingCanvas",
 			"Text",
-			"Array"
+			"Array",
+			"Unit"
 		],
 		"subfolders": []
 	},
