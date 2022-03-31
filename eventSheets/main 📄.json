@@ -1,0 +1,152 @@
+{
+	"name": "Main 📄",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "[h2] Сетка"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "Grid 📄"
+		},
+		{
+			"eventType": "comment",
+			"text": "Размеры сетки"
+		},
+		{
+			"eventType": "variable",
+			"name": "grid_width",
+			"type": "number",
+			"initialValue": "12",
+			"comment": "Ширина сетки",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 112169492892730
+		},
+		{
+			"eventType": "variable",
+			"name": "grid_height",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "Высота сетки",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 633060415564552
+		},
+		{
+			"eventType": "comment",
+			"text": "Размеры клетки"
+		},
+		{
+			"eventType": "variable",
+			"name": "cell_size",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "Размер одной клетки.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 981812038493186
+		},
+		{
+			"eventType": "variable",
+			"name": "cell_offset",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "Промежуток между клетками.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 348825377449189
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 478686921535960
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "create_grid",
+					"sid": 476402961831944,
+					"parameters": [
+						"grid_width",
+						"grid_height"
+					]
+				},
+				{
+					"callFunction": "draw_grid",
+					"sid": 728566599052081,
+					"parameters": [
+						"grid_width",
+						"grid_height",
+						"cell_size",
+						"0",
+						true
+					]
+				},
+				{
+					"callFunction": "draw_indexes",
+					"sid": 556800994353698
+				}
+			],
+			"sid": 196702205840917
+		},
+		{
+			"functionName": "create_grid",
+			"functionDescription": "Создает логику сетки.",
+			"functionCategory": "#main",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "gridWidth",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 362616262114461
+				},
+				{
+					"name": "gridHeight",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 198736064118897
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 627329601880563,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "Array",
+							"sid": 152285810060602,
+							"parameters": {
+								"width": "gridWidth",
+								"height": "gridHeight",
+								"depth": "1"
+							}
+						},
+						{
+							"id": "clear",
+							"objectClass": "Array",
+							"sid": 105937783652702,
+							"parameters": {
+								"value": "1"
+							}
+						}
+					],
+					"sid": 669924194082381
+				}
+			]
+		}
+	],
+	"sid": 604163391678533
+}

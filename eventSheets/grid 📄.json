@@ -1,0 +1,353 @@
+{
+	"name": "Grid 📄",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Рисование",
+			"description": "Функции для отображения фигур и чисел на экране игрока.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "[h3] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
+				},
+				{
+					"functionName": "draw_grid",
+					"functionDescription": "Нарисовать сетку с заданными величинами.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "gridWidth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Ширина сетки.",
+							"sid": 818337007066735
+						},
+						{
+							"name": "gridHeight",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Высота сетки.",
+							"sid": 320807514552105
+						},
+						{
+							"name": "cellSize",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Размер клетки",
+							"sid": 722115728267697
+						},
+						{
+							"name": "cellOffset",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Промежуток между клетками.",
+							"sid": 619201556964668
+						},
+						{
+							"name": "scroll_to_center",
+							"type": "boolean",
+							"initialValue": "true",
+							"comment": "",
+							"sid": 257752444831549
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 393361076268270,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Создание сетки"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 422941842405907,
+									"parameters": {
+										"name": "\"y\"",
+										"start-index": "0",
+										"end-index": "gridHeight - 1"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 253593494773819,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 893879262539988,
+											"parameters": {
+												"name": "\"x\"",
+												"start-index": "0",
+												"end-index": "gridWidth - 1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "fill-rect",
+											"objectClass": "DrawingCanvas",
+											"sid": 684269935019323,
+											"parameters": {
+												"left": "loopindex(\"x\") * cellSize + cell_offset",
+												"top": "loopindex(\"y\") * cellSize + cell_offset",
+												"right": "(loopindex(\"x\") * cellSize) + cellSize",
+												"bottom": "(loopindex(\"y\") * cellSize) + cellSize",
+												"color": "rgba(80, 80, 80, 100)"
+											}
+										},
+										{
+											"id": "outline-rect",
+											"objectClass": "DrawingCanvas",
+											"sid": 846166213148636,
+											"parameters": {
+												"left": "loopindex(\"x\") * cellSize + cell_offset",
+												"top": "loopindex(\"y\") * cellSize + cell_offset",
+												"right": "(loopindex(\"x\") * cellSize) + cellSize",
+												"bottom": "(loopindex(\"y\") * cellSize) + cellSize",
+												"color": "rgba(0, 0, 0, 100)",
+												"line-thickness": "4"
+											}
+										}
+									],
+									"sid": 581492143511221
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Наводка камеры на центр"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 799104991549408,
+									"parameters": {
+										"variable": "scroll_to_center"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "scroll-to-position",
+									"objectClass": "System",
+									"sid": 436998180960348,
+									"parameters": {
+										"x": "(DrawingCanvas.X - DrawingCanvas.Width/2) + ((gridWidth * cellSize + gridWidth * cellOffset))/2",
+										"y": "(DrawingCanvas.Y - DrawingCanvas.Height/2) + ((gridHeight * cellSize + gridHeight * cellOffset))/2"
+									}
+								}
+							],
+							"sid": 975928345523892
+						}
+					]
+				},
+				{
+					"functionName": "draw_string",
+					"functionDescription": "Рисует числа/текст в определенной точке.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 766916966849166
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 808218504550791
+						},
+						{
+							"name": "string",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Отображаемый текст",
+							"sid": 300630115436314
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 962106468651084,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 988157906640844,
+									"parameters": {
+										"object-to-create": "Text",
+										"layer": "\"draw_canvas\"",
+										"x": "x",
+										"y": "y",
+										"create-hierarchy": false
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 574343771043644,
+									"parameters": {
+										"text": "string"
+									}
+								}
+							],
+							"sid": 530716432780078
+						}
+					]
+				},
+				{
+					"functionName": "clear_text",
+					"functionDescription": "Очистка текста.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 509113024933074,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "Text",
+									"sid": 711426140030724
+								}
+							],
+							"sid": 899365701369679
+						}
+					]
+				},
+				{
+					"functionName": "draw_indexes",
+					"functionDescription": "Рисует индексы клеток.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 434856534285485,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "count",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 321490613405130
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "clear_text",
+									"sid": 589728739932258
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 907732724048181,
+									"parameters": {
+										"variable": "count",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 802608199605800
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 160191889994077,
+									"parameters": {
+										"name": "\"y\"",
+										"start-index": "0",
+										"end-index": "Array.Height - 1"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 835479839148234,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 574487274181274,
+											"parameters": {
+												"name": "\"x\"",
+												"start-index": "0",
+												"end-index": "Array.width - 1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 138762288550677,
+											"parameters": {
+												"variable": "count",
+												"value": "1"
+											}
+										},
+										{
+											"callFunction": "draw_string",
+											"sid": 896567723810111,
+											"parameters": [
+												"(DrawingCanvas.X - DrawingCanvas.Width/2) + loopindex(\"x\") * cell_size",
+												"(DrawingCanvas.Y - DrawingCanvas.Height/2) + loopindex(\"y\")  * cell_size",
+												"count"
+											]
+										}
+									],
+									"sid": 446490105509281
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 946695057105087
+		}
+	],
+	"sid": 362270193592792
+}
