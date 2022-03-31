@@ -78,13 +78,7 @@
 			"subfolders": []
 		},
 		"font": {
-			"items": [
-				{
-					"name": "SourceCodePro-Regular.ttf",
-					"type": "application/font-sfnt",
-					"sid": 850943553735525
-				}
-			],
+			"items": [],
 			"subfolders": []
 		},
 		"icon": {
