@@ -294,11 +294,11 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 160191889994077,
+									"sid": 405098213153376,
 									"parameters": {
 										"name": "\"y\"",
 										"start-index": "0",
-										"end-index": "Array.Height - 1"
+										"end-index": "grid_height - 1"
 									}
 								}
 							],
@@ -311,11 +311,11 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 574487274181274,
+											"sid": 748162893832775,
 											"parameters": {
 												"name": "\"x\"",
 												"start-index": "0",
-												"end-index": "Array.width - 1"
+												"end-index": "grid_width - 1"
 											}
 										}
 									],

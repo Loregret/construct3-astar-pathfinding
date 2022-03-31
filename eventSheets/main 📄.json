@@ -127,10 +127,10 @@
 						{
 							"id": "set-size",
 							"objectClass": "Array",
-							"sid": 152285810060602,
+							"sid": 826962143030744,
 							"parameters": {
-								"width": "gridWidth",
-								"height": "gridHeight",
+								"width": "gridWidth * gridHeight",
+								"height": "1",
 								"depth": "1"
 							}
 						},
