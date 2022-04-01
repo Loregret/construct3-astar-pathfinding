@@ -69,7 +69,7 @@
 			"eventType": "variable",
 			"name": "cell_offset",
 			"type": "number",
-			"initialValue": "25",
+			"initialValue": "15",
 			"comment": "Промежуток между клетками.",
 			"isStatic": false,
 			"isConstant": false,
@@ -86,16 +86,24 @@
 					"id": "on-start-of-layout",
 					"objectClass": "System",
 					"sid": 478686921535960
+				},
+				{
+					"id": "pick-random-instance",
+					"objectClass": "System",
+					"sid": 546396802682933,
+					"parameters": {
+						"object": "Array"
+					}
 				}
 			],
 			"actions": [
 				{
 					"callFunction": "create_grid",
-					"sid": 901245171822257,
+					"sid": 811998455291729,
 					"parameters": [
 						"grid_width",
 						"grid_height",
-						"-1"
+						"Array.UID"
 					]
 				},
 				{
@@ -110,8 +118,8 @@
 					]
 				},
 				{
-					"callFunction": "draw_coordinates",
-					"sid": 892260469248074
+					"callFunction": "draw_indexes",
+					"sid": 997322479046402
 				}
 			],
 			"sid": 196702205840917
@@ -173,11 +181,15 @@
 							"actions": [
 								{
 									"callFunction": "draw_text_on_cell",
-									"sid": 700530102720669,
+									"sid": 602890853212636,
 									"parameters": [
+										"grid_width",
+										"grid_height",
+										"cell_size",
+										"cell_offset",
 										"loopindex",
-										"str((Functions.grid_index_to_x(loopindex, 0) & \",\") & Functions.grid_index_to_y(loopindex, 0))",
-										"1"
+										"1",
+										"str((Functions.grid_index_to_x(0, 0, 0, loopindex, 0) & \",\") & Functions.grid_index_to_y(0, 0, 0, loopindex, 0))"
 									]
 								}
 							],
@@ -244,11 +256,15 @@
 							"actions": [
 								{
 									"callFunction": "draw_text_on_cell",
-									"sid": 673483841611247,
+									"sid": 794790134964100,
 									"parameters": [
+										"grid_width",
+										"grid_height",
+										"cell_size",
+										"cell_offset",
 										"loopindex",
-										"str(loopindex)",
-										"0"
+										"1",
+										"str(loopindex)"
 									]
 								}
 							],

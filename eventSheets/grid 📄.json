@@ -2,6 +2,10 @@
 	"name": "Grid 📄",
 	"events": [
 		{
+			"eventType": "comment",
+			"text": "[h3] Почему каждая функция требует столько данных? [/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции."
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Рисование",
@@ -276,6 +280,34 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
+							"name": "gridWidth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Ширина сетки.",
+							"sid": 999306467864283
+						},
+						{
+							"name": "gridHeight",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Высота сетки.",
+							"sid": 591506555983524
+						},
+						{
+							"name": "cellSize",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Размер клетки",
+							"sid": 571612753792720
+						},
+						{
+							"name": "cellOffset",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Промежуток между клетками.",
+							"sid": 604302431590869
+						},
+						{
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
@@ -283,18 +315,18 @@
 							"sid": 444330378869744
 						},
 						{
-							"name": "string",
-							"type": "string",
-							"initialValue": "",
-							"comment": "Текст.",
-							"sid": 590252856629342
-						},
-						{
 							"name": "originPosition",
 							"type": "number",
 							"initialValue": "0",
 							"comment": "0 - TopLeft, 1 - center, 2 - BottomRight",
 							"sid": 639817642797747
+						},
+						{
+							"name": "string",
+							"type": "string",
+							"initialValue": "",
+							"comment": "Текст.",
+							"sid": 590252856629342
 						}
 					],
 					"eventType": "function-block",
@@ -319,13 +351,13 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 730031469241094,
+									"sid": 779408464748473,
 									"parameters": [
-										"Functions.grid_index_to_x(index, 1) + (cell_size - cell_offset)/4",
-										"Functions.grid_index_to_y(index, 1) + (cell_size - cell_offset)/4",
+										"Functions.grid_index_to_x(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 4",
+										"Functions.grid_index_to_y(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 4",
 										"string",
-										"cell_size - cell_offset",
-										"cell_size - cell_offset"
+										"cellSize - cellOffset",
+										"cellSize - cellOffset"
 									]
 								}
 							],
@@ -353,13 +385,13 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 632872178078025,
+									"sid": 424853720255264,
 									"parameters": [
-										"Functions.grid_index_to_x(index, 1) + (cell_size - cell_offset)/2",
-										"Functions.grid_index_to_y(index, 1) + (cell_size - cell_offset)/2",
+										"Functions.grid_index_to_x(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 2",
+										"Functions.grid_index_to_y(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 2",
 										"string",
-										"cell_size - cell_offset",
-										"cell_size - cell_offset"
+										"cellSize - cellOffset",
+										"cellSize - cellOffset"
 									]
 								}
 							],
@@ -387,13 +419,13 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 381299429471413,
+									"sid": 106237122649073,
 									"parameters": [
-										"Functions.grid_index_to_x(index, 1) + (cell_size - cell_offset) * 0.75",
-										"Functions.grid_index_to_y(index, 1) + (cell_size - cell_offset) * 0.85",
+										"Functions.grid_index_to_x(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) * 0.75",
+										"Functions.grid_index_to_y(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) * 0.85",
 										"string",
-										"cell_size - cell_offset",
-										"cell_size - cell_offset"
+										"cellSize - cellOffset",
+										"cellSize - cellOffset"
 									]
 								}
 							],
@@ -510,6 +542,27 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
+							"name": "gridWidth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Ширина сетки.",
+							"sid": 352472132116402
+						},
+						{
+							"name": "cellSize",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Размер клетки.",
+							"sid": 799111137529456
+						},
+						{
+							"name": "cellOffset",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Промежуток между клетками.",
+							"sid": 990217391636958
+						},
+						{
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
@@ -549,9 +602,9 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 991326234108397,
+									"sid": 482531989405383,
 									"parameters": {
-										"value": "(index % grid_width) * cell_size + cell_offset"
+										"value": "(index % gridWidth) * cellSize + cellOffset"
 									}
 								}
 							],
@@ -574,9 +627,9 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 892940584223001,
+									"sid": 815367272353571,
 									"parameters": {
-										"value": "(index % grid_width)"
+										"value": "(index % gridWidth)"
 									}
 								}
 							],
@@ -595,6 +648,27 @@
 					"functionReturnType": "number",
 					"functionIsAsync": false,
 					"functionParameters": [
+						{
+							"name": "gridWidth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Ширина сетки.",
+							"sid": 674612395337632
+						},
+						{
+							"name": "cellSize",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Размер клетки.",
+							"sid": 893197668545307
+						},
+						{
+							"name": "cellOffset",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Промежуток между клетками.",
+							"sid": 121324179405813
+						},
 						{
 							"name": "index",
 							"type": "number",
@@ -635,9 +709,9 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 350242951311086,
+									"sid": 259981759093130,
 									"parameters": {
-										"value": "int(index / grid_width) * cell_size + cell_offset"
+										"value": "int(index / gridWidth) * cellSize + cellOffset"
 									}
 								}
 							],
@@ -660,9 +734,9 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 535607813195276,
+									"sid": 625489988008338,
 									"parameters": {
-										"value": "int(index / grid_width)"
+										"value": "int(index / gridWidth)"
 									}
 								}
 							],
@@ -711,8 +785,8 @@
 									"parameters": {
 										"object-to-create": "Unit",
 										"layer": "\"units\"",
-										"x": "Functions.grid_index_to_x(index, 0)",
-										"y": "Functions.grid_index_to_y(index, 0)",
+										"x": "Functions.grid_index_to_x(0, 0, 0, index, 0)",
+										"y": "Functions.grid_index_to_y(0, 0, 0, index, 0)",
 										"create-hierarchy": false
 									}
 								}
