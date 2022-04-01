@@ -40,7 +40,7 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "DrawingCanvas",
+					"type": "grid_drawing_canvas",
 					"properties": {
 						"initially-visible": true,
 						"origin": "center",
@@ -131,13 +131,19 @@
 	"sid": 593055342251071,
 	"nonworld-instances": [
 		{
-			"type": "Array",
+			"type": "grid_cells",
 			"properties": {
 				"width": 1,
 				"height": 1,
 				"depth": 1
 			},
 			"uid": 4,
+			"instanceVariables": {}
+		},
+		{
+			"type": "grid_config",
+			"properties": {},
+			"uid": 6,
 			"instanceVariables": {}
 		}
 	],

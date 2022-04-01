@@ -3,7 +3,320 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "[h3] Почему каждая функция требует столько данных? [/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции."
+			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции. \nЭто означает, что вы можете скопировать в своей проект папку grid с этим Листом Событий. \nТаким образом, вы получите полностью рабочий функционал создания сетки и ее управления."
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Сетка - логика",
+			"description": "Логическая часть сетки.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Создание массива сетки."
+				},
+				{
+					"functionName": "create_grid",
+					"functionDescription": "Создает логику сетки.",
+					"functionCategory": "#grid",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "gridWidth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Ширина сетки из клеток (к примеру, число 2 = две клетки)",
+							"sid": 362616262114461
+						},
+						{
+							"name": "gridHeight",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Высота сетки из клеток (к примеру, число 2 = две клетки)",
+							"sid": 198736064118897
+						},
+						{
+							"name": "cellSize",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Размер клетки из пикселей. (К примеру, число 50 будет равняться клетке 50х50) [Размеры с разными показателями ширины/высоты в текущей версии шаблона не доступны]",
+							"sid": 573472005673769
+						},
+						{
+							"name": "cellOffset",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Промежуток между клетками в пикселях. (В расчет берется промежутки, как по горизонтали, так и по вертикали.)",
+							"sid": 942338668684232
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 835961037784850,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Конфигурация сетки: все функции черпают данные о сетке из этого словаря."
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-key",
+									"objectClass": "grid_config",
+									"sid": 178604941024361,
+									"parameters": {
+										"key": "\"gridWidth\"",
+										"value": "gridWidth"
+									}
+								},
+								{
+									"id": "set-key",
+									"objectClass": "grid_config",
+									"sid": 205026646866640,
+									"parameters": {
+										"key": "\"gridHeight\"",
+										"value": "gridHeight"
+									}
+								},
+								{
+									"id": "set-key",
+									"objectClass": "grid_config",
+									"sid": 933359000764566,
+									"parameters": {
+										"key": "\"cellSize\"",
+										"value": "cellSize"
+									}
+								},
+								{
+									"id": "set-key",
+									"objectClass": "grid_config",
+									"sid": 937706665602389,
+									"parameters": {
+										"key": "\"cellOffset\"",
+										"value": "cellOffset"
+									}
+								}
+							],
+							"sid": 729527375885466
+						},
+						{
+							"eventType": "comment",
+							"text": "Заполнение ячеек массива."
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Делаем массив одномерным, т.к. с ним удобнее работать."
+								},
+								{
+									"id": "set-size",
+									"objectClass": "grid_cells",
+									"sid": 464903990658770,
+									"parameters": {
+										"width": "(gridWidth * gridHeight)",
+										"height": "1",
+										"depth": "1"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Заполняю массив единицами. Это число будет символизировать стоимость пути. 0 - путь недоступен."
+								},
+								{
+									"id": "clear",
+									"objectClass": "grid_cells",
+									"sid": 367743526195750,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 473131806495029
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": " Вывести [b]Х[/b] координату для определенного индекса."
+				},
+				{
+					"functionName": "grid_index_to_x",
+					"functionDescription": "Возвращает Х положение указанного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 809496154519055
+						},
+						{
+							"name": "get_real_coordinate",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Получить реальные координаты вместо логических.",
+							"sid": 399938994238307
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 633742221527150,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Реальные координаты (15, 30, 45...)"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 212180858410368,
+									"parameters": {
+										"variable": "get_real_coordinate"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 910429605499403,
+									"parameters": {
+										"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
+									}
+								}
+							],
+							"sid": 684450603501306
+						},
+						{
+							"eventType": "comment",
+							"text": "Логические координаты (0, 1, 2...)"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 508871422884990
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 762319553136127,
+									"parameters": {
+										"value": "(index % grid_config.Get(\"gridWidth\"))"
+									}
+								}
+							],
+							"sid": 108276804703753
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": " Вывести [b]У[/b] координату для определенного индекса."
+				},
+				{
+					"functionName": "grid_index_to_y",
+					"functionDescription": "Возвращает Y положение указанного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 986309586774039
+						},
+						{
+							"name": "get_real_coordinate",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Получить реальные координаты вместо логических.",
+							"sid": 384247316510384
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 733813060456151,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Реальные координаты (15, 30, 45...)"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 553162969334590,
+									"parameters": {
+										"variable": "get_real_coordinate"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 528609206049485,
+									"parameters": {
+										"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
+									}
+								}
+							],
+							"sid": 696720388934773
+						},
+						{
+							"eventType": "comment",
+							"text": "Логические координаты (0, 1, 2...)"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 259092044319990
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 240002021644461,
+									"parameters": {
+										"value": "int(index / grid_config.Get(\"gridWidth\"))"
+									}
+								}
+							],
+							"sid": 888034838068961
+						}
+					]
+				}
+			],
+			"sid": 881450906732652
 		},
 		{
 			"eventType": "group",
@@ -23,34 +336,6 @@
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [
-						{
-							"name": "gridWidth",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Ширина сетки.",
-							"sid": 818337007066735
-						},
-						{
-							"name": "gridHeight",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Высота сетки.",
-							"sid": 320807514552105
-						},
-						{
-							"name": "cellSize",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Размер клетки",
-							"sid": 722115728267697
-						},
-						{
-							"name": "cellOffset",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Промежуток между клетками.",
-							"sid": 619201556964668
-						},
 						{
 							"name": "scroll_to_center",
 							"type": "boolean",
@@ -79,11 +364,11 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 422941842405907,
+									"sid": 691544731186106,
 									"parameters": {
 										"name": "\"y\"",
 										"start-index": "0",
-										"end-index": "gridHeight - 1"
+										"end-index": "grid_config.Get(\"gridHeight\") - 1"
 									}
 								}
 							],
@@ -96,36 +381,36 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 893879262539988,
+											"sid": 335523784939707,
 											"parameters": {
 												"name": "\"x\"",
 												"start-index": "0",
-												"end-index": "gridWidth - 1"
+												"end-index": "grid_config.Get(\"gridWidth\") - 1"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "fill-rect",
-											"objectClass": "DrawingCanvas",
-											"sid": 450853078456060,
+											"objectClass": "grid_drawing_canvas",
+											"sid": 668475367627654,
 											"parameters": {
-												"left": "loopindex(\"x\") * cellSize + cell_offset",
-												"top": "loopindex(\"y\") * cellSize + cell_offset",
-												"right": "(loopindex(\"x\") * cellSize) + cellSize",
-												"bottom": "(loopindex(\"y\") * cellSize) + cellSize",
+												"left": "loopindex(\"x\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
+												"top": "loopindex(\"y\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
+												"right": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
+												"bottom": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
 												"color": "rgba(80, 80, 80, 100)"
 											}
 										},
 										{
 											"id": "outline-rect",
-											"objectClass": "DrawingCanvas",
-											"sid": 805651119158826,
+											"objectClass": "grid_drawing_canvas",
+											"sid": 447277518681036,
 											"parameters": {
-												"left": "loopindex(\"x\") * cellSize + cell_offset",
-												"top": "loopindex(\"y\") * cellSize + cell_offset",
-												"right": "(loopindex(\"x\") * cellSize) + cellSize",
-												"bottom": "(loopindex(\"y\") * cellSize) + cellSize",
+												"left": "loopindex(\"x\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
+												"top": "loopindex(\"y\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
+												"right": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
+												"bottom": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
 												"color": "rgba(0, 0, 0, 100)",
 												"line-thickness": "4"
 											}
@@ -155,10 +440,10 @@
 								{
 									"id": "scroll-to-position",
 									"objectClass": "System",
-									"sid": 436998180960348,
+									"sid": 504432106823737,
 									"parameters": {
-										"x": "(DrawingCanvas.X - DrawingCanvas.Width/2) + ((gridWidth * cellSize + gridWidth * cellOffset))/2",
-										"y": "(DrawingCanvas.Y - DrawingCanvas.Height/2) + ((gridHeight * cellSize + gridHeight * cellOffset))/2"
+										"x": "(grid_drawing_canvas.X - grid_drawing_canvas.Width/2) + ((grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellOffset\")))/2",
+										"y": "(grid_drawing_canvas.Y - grid_drawing_canvas.Height/2) + ((grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellOffset\")))/2"
 									}
 								}
 							],
@@ -214,13 +499,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Рисование текста на любой позиции.",
-							"background-color": [
-								0.9137254901960784,
-								0.9372549019607843,
-								0.984313725490196,
-								1
-							]
+							"text": "Рисование текста на любой позиции."
 						}
 					],
 					"sid": 962106468651084,
@@ -234,7 +513,7 @@
 									"objectClass": "System",
 									"sid": 988157906640844,
 									"parameters": {
-										"object-to-create": "Text",
+										"object-to-create": "grid_text",
 										"layer": "\"draw_canvas\"",
 										"x": "x",
 										"y": "y",
@@ -243,7 +522,7 @@
 								},
 								{
 									"id": "set-size",
-									"objectClass": "Text",
+									"objectClass": "grid_text",
 									"sid": 238465330688982,
 									"parameters": {
 										"width": "textWidth",
@@ -252,7 +531,7 @@
 								},
 								{
 									"id": "set-text",
-									"objectClass": "Text",
+									"objectClass": "grid_text",
 									"sid": 781257468425794,
 									"parameters": {
 										"text": "string"
@@ -260,7 +539,7 @@
 								},
 								{
 									"id": "set-position",
-									"objectClass": "Text",
+									"objectClass": "grid_text",
 									"sid": 510645283172347,
 									"parameters": {
 										"x": "x",
@@ -279,34 +558,6 @@
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [
-						{
-							"name": "gridWidth",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Ширина сетки.",
-							"sid": 999306467864283
-						},
-						{
-							"name": "gridHeight",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Высота сетки.",
-							"sid": 591506555983524
-						},
-						{
-							"name": "cellSize",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Размер клетки",
-							"sid": 571612753792720
-						},
-						{
-							"name": "cellOffset",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Промежуток между клетками.",
-							"sid": 604302431590869
-						},
 						{
 							"name": "index",
 							"type": "number",
@@ -331,7 +582,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Рисование текста на клетке."
+						}
+					],
 					"sid": 719224089600577,
 					"children": [
 						{
@@ -351,13 +607,13 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 779408464748473,
+									"sid": 132494167077361,
 									"parameters": [
-										"Functions.grid_index_to_x(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 4",
-										"Functions.grid_index_to_y(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 4",
+										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
+										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
 										"string",
-										"cellSize - cellOffset",
-										"cellSize - cellOffset"
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
 									]
 								}
 							],
@@ -385,13 +641,13 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 424853720255264,
+									"sid": 817510361208520,
 									"parameters": [
-										"Functions.grid_index_to_x(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 2",
-										"Functions.grid_index_to_y(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) / 2",
+										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
+										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
 										"string",
-										"cellSize - cellOffset",
-										"cellSize - cellOffset"
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
 									]
 								}
 							],
@@ -419,333 +675,152 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 106237122649073,
+									"sid": 133969683749063,
 									"parameters": [
-										"Functions.grid_index_to_x(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) * 0.75",
-										"Functions.grid_index_to_y(gridWidth, cellSize, cellOffset, index, 1) + (cellSize - cellOffset) * 0.85",
+										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.75",
+										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
 										"string",
-										"cellSize - cellOffset",
-										"cellSize - cellOffset"
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
 									]
 								}
 							],
 							"sid": 228774739463055
 						}
 					]
-				}
-			],
-			"sid": 946695057105087
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Сетка - логика",
-			"description": "Логическая часть сетки.",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "comment",
-					"text": "Создание массива сетки."
 				},
 				{
-					"functionName": "create_grid",
-					"functionDescription": "Создает логику сетки.",
-					"functionCategory": "#main",
+					"functionName": "draw_coordinates",
+					"functionDescription": "Рисует координаты клеток.",
+					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "gridWidth",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 362616262114461
-						},
-						{
-							"name": "gridHeight",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 198736064118897
-						},
-						{
-							"name": "arrayUID",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "UID нужного массива.",
-							"sid": 723398693531071
-						}
-					],
+					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Делаем массив одномерным, т.к. с ним удобнее работать."
-						},
+							"text": "Рисование логической координаты каждой клетки на сетке."
+						}
+					],
+					"sid": 342295663422072,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 186272363135497,
+									"parameters": {
+										"name": "\"index\"",
+										"start-index": "0",
+										"end-index": "grid_cells.Width-1"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 920171172676831,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-at-x",
+											"objectClass": "grid_cells",
+											"sid": 194621736738437,
+											"parameters": {
+												"x": "loopindex",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "draw_text_on_cell",
+											"sid": 919456365841030,
+											"parameters": [
+												"loopindex",
+												"1",
+												"str((Functions.grid_index_to_x(loopindex, 0) & \",\") & Functions.grid_index_to_y(loopindex, 0))"
+											]
+										}
+									],
+									"sid": 974574863670490
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "draw_indexes",
+					"functionDescription": "Рисует индексы клеток.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
 						{
 							"type": "comment",
-							"text": "Используем массив из семьи, чтобы можно было использовать функцию со множеством различных массивов. "
+							"text": "Рисование индекса каждой клетки на сетке."
 						}
 					],
-					"sid": 413529758676948,
+					"sid": 196475957610273,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "pick-by-unique-id",
-									"objectClass": "Arrays",
-									"sid": 354902040650562,
-									"parameters": {
-										"unique-id": "arrayUID"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-size",
-									"objectClass": "Arrays",
-									"sid": 309212530157968,
-									"parameters": {
-										"width": "(gridWidth * gridHeight)",
-										"height": "1",
-										"depth": "1"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "Заполняю массив единицами. Это число будет символизировать стоимость пути. 0 - путь недоступен."
-								},
-								{
-									"id": "clear",
-									"objectClass": "Arrays",
-									"sid": 948097594342339,
-									"parameters": {
-										"value": "1"
-									}
-								}
-							],
-							"sid": 923105803848828
-						}
-					]
-				},
-				{
-					"eventType": "comment",
-					"text": " Вывести [b]Х[/b] координату для определенного индекса."
-				},
-				{
-					"functionName": "grid_index_to_x",
-					"functionDescription": "Возвращает Х положение указанного индекса.",
-					"functionCategory": "#grid",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "gridWidth",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Ширина сетки.",
-							"sid": 352472132116402
-						},
-						{
-							"name": "cellSize",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Размер клетки.",
-							"sid": 799111137529456
-						},
-						{
-							"name": "cellOffset",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Промежуток между клетками.",
-							"sid": 990217391636958
-						},
-						{
-							"name": "index",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "Индекс клетки.",
-							"sid": 809496154519055
-						},
-						{
-							"name": "get_real_coordinate",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических.",
-							"sid": 399938994238307
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 781045483121970,
-					"children": [
-						{
-							"eventType": "comment",
-							"text": "Реальные координаты (15, 30, 45...)"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
+									"id": "for",
 									"objectClass": "System",
-									"sid": 355594068738273,
+									"sid": 418003230395390,
 									"parameters": {
-										"variable": "get_real_coordinate"
+										"name": "\"index\"",
+										"start-index": "0",
+										"end-index": "grid_cells.Width-1"
 									}
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 665233577863975,
+							"children": [
 								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 482531989405383,
-									"parameters": {
-										"value": "(index % gridWidth) * cellSize + cellOffset"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-at-x",
+											"objectClass": "grid_cells",
+											"sid": 812348480536071,
+											"parameters": {
+												"x": "loopindex",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "draw_text_on_cell",
+											"sid": 500845801978352,
+											"parameters": [
+												"loopindex",
+												"1",
+												"str(loopindex)"
+											]
+										}
+									],
+									"sid": 327311595909483
 								}
-							],
-							"sid": 454102131349408
-						},
-						{
-							"eventType": "comment",
-							"text": "Логические координаты (0, 1, 2...)"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 524153757162975
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 815367272353571,
-									"parameters": {
-										"value": "(index % gridWidth)"
-									}
-								}
-							],
-							"sid": 739964720454436
-						}
-					]
-				},
-				{
-					"eventType": "comment",
-					"text": " Вывести [b]У[/b] координату для определенного индекса."
-				},
-				{
-					"functionName": "grid_index_to_y",
-					"functionDescription": "Возвращает Y положение указанного индекса.",
-					"functionCategory": "#grid",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "gridWidth",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Ширина сетки.",
-							"sid": 674612395337632
-						},
-						{
-							"name": "cellSize",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Размер клетки.",
-							"sid": 893197668545307
-						},
-						{
-							"name": "cellOffset",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Промежуток между клетками.",
-							"sid": 121324179405813
-						},
-						{
-							"name": "index",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "Индекс клетки.",
-							"sid": 986309586774039
-						},
-						{
-							"name": "get_real_coordinate",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических.",
-							"sid": 384247316510384
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 468445644648087,
-					"children": [
-						{
-							"eventType": "comment",
-							"text": "Реальные координаты (15, 30, 45...)"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 333007286423706,
-									"parameters": {
-										"variable": "get_real_coordinate"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 259981759093130,
-									"parameters": {
-										"value": "int(index / gridWidth) * cellSize + cellOffset"
-									}
-								}
-							],
-							"sid": 109471083226229
-						},
-						{
-							"eventType": "comment",
-							"text": "Логические координаты (0, 1, 2...)"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 787416810867513
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 625489988008338,
-									"parameters": {
-										"value": "int(index / gridWidth)"
-									}
-								}
-							],
-							"sid": 578446400515170
+							]
 						}
 					]
 				}
 			],
-			"sid": 918844631989107
+			"sid": 946695057105087
 		},
 		{
 			"eventType": "group",
@@ -757,7 +832,7 @@
 				{
 					"functionName": "create_unit",
 					"functionDescription": "Создать юнита и поместить его на определенную клетку.",
-					"functionCategory": "#main",
+					"functionCategory": "#grid",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [
@@ -785,8 +860,8 @@
 									"parameters": {
 										"object-to-create": "Unit",
 										"layer": "\"units\"",
-										"x": "Functions.grid_index_to_x(0, 0, 0, index, 0)",
-										"y": "Functions.grid_index_to_y(0, 0, 0, index, 0)",
+										"x": "Functions.grid_index_to_x(index, 0)",
+										"y": "Functions.grid_index_to_y(index, 0)",
 										"create-hierarchy": false
 									}
 								}

@@ -8,6 +8,14 @@
 	"usedAddons": [
 		{
 			"type": "plugin",
+			"id": "Arr",
+			"name": "Array",
+			"author": "Scirra",
+			"version": "r285.3",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "DrawingCanvas",
 			"name": "Drawing canvas",
 			"author": "Scirra",
@@ -24,8 +32,8 @@
 		},
 		{
 			"type": "plugin",
-			"id": "Arr",
-			"name": "Array",
+			"id": "Dictionary",
+			"name": "Dictionary",
 			"author": "Scirra",
 			"version": "r285.3",
 			"bundled": false
@@ -50,12 +58,20 @@
 	"uniqueId": "93ythsvn5zn",
 	"objectTypes": {
 		"items": [
-			"DrawingCanvas",
-			"Text",
-			"Array",
 			"Unit"
 		],
-		"subfolders": []
+		"subfolders": [
+			{
+				"items": [
+					"grid_cells",
+					"grid_drawing_canvas",
+					"grid_text",
+					"grid_config"
+				],
+				"subfolders": [],
+				"name": "grid"
+			}
+		]
 	},
 	"autosaveData": null,
 	"containers": [],
