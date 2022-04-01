@@ -88,7 +88,34 @@
 					"sid": 478686921535960
 				}
 			],
-			"actions": [],
+			"actions": [
+				{
+					"callFunction": "create_grid",
+					"sid": 523850587521645,
+					"parameters": [
+						"grid_width",
+						"grid_height",
+						"cell_size",
+						"cell_offset"
+					]
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 228140539734716
+				},
+				{
+					"callFunction": "draw_grid",
+					"sid": 701530787421391,
+					"parameters": [
+						true
+					]
+				},
+				{
+					"callFunction": "draw_indexes",
+					"sid": 773415613076624
+				}
+			],
 			"sid": 196702205840917
 		}
 	],
