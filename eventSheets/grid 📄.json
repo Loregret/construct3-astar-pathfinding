@@ -343,7 +343,49 @@
 			"title": "Юнит",
 			"description": "Объекты, находящиеся на сетке.",
 			"isActiveOnStart": true,
-			"children": [],
+			"children": [
+				{
+					"functionName": "create_unit",
+					"functionDescription": "Создать юнита и поместить его на определенную клетку.",
+					"functionCategory": "#main",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки на которую нужно поместить юнита.",
+							"sid": 429914104043413
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 849168629106407,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 454174983714561,
+									"parameters": {
+										"object-to-create": "Unit",
+										"layer": "\"units\"",
+										"x": "0",
+										"y": "0",
+										"create-hierarchy": false
+									}
+								}
+							],
+							"sid": 980093056842640
+						}
+					]
+				}
+			],
 			"sid": 480068551065653
 		}
 	],
