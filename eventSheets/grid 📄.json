@@ -66,36 +66,36 @@
 							"conditions": [],
 							"actions": [
 								{
-									"id": "set-key",
+									"id": "add-key",
 									"objectClass": "grid_config",
-									"sid": 178604941024361,
+									"sid": 283521840506864,
 									"parameters": {
 										"key": "\"gridWidth\"",
 										"value": "gridWidth"
 									}
 								},
 								{
-									"id": "set-key",
+									"id": "add-key",
 									"objectClass": "grid_config",
-									"sid": 205026646866640,
+									"sid": 359238002846991,
 									"parameters": {
 										"key": "\"gridHeight\"",
 										"value": "gridHeight"
 									}
 								},
 								{
-									"id": "set-key",
+									"id": "add-key",
 									"objectClass": "grid_config",
-									"sid": 933359000764566,
+									"sid": 391019429907501,
 									"parameters": {
 										"key": "\"cellSize\"",
 										"value": "cellSize"
 									}
 								},
 								{
-									"id": "set-key",
+									"id": "add-key",
 									"objectClass": "grid_config",
-									"sid": 937706665602389,
+									"sid": 973030548208925,
 									"parameters": {
 										"key": "\"cellOffset\"",
 										"value": "cellOffset"
