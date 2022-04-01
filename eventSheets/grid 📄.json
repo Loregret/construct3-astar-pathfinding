@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции. \nЭто означает, что вы можете скопировать в своей проект папку grid с этим Листом Событий. \nТаким образом, вы получите полностью рабочий функционал создания сетки и ее управления."
+			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции. \nЭто означает, что вы можете скопировать в своей проект папку [b]grid + этот Лист Событий[/b]. \nТаким образом, вы получите полностью рабочий функционал сетки."
 		},
 		{
 			"eventType": "group",
@@ -342,6 +342,13 @@
 							"initialValue": "true",
 							"comment": "",
 							"sid": 257752444831549
+						},
+						{
+							"name": "line_thickness",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "Толщина рамки клетки.",
+							"sid": 840864471889385
 						}
 					],
 					"eventType": "function-block",
@@ -391,6 +398,23 @@
 									],
 									"actions": [
 										{
+											"type": "comment",
+											"text": "Подстраивание размера полотна под размеры сетки."
+										},
+										{
+											"id": "set-size",
+											"objectClass": "grid_drawing_canvas",
+											"sid": 380071383516596,
+											"parameters": {
+												"width": "(grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
+												"height": "(grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "Рисовка границ и заливки клетки."
+										},
+										{
 											"id": "fill-rect",
 											"objectClass": "grid_drawing_canvas",
 											"sid": 668475367627654,
@@ -405,14 +429,14 @@
 										{
 											"id": "outline-rect",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 447277518681036,
+											"sid": 383650336113130,
 											"parameters": {
 												"left": "loopindex(\"x\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
 												"top": "loopindex(\"y\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
 												"right": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
 												"bottom": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
 												"color": "rgba(0, 0, 0, 100)",
-												"line-thickness": "4"
+												"line-thickness": "line_thickness"
 											}
 										}
 									],
@@ -440,10 +464,10 @@
 								{
 									"id": "scroll-to-position",
 									"objectClass": "System",
-									"sid": 504432106823737,
+									"sid": 468158773306267,
 									"parameters": {
-										"x": "(grid_drawing_canvas.X - grid_drawing_canvas.Width/2) + ((grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellOffset\")))/2",
-										"y": "(grid_drawing_canvas.Y - grid_drawing_canvas.Height/2) + ((grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellOffset\")))/2"
+										"x": "((grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellOffset\")))/2",
+										"y": "((grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellOffset\")))/2"
 									}
 								}
 							],
@@ -858,7 +882,7 @@
 									"objectClass": "System",
 									"sid": 605668502282824,
 									"parameters": {
-										"object-to-create": "Unit",
+										"object-to-create": "grid_unit",
 										"layer": "\"units\"",
 										"x": "Functions.grid_index_to_x(index, 0)",
 										"y": "Functions.grid_index_to_y(index, 0)",

@@ -1,0 +1,313 @@
+{
+	"name": "Camera 🎥",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Mouse",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Zoom",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "camera_zoom_is_global",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 321589410411927
+						},
+						{
+							"eventType": "variable",
+							"name": "camera_zoom_max",
+							"type": "number",
+							"initialValue": "2",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 209576873572908
+						},
+						{
+							"eventType": "variable",
+							"name": "camera_zoom_min",
+							"type": "number",
+							"initialValue": "0.5",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 890468554905253
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-mouse-wheel",
+									"objectClass": "Mouse",
+									"sid": 909012512361594,
+									"parameters": {
+										"direction": "up"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 566784630117598,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 626072946766731,
+											"parameters": {
+												"variable": "camera_zoom_is_global"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layout-scale",
+											"objectClass": "System",
+											"sid": 251498417961547,
+											"parameters": {
+												"scale": "LayoutScale * 1.1"
+											}
+										},
+										{
+											"id": "set-layout-scale",
+											"objectClass": "System",
+											"sid": 868916228908524,
+											"parameters": {
+												"scale": "clamp(LayoutScale, camera_zoom_min,  camera_zoom_max)"
+											}
+										}
+									],
+									"sid": 309055151556357
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 921541837406080
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-scale",
+											"objectClass": "System",
+											"sid": 233410163090432,
+											"parameters": {
+												"layer": "\"draw_canvas\"",
+												"scale": "LayerScale(\"draw_canvas\") * 1.1"
+											}
+										},
+										{
+											"id": "set-layer-scale",
+											"objectClass": "System",
+											"sid": 793507680455250,
+											"parameters": {
+												"layer": "\"draw_canvas\"",
+												"scale": "clamp(LayerScale(\"draw_canvas\"), camera_zoom_min, camera_zoom_max)"
+											}
+										}
+									],
+									"sid": 585562275276629
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-mouse-wheel",
+									"objectClass": "Mouse",
+									"sid": 628176630599972,
+									"parameters": {
+										"direction": "down"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 417023940381082,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 804873340725612,
+											"parameters": {
+												"variable": "camera_zoom_is_global"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layout-scale",
+											"objectClass": "System",
+											"sid": 229660314990000,
+											"parameters": {
+												"scale": "LayoutScale * 0.9"
+											}
+										},
+										{
+											"id": "set-layout-scale",
+											"objectClass": "System",
+											"sid": 240093461844063,
+											"parameters": {
+												"scale": "clamp(LayoutScale, camera_zoom_min,  camera_zoom_max)"
+											}
+										}
+									],
+									"sid": 196133344167983
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 161765038449304
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-scale",
+											"objectClass": "System",
+											"sid": 711789593215314,
+											"parameters": {
+												"layer": "\"draw_canvas\"",
+												"scale": "LayerScale(\"draw_canvas\") * 0.9"
+											}
+										},
+										{
+											"id": "set-layer-scale",
+											"objectClass": "System",
+											"sid": 550064607518783,
+											"parameters": {
+												"layer": "\"draw_canvas\"",
+												"scale": "clamp(LayerScale(\"draw_canvas\"), camera_zoom_min, camera_zoom_max)"
+											}
+										}
+									],
+									"sid": 307031731500795
+								}
+							]
+						}
+					],
+					"sid": 664792490403699
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Drag",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "camera_dragstart_x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 193703791112531
+						},
+						{
+							"eventType": "variable",
+							"name": "camera_dragstart_y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 507736974302346
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "mouse-button-is-down",
+									"objectClass": "Mouse",
+									"sid": 449427604527178,
+									"parameters": {
+										"mouse-button": "middle"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "scroll-to-x",
+									"objectClass": "System",
+									"sid": 557220640354659,
+									"parameters": {
+										"x": "scrollx - (Mouse.X - camera_dragstart_x) / LayerScale(\"draw_canvas\")"
+									}
+								},
+								{
+									"id": "scroll-to-y",
+									"objectClass": "System",
+									"sid": 625585881411485,
+									"parameters": {
+										"y": "scrolly - (Mouse.y - camera_dragstart_y) / LayerScale(\"draw_canvas\")"
+									}
+								}
+							],
+							"sid": 740236172489982
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-click",
+									"objectClass": "Mouse",
+									"sid": 168380880806716,
+									"parameters": {
+										"mouse-button": "middle",
+										"click-type": "clicked"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 687846339759222,
+									"parameters": {
+										"variable": "camera_dragstart_x",
+										"value": "Mouse.X"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 636342987847686,
+									"parameters": {
+										"variable": "camera_dragstart_y",
+										"value": "Mouse.Y"
+									}
+								}
+							],
+							"sid": 310758745357283
+						}
+					],
+					"sid": 521441130713506
+				}
+			],
+			"sid": 151190821670083
+		}
+	],
+	"sid": 142670429557579
+}

@@ -43,19 +43,19 @@
 					"type": "grid_drawing_canvas",
 					"properties": {
 						"initially-visible": true,
-						"origin": "center",
+						"origin": "top-left",
 						"antialiasing": "8x-msaa"
 					},
 					"uid": 2,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 640,
-						"y": 360,
+						"x": 0,
+						"y": 0,
 						"width": 1280,
 						"height": 720,
-						"originX": 0.5,
-						"originY": 0.5,
+						"originX": 0,
+						"originY": 0,
 						"color": [
 							1,
 							1,

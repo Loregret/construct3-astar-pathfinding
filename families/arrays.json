@@ -1,9 +1,0 @@
-{
-	"name": "Arrays",
-	"plugin-id": "Arr",
-	"sid": 828006235556181,
-	"instanceVariables": [],
-	"members": [
-		"grid_cells"
-	]
-}

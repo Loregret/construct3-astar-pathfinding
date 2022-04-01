@@ -47,6 +47,14 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "Mouse",
+			"name": "Mouse",
+			"author": "Scirra",
+			"version": "r285.3",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Tween",
 			"name": "Tween",
@@ -57,29 +65,32 @@
 	],
 	"uniqueId": "93ythsvn5zn",
 	"objectTypes": {
-		"items": [
-			"Unit"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
 					"grid_cells",
 					"grid_drawing_canvas",
 					"grid_text",
-					"grid_config"
+					"grid_config",
+					"grid_unit"
 				],
 				"subfolders": [],
 				"name": "grid"
+			},
+			{
+				"items": [
+					"Mouse"
+				],
+				"subfolders": [],
+				"name": "system"
 			}
 		]
 	},
 	"autosaveData": null,
 	"containers": [],
 	"families": {
-		"items": [
-			"Arrays",
-			"Units"
-		],
+		"items": [],
 		"subfolders": []
 	},
 	"layouts": {
@@ -93,7 +104,8 @@
 		"items": [
 			"Main 📄",
 			"Grid 📄",
-			"License ⚖️"
+			"License ⚖️",
+			"Camera 🎥"
 		],
 		"subfolders": []
 	},
