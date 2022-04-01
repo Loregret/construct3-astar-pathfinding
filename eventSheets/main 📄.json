@@ -69,7 +69,7 @@
 			"eventType": "variable",
 			"name": "cell_offset",
 			"type": "number",
-			"initialValue": "5",
+			"initialValue": "25",
 			"comment": "Промежуток между клетками.",
 			"isStatic": false,
 			"isConstant": false,
@@ -94,7 +94,8 @@
 					"sid": 901245171822257,
 					"parameters": [
 						"grid_width",
-						"grid_height"
+						"grid_height",
+						"-1"
 					]
 				},
 				{
@@ -172,10 +173,11 @@
 							"actions": [
 								{
 									"callFunction": "draw_text_on_cell",
-									"sid": 227253787838177,
+									"sid": 700530102720669,
 									"parameters": [
 										"loopindex",
-										"str(Functions.grid_index_to_x(loopindex) & \",\" & Functions.grid_index_to_y(loopindex))"
+										"str((Functions.grid_index_to_x(loopindex, 0) & \",\") & Functions.grid_index_to_y(loopindex, 0))",
+										"1"
 									]
 								}
 							],
@@ -245,7 +247,8 @@
 									"sid": 673483841611247,
 									"parameters": [
 										"loopindex",
-										"str(loopindex)"
+										"str(loopindex)",
+										"0"
 									]
 								}
 							],

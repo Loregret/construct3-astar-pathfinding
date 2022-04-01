@@ -1,0 +1,11 @@
+{
+	"name": "Units",
+	"plugin-id": "Sprite",
+	"sid": 417870769085242,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"Unit"
+	]
+}

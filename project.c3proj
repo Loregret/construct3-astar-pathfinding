@@ -60,7 +60,10 @@
 	"autosaveData": null,
 	"containers": [],
 	"families": {
-		"items": [],
+		"items": [
+			"Arrays",
+			"Units"
+		],
 		"subfolders": []
 	},
 	"layouts": {

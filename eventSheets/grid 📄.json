@@ -173,14 +173,14 @@
 							"name": "x",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "",
+							"comment": "X координата",
 							"sid": 766916966849166
 						},
 						{
 							"name": "y",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "",
+							"comment": "У координата",
 							"sid": 808218504550791
 						},
 						{
@@ -189,6 +189,20 @@
 							"initialValue": "",
 							"comment": "Отображаемый текст",
 							"sid": 300630115436314
+						},
+						{
+							"name": "textWidth",
+							"type": "number",
+							"initialValue": "45",
+							"comment": "Ширина текстового объекта.",
+							"sid": 905366840114653
+						},
+						{
+							"name": "textHeight",
+							"type": "number",
+							"initialValue": "45",
+							"comment": "Высота текстого объекта.",
+							"sid": 397297737856243
 						}
 					],
 					"eventType": "function-block",
@@ -224,11 +238,29 @@
 									}
 								},
 								{
+									"id": "set-size",
+									"objectClass": "Text",
+									"sid": 238465330688982,
+									"parameters": {
+										"width": "textWidth",
+										"height": "textHeight"
+									}
+								},
+								{
 									"id": "set-text",
 									"objectClass": "Text",
 									"sid": 781257468425794,
 									"parameters": {
 										"text": "string"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "Text",
+									"sid": 510645283172347,
+									"parameters": {
+										"x": "x",
+										"y": "y"
 									}
 								}
 							],
@@ -256,6 +288,13 @@
 							"initialValue": "",
 							"comment": "Текст.",
 							"sid": 590252856629342
+						},
+						{
+							"name": "originPosition",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "0 - TopLeft, 1 - center, 2 - BottomRight",
+							"sid": 639817642797747
 						}
 					],
 					"eventType": "function-block",
@@ -265,19 +304,100 @@
 					"children": [
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 777678000834014,
+									"parameters": {
+										"variable": "originPosition",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 587085966125212,
+									"sid": 730031469241094,
 									"parameters": [
-										"Functions.grid_index_to_x(index) * cell_size + cell_offset",
-										"Functions.grid_index_to_y(index) * cell_size + cell_offset",
-										"string"
+										"Functions.grid_index_to_x(index, 1) + (cell_size - cell_offset)/4",
+										"Functions.grid_index_to_y(index, 1) + (cell_size - cell_offset)/4",
+										"string",
+										"cell_size - cell_offset",
+										"cell_size - cell_offset"
 									]
 								}
 							],
 							"sid": 210614280092326
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 706588302742518
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 579613061311592,
+									"parameters": {
+										"variable": "originPosition",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_string",
+									"sid": 632872178078025,
+									"parameters": [
+										"Functions.grid_index_to_x(index, 1) + (cell_size - cell_offset)/2",
+										"Functions.grid_index_to_y(index, 1) + (cell_size - cell_offset)/2",
+										"string",
+										"cell_size - cell_offset",
+										"cell_size - cell_offset"
+									]
+								}
+							],
+							"sid": 838950632046680
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 400951423352950
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 719120273477495,
+									"parameters": {
+										"variable": "originPosition",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_string",
+									"sid": 381299429471413,
+									"parameters": [
+										"Functions.grid_index_to_x(index, 1) + (cell_size - cell_offset) * 0.75",
+										"Functions.grid_index_to_y(index, 1) + (cell_size - cell_offset) * 0.85",
+										"string",
+										"cell_size - cell_offset",
+										"cell_size - cell_offset"
+									]
+								}
+							],
+							"sid": 228774739463055
 						}
 					]
 				}
@@ -315,6 +435,13 @@
 							"initialValue": "0",
 							"comment": "",
 							"sid": 198736064118897
+						},
+						{
+							"name": "arrayUID",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "UID нужного массива.",
+							"sid": 723398693531071
 						}
 					],
 					"eventType": "function-block",
@@ -322,18 +449,31 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Массив одномерный, т.к. мне неудобно работать с двумерными массивами в [b]Construct[/b]"
+							"text": "Делаем массив одномерным, т.к. с ним удобнее работать."
+						},
+						{
+							"type": "comment",
+							"text": "Используем массив из семьи, чтобы можно было использовать функцию со множеством различных массивов. "
 						}
 					],
 					"sid": 413529758676948,
 					"children": [
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "Arrays",
+									"sid": 354902040650562,
+									"parameters": {
+										"unique-id": "arrayUID"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-size",
-									"objectClass": "Array",
+									"objectClass": "Arrays",
 									"sid": 309212530157968,
 									"parameters": {
 										"width": "(gridWidth * gridHeight)",
@@ -347,7 +487,7 @@
 								},
 								{
 									"id": "clear",
-									"objectClass": "Array",
+									"objectClass": "Arrays",
 									"sid": 948097594342339,
 									"parameters": {
 										"value": "1"
@@ -375,6 +515,13 @@
 							"initialValue": "-1",
 							"comment": "Индекс клетки.",
 							"sid": 809496154519055
+						},
+						{
+							"name": "get_real_coordinate",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Получить реальные координаты вместо логических.",
+							"sid": 399938994238307
 						}
 					],
 					"eventType": "function-block",
@@ -383,19 +530,57 @@
 					"sid": 781045483121970,
 					"children": [
 						{
+							"eventType": "comment",
+							"text": "Реальные координаты (15, 30, 45...)"
+						},
+						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 355594068738273,
+									"parameters": {
+										"variable": "get_real_coordinate"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 989250355624498,
+									"sid": 991326234108397,
+									"parameters": {
+										"value": "(index % grid_width) * cell_size + cell_offset"
+									}
+								}
+							],
+							"sid": 454102131349408
+						},
+						{
+							"eventType": "comment",
+							"text": "Логические координаты (0, 1, 2...)"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 524153757162975
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 892940584223001,
 									"parameters": {
 										"value": "(index % grid_width)"
 									}
 								}
 							],
-							"sid": 454102131349408
+							"sid": 739964720454436
 						}
 					]
 				},
@@ -416,6 +601,13 @@
 							"initialValue": "-1",
 							"comment": "Индекс клетки.",
 							"sid": 986309586774039
+						},
+						{
+							"name": "get_real_coordinate",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Получить реальные координаты вместо логических.",
+							"sid": 384247316510384
 						}
 					],
 					"eventType": "function-block",
@@ -424,19 +616,57 @@
 					"sid": 468445644648087,
 					"children": [
 						{
+							"eventType": "comment",
+							"text": "Реальные координаты (15, 30, 45...)"
+						},
+						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 333007286423706,
+									"parameters": {
+										"variable": "get_real_coordinate"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 235867448735761,
+									"sid": 350242951311086,
+									"parameters": {
+										"value": "int(index / grid_width) * cell_size + cell_offset"
+									}
+								}
+							],
+							"sid": 109471083226229
+						},
+						{
+							"eventType": "comment",
+							"text": "Логические координаты (0, 1, 2...)"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 787416810867513
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 535607813195276,
 									"parameters": {
 										"value": "int(index / grid_width)"
 									}
 								}
 							],
-							"sid": 109471083226229
+							"sid": 578446400515170
 						}
 					]
 				}
@@ -481,8 +711,8 @@
 									"parameters": {
 										"object-to-create": "Unit",
 										"layer": "\"units\"",
-										"x": "Functions.grid_index_to_x(index)",
-										"y": "Functions.grid_index_to_y(index)",
+										"x": "Functions.grid_index_to_x(index, 0)",
+										"y": "Functions.grid_index_to_y(index, 0)",
 										"create-hierarchy": false
 									}
 								}
