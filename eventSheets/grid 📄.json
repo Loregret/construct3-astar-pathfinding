@@ -10,13 +10,7 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "[h3] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean.",
-					"background-color": [
-						0.8235294117647058,
-						0.8745098039215686,
-						0.9764705882352941,
-						1
-					]
+					"text": "[h3] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
 				},
 				{
 					"functionName": "draw_grid",
@@ -66,26 +60,14 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Рисование сетки с помощью [b]Drawing Canvas[/b].",
-							"background-color": [
-								0.9137254901960784,
-								0.9372549019607843,
-								0.984313725490196,
-								1
-							]
+							"text": "Рисование сетки с помощью [b]Drawing Canvas[/b]."
 						}
 					],
 					"sid": 393361076268270,
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Создание сетки",
-							"background-color": [
-								0.9137254901960784,
-								0.9372549019607843,
-								0.984313725490196,
-								1
-							]
+							"text": "Создание сетки"
 						},
 						{
 							"eventType": "block",
@@ -151,13 +133,7 @@
 						},
 						{
 							"eventType": "comment",
-							"text": "Наводка камеры на центр",
-							"background-color": [
-								0.9137254901960784,
-								0.9372549019607843,
-								0.984313725490196,
-								1
-							]
+							"text": "Наводка камеры на центр"
 						},
 						{
 							"eventType": "block",
@@ -220,7 +196,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Рисование текста.",
+							"text": "Рисование текста на любой позиции.",
 							"background-color": [
 								0.9137254901960784,
 								0.9372549019607843,
@@ -259,6 +235,51 @@
 							"sid": 530716432780078
 						}
 					]
+				},
+				{
+					"functionName": "draw_text_on_cell",
+					"functionDescription": "Рисует текст на клетке.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 444330378869744
+						},
+						{
+							"name": "string",
+							"type": "string",
+							"initialValue": "",
+							"comment": "Текст.",
+							"sid": 590252856629342
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 719224089600577,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "draw_string",
+									"sid": 587085966125212,
+									"parameters": [
+										"Functions.grid_index_to_x(index) * cell_size + cell_offset",
+										"Functions.grid_index_to_y(index) * cell_size + cell_offset",
+										"string"
+									]
+								}
+							],
+							"sid": 210614280092326
+						}
+					]
 				}
 			],
 			"sid": 946695057105087
@@ -272,13 +293,7 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "Создание массива сетки.",
-					"background-color": [
-						0.9137254901960784,
-						0.9372549019607843,
-						0.984313725490196,
-						1
-					]
+					"text": "Создание массива сетки."
 				},
 				{
 					"functionName": "create_grid",
@@ -304,7 +319,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Массив одномерный, т.к. мне неудобно работать с двумерными массивами в [b]Construct[/b]"
+						}
+					],
 					"sid": 413529758676948,
 					"children": [
 						{
@@ -314,12 +334,16 @@
 								{
 									"id": "set-size",
 									"objectClass": "Array",
-									"sid": 890222391430632,
+									"sid": 309212530157968,
 									"parameters": {
 										"width": "(gridWidth * gridHeight)",
 										"height": "1",
 										"depth": "1"
 									}
+								},
+								{
+									"type": "comment",
+									"text": "Заполняю массив единицами. Это число будет символизировать стоимость пути. 0 - путь недоступен."
 								},
 								{
 									"id": "clear",
@@ -331,6 +355,88 @@
 								}
 							],
 							"sid": 923105803848828
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": " Вывести [b]Х[/b] координату для определенного индекса."
+				},
+				{
+					"functionName": "grid_index_to_x",
+					"functionDescription": "Возвращает Х положение указанного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 809496154519055
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 781045483121970,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 989250355624498,
+									"parameters": {
+										"value": "(index % grid_width)"
+									}
+								}
+							],
+							"sid": 454102131349408
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": " Вывести [b]У[/b] координату для определенного индекса."
+				},
+				{
+					"functionName": "grid_index_to_y",
+					"functionDescription": "Возвращает Y положение указанного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 986309586774039
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 468445644648087,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 235867448735761,
+									"parameters": {
+										"value": "int(index / grid_width)"
+									}
+								}
+							],
+							"sid": 109471083226229
 						}
 					]
 				}
@@ -371,12 +477,12 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 454174983714561,
+									"sid": 605668502282824,
 									"parameters": {
 										"object-to-create": "Unit",
 										"layer": "\"units\"",
-										"x": "0",
-										"y": "0",
+										"x": "Functions.grid_index_to_x(index)",
+										"y": "Functions.grid_index_to_y(index)",
 										"create-hierarchy": false
 									}
 								}

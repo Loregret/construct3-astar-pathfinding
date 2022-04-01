@@ -29,7 +29,7 @@
 			"eventType": "variable",
 			"name": "grid_width",
 			"type": "number",
-			"initialValue": "12",
+			"initialValue": "5",
 			"comment": "Ширина сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -76,6 +76,10 @@
 			"sid": 348825377449189
 		},
 		{
+			"eventType": "comment",
+			"text": "TODO:\n- Autoresize drawcanvas or zoom depending on grid size"
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -84,87 +88,100 @@
 					"sid": 478686921535960
 				}
 			],
-			"actions": [],
-			"sid": 196702205840917,
+			"actions": [
+				{
+					"callFunction": "create_grid",
+					"sid": 901245171822257,
+					"parameters": [
+						"grid_width",
+						"grid_height"
+					]
+				},
+				{
+					"callFunction": "draw_grid",
+					"sid": 533192387321944,
+					"parameters": [
+						"grid_width",
+						"grid_height",
+						"cell_size",
+						"cell_offset",
+						true
+					]
+				},
+				{
+					"callFunction": "draw_coordinates",
+					"sid": 892260469248074
+				}
+			],
+			"sid": 196702205840917
+		},
+		{
+			"functionName": "draw_coordinates",
+			"functionDescription": "Рисует координаты клеток.",
+			"functionCategory": "#draw",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Рисование логической координаты каждой клетки на сетке.",
+					"background-color": [
+						0.9137254901960784,
+						0.9372549019607843,
+						0.984313725490196,
+						1
+					]
+				}
+			],
+			"sid": 259675651246585,
 			"children": [
 				{
 					"eventType": "block",
-					"conditions": [],
-					"actions": [
+					"conditions": [
 						{
-							"callFunction": "create_grid",
-							"sid": 662485966049628,
-							"parameters": [
-								"grid_width",
-								"grid_height"
-							]
-						},
-						{
-							"callFunction": "draw_grid",
-							"sid": 858288322149799,
-							"parameters": [
-								"grid_width",
-								"grid_height",
-								"cell_size",
-								"0",
-								true
-							]
-						},
-						{
-							"callFunction": "draw_indexes",
-							"sid": 911512841735904
-						}
-					],
-					"sid": 902780488701429
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-at-x",
-							"objectClass": "Array",
-							"sid": 754254187023873,
+							"id": "for",
+							"objectClass": "System",
+							"sid": 957215853728559,
 							"parameters": {
-								"x": "4",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "Array",
-							"sid": 352153989693482,
-							"parameters": {
-								"x": "5",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "Array",
-							"sid": 676802527800140,
-							"parameters": {
-								"x": "6",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "Array",
-							"sid": 367176426696034,
-							"parameters": {
-								"x": "17",
-								"value": "0"
+								"name": "\"index\"",
+								"start-index": "0",
+								"end-index": "Array.Width-1"
 							}
 						}
 					],
-					"sid": 232919002619680
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
 					"actions": [],
-					"sid": 990495445654321
+					"sid": 877756159520833,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-at-x",
+									"objectClass": "Array",
+									"sid": 790961817273815,
+									"parameters": {
+										"x": "loopindex",
+										"comparison": 4,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_text_on_cell",
+									"sid": 227253787838177,
+									"parameters": [
+										"loopindex",
+										"str(Functions.grid_index_to_x(loopindex) & \",\" & Functions.grid_index_to_y(loopindex))"
+									]
+								}
+							],
+							"sid": 112910747834452
+						}
+					]
 				}
 			]
 		},
@@ -192,103 +209,47 @@
 			"sid": 591062095976947,
 			"children": [
 				{
-					"eventType": "variable",
-					"name": "count",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "",
-					"isStatic": true,
-					"isConstant": false,
-					"sid": 676017669340256
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 446105014958433,
-							"parameters": {
-								"variable": "count",
-								"value": "0"
-							}
-						}
-					],
-					"sid": 905040228987449
-				},
-				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "for",
 							"objectClass": "System",
-							"sid": 322843811100492,
+							"sid": 698296363880627,
 							"parameters": {
-								"name": "\"y\"",
+								"name": "\"index\"",
 								"start-index": "0",
-								"end-index": "grid_height - 1"
+								"end-index": "Array.Width-1"
 							}
 						}
 					],
 					"actions": [],
-					"sid": 363596345868158,
+					"sid": 886817552844861,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 694074328006807,
+									"id": "compare-at-x",
+									"objectClass": "Array",
+									"sid": 535171830669029,
 									"parameters": {
-										"name": "\"x\"",
-										"start-index": "0",
-										"end-index": "grid_width - 1"
+										"x": "loopindex",
+										"comparison": 4,
+										"value": "0"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "add-to-eventvar",
-									"objectClass": "System",
-									"sid": 510429177510418,
-									"parameters": {
-										"variable": "count",
-										"value": "1"
-									}
+									"callFunction": "draw_text_on_cell",
+									"sid": 673483841611247,
+									"parameters": [
+										"loopindex",
+										"str(loopindex)"
+									]
 								}
 							],
-							"sid": 160451492086189,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-at-x",
-											"objectClass": "Array",
-											"sid": 980796607820951,
-											"parameters": {
-												"x": "count",
-												"comparison": 4,
-												"value": "0"
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "draw_string",
-											"sid": 336868629713517,
-											"parameters": [
-												"(DrawingCanvas.X - DrawingCanvas.Width/2) + loopindex(\"x\") * cell_size",
-												"(DrawingCanvas.Y - DrawingCanvas.Height/2) + loopindex(\"y\")  * cell_size",
-												"str(count)\n"
-											]
-										}
-									],
-									"sid": 709035762834966
-								}
-							]
+							"sid": 412285346901611
 						}
 					]
 				}
