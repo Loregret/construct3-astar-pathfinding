@@ -37,6 +37,14 @@
 			"author": "Scirra",
 			"version": "r285.3",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Tween",
+			"name": "Tween",
+			"author": "Scirra",
+			"version": "r285.3",
+			"bundled": false
 		}
 	],
 	"uniqueId": "93ythsvn5zn",

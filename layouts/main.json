@@ -17,9 +17,9 @@
 				1
 			],
 			"backgroundColor": [
-				0.8509803921568627,
 				0.9294117647058824,
-				0.9686274509803922,
+				0.9294117647058824,
+				0.9294117647058824,
 				1
 			],
 			"isTransparent": false,
@@ -133,9 +133,9 @@
 		{
 			"type": "Array",
 			"properties": {
-				"width": 0,
-				"height": 0,
-				"depth": 0
+				"width": 1,
+				"height": 1,
+				"depth": 1
 			},
 			"uid": 4,
 			"instanceVariables": {}

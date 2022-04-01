@@ -10,7 +10,13 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "[h3] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
+					"text": "[h3] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean.",
+					"background-color": [
+						0.8235294117647058,
+						0.8745098039215686,
+						0.9764705882352941,
+						1
+					]
 				},
 				{
 					"functionName": "draw_grid",
@@ -57,12 +63,29 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Рисование сетки с помощью [b]Drawing Canvas[/b].",
+							"background-color": [
+								0.9137254901960784,
+								0.9372549019607843,
+								0.984313725490196,
+								1
+							]
+						}
+					],
 					"sid": 393361076268270,
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Создание сетки"
+							"text": "Создание сетки",
+							"background-color": [
+								0.9137254901960784,
+								0.9372549019607843,
+								0.984313725490196,
+								1
+							]
 						},
 						{
 							"eventType": "block",
@@ -99,7 +122,7 @@
 										{
 											"id": "fill-rect",
 											"objectClass": "DrawingCanvas",
-											"sid": 684269935019323,
+											"sid": 450853078456060,
 											"parameters": {
 												"left": "loopindex(\"x\") * cellSize + cell_offset",
 												"top": "loopindex(\"y\") * cellSize + cell_offset",
@@ -111,7 +134,7 @@
 										{
 											"id": "outline-rect",
 											"objectClass": "DrawingCanvas",
-											"sid": 846166213148636,
+											"sid": 805651119158826,
 											"parameters": {
 												"left": "loopindex(\"x\") * cellSize + cell_offset",
 												"top": "loopindex(\"y\") * cellSize + cell_offset",
@@ -128,7 +151,13 @@
 						},
 						{
 							"eventType": "comment",
-							"text": "Наводка камеры на центр"
+							"text": "Наводка камеры на центр",
+							"background-color": [
+								0.9137254901960784,
+								0.9372549019607843,
+								0.984313725490196,
+								1
+							]
 						},
 						{
 							"eventType": "block",
@@ -180,15 +209,26 @@
 						},
 						{
 							"name": "string",
-							"type": "number",
-							"initialValue": "0",
+							"type": "string",
+							"initialValue": "",
 							"comment": "Отображаемый текст",
 							"sid": 300630115436314
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Рисование текста.",
+							"background-color": [
+								0.9137254901960784,
+								0.9372549019607843,
+								0.984313725490196,
+								1
+							]
+						}
+					],
 					"sid": 962106468651084,
 					"children": [
 						{
@@ -210,7 +250,7 @@
 								{
 									"id": "set-text",
 									"objectClass": "Text",
-									"sid": 574343771043644,
+									"sid": 781257468425794,
 									"parameters": {
 										"text": "string"
 									}
@@ -219,134 +259,92 @@
 							"sid": 530716432780078
 						}
 					]
-				},
+				}
+			],
+			"sid": 946695057105087
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Сетка - логика",
+			"description": "Логическая часть сетки.",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"functionName": "clear_text",
-					"functionDescription": "Очистка текста.",
-					"functionCategory": "#draw",
-					"functionReturnType": "none",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 509113024933074,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "destroy",
-									"objectClass": "Text",
-									"sid": 711426140030724
-								}
-							],
-							"sid": 899365701369679
-						}
+					"eventType": "comment",
+					"text": "Создание массива сетки.",
+					"background-color": [
+						0.9137254901960784,
+						0.9372549019607843,
+						0.984313725490196,
+						1
 					]
 				},
 				{
-					"functionName": "draw_indexes",
-					"functionDescription": "Рисует индексы клеток.",
-					"functionCategory": "#draw",
+					"functionName": "create_grid",
+					"functionDescription": "Создает логику сетки.",
+					"functionCategory": "#main",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 434856534285485,
-					"children": [
+					"functionParameters": [
 						{
-							"eventType": "variable",
-							"name": "count",
+							"name": "gridWidth",
 							"type": "number",
 							"initialValue": "0",
 							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 321490613405130
+							"sid": 362616262114461
 						},
+						{
+							"name": "gridHeight",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 198736064118897
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 413529758676948,
+					"children": [
 						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
-									"callFunction": "clear_text",
-									"sid": 589728739932258
+									"id": "set-size",
+									"objectClass": "Array",
+									"sid": 890222391430632,
+									"parameters": {
+										"width": "(gridWidth * gridHeight)",
+										"height": "1",
+										"depth": "1"
+									}
 								},
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 907732724048181,
+									"id": "clear",
+									"objectClass": "Array",
+									"sid": 948097594342339,
 									"parameters": {
-										"variable": "count",
-										"value": "0"
+										"value": "1"
 									}
 								}
 							],
-							"sid": 802608199605800
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 405098213153376,
-									"parameters": {
-										"name": "\"y\"",
-										"start-index": "0",
-										"end-index": "grid_height - 1"
-									}
-								}
-							],
-							"actions": [],
-							"sid": 835479839148234,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 748162893832775,
-											"parameters": {
-												"name": "\"x\"",
-												"start-index": "0",
-												"end-index": "grid_width - 1"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "add-to-eventvar",
-											"objectClass": "System",
-											"sid": 138762288550677,
-											"parameters": {
-												"variable": "count",
-												"value": "1"
-											}
-										},
-										{
-											"callFunction": "draw_string",
-											"sid": 896567723810111,
-											"parameters": [
-												"(DrawingCanvas.X - DrawingCanvas.Width/2) + loopindex(\"x\") * cell_size",
-												"(DrawingCanvas.Y - DrawingCanvas.Height/2) + loopindex(\"y\")  * cell_size",
-												"count"
-											]
-										}
-									],
-									"sid": 446490105509281
-								}
-							]
+							"sid": 923105803848828
 						}
 					]
 				}
 			],
-			"sid": 946695057105087
+			"sid": 918844631989107
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Юнит",
+			"description": "Объекты, находящиеся на сетке.",
+			"isActiveOnStart": true,
+			"children": [],
+			"sid": 480068551065653
 		}
 	],
 	"sid": 362270193592792

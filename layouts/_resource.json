@@ -58,8 +58,16 @@
 						"live-preview": false
 					},
 					"uid": 5,
-					"instanceVariables": {},
-					"behaviors": {},
+					"instanceVariables": {
+						"index": -1
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"world": {
 						"x": 160,
 						"y": 64,

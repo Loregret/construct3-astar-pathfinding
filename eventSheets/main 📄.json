@@ -3,7 +3,13 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "[h2] Сетка"
+			"text": "[h2] Основные ивенты",
+			"background-color": [
+				0.8588235294117647,
+				0.9490196078431372,
+				0.7607843137254902,
+				1
+			]
 		},
 		{
 			"eventType": "include",
@@ -11,7 +17,13 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "Размеры сетки"
+			"text": "Размеры сетки",
+			"background-color": [
+				0.8588235294117647,
+				0.9490196078431372,
+				0.7607843137254902,
+				1
+			]
 		},
 		{
 			"eventType": "variable",
@@ -35,7 +47,13 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "Размеры клетки"
+			"text": "Размеры клетки",
+			"background-color": [
+				0.8588235294117647,
+				0.9490196078431372,
+				0.7607843137254902,
+				1
+			]
 		},
 		{
 			"eventType": "variable",
@@ -66,84 +84,213 @@
 					"sid": 478686921535960
 				}
 			],
-			"actions": [
-				{
-					"callFunction": "create_grid",
-					"sid": 476402961831944,
-					"parameters": [
-						"grid_width",
-						"grid_height"
-					]
-				},
-				{
-					"callFunction": "draw_grid",
-					"sid": 728566599052081,
-					"parameters": [
-						"grid_width",
-						"grid_height",
-						"cell_size",
-						"0",
-						true
-					]
-				},
-				{
-					"callFunction": "draw_indexes",
-					"sid": 556800994353698
-				}
-			],
-			"sid": 196702205840917
-		},
-		{
-			"functionName": "create_grid",
-			"functionDescription": "Создает логику сетки.",
-			"functionCategory": "#main",
-			"functionReturnType": "none",
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "gridWidth",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "",
-					"sid": 362616262114461
-				},
-				{
-					"name": "gridHeight",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "",
-					"sid": 198736064118897
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
 			"actions": [],
-			"sid": 627329601880563,
+			"sid": 196702205840917,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [],
 					"actions": [
 						{
-							"id": "set-size",
+							"callFunction": "create_grid",
+							"sid": 662485966049628,
+							"parameters": [
+								"grid_width",
+								"grid_height"
+							]
+						},
+						{
+							"callFunction": "draw_grid",
+							"sid": 858288322149799,
+							"parameters": [
+								"grid_width",
+								"grid_height",
+								"cell_size",
+								"0",
+								true
+							]
+						},
+						{
+							"callFunction": "draw_indexes",
+							"sid": 911512841735904
+						}
+					],
+					"sid": 902780488701429
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-x",
 							"objectClass": "Array",
-							"sid": 826962143030744,
+							"sid": 754254187023873,
 							"parameters": {
-								"width": "gridWidth * gridHeight",
-								"height": "1",
-								"depth": "1"
+								"x": "4",
+								"value": "0"
 							}
 						},
 						{
-							"id": "clear",
+							"id": "set-at-x",
 							"objectClass": "Array",
-							"sid": 105937783652702,
+							"sid": 352153989693482,
 							"parameters": {
-								"value": "1"
+								"x": "5",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "Array",
+							"sid": 676802527800140,
+							"parameters": {
+								"x": "6",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "Array",
+							"sid": 367176426696034,
+							"parameters": {
+								"x": "17",
+								"value": "0"
 							}
 						}
 					],
-					"sid": 669924194082381
+					"sid": 232919002619680
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 990495445654321
+				}
+			]
+		},
+		{
+			"functionName": "draw_indexes",
+			"functionDescription": "Рисует индексы клеток.",
+			"functionCategory": "#draw",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Рисование индекса каждой клетки на сетке.",
+					"background-color": [
+						0.9137254901960784,
+						0.9372549019607843,
+						0.984313725490196,
+						1
+					]
+				}
+			],
+			"sid": 591062095976947,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "count",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 676017669340256
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 446105014958433,
+							"parameters": {
+								"variable": "count",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 905040228987449
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for",
+							"objectClass": "System",
+							"sid": 322843811100492,
+							"parameters": {
+								"name": "\"y\"",
+								"start-index": "0",
+								"end-index": "grid_height - 1"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 363596345868158,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 694074328006807,
+									"parameters": {
+										"name": "\"x\"",
+										"start-index": "0",
+										"end-index": "grid_width - 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 510429177510418,
+									"parameters": {
+										"variable": "count",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 160451492086189,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-at-x",
+											"objectClass": "Array",
+											"sid": 980796607820951,
+											"parameters": {
+												"x": "count",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "draw_string",
+											"sid": 336868629713517,
+											"parameters": [
+												"(DrawingCanvas.X - DrawingCanvas.Width/2) + loopindex(\"x\") * cell_size",
+												"(DrawingCanvas.Y - DrawingCanvas.Height/2) + loopindex(\"y\")  * cell_size",
+												"str(count)\n"
+											]
+										}
+									],
+									"sid": 709035762834966
+								}
+							]
+						}
+					]
 				}
 			]
 		}
