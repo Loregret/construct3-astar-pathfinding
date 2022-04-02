@@ -13,6 +13,48 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"functionName": "grid_get_real_height",
+					"functionDescription": "Получить реальную ширину сетки в пикселях.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 686225130421235,
+							"parameters": {
+								"value": "((grid_config.Get(\"gridHeight\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+							}
+						}
+					],
+					"sid": 464428747989931
+				},
+				{
+					"functionName": "grid_get_real_width",
+					"functionDescription": "Получить реальную ширину сетки в пикселях.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 429020758318607,
+							"parameters": {
+								"value": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+							}
+						}
+					],
+					"sid": 163527063349550
+				},
+				{
 					"eventType": "comment",
 					"text": "Создание массива сетки."
 				},
@@ -165,14 +207,14 @@
 							"name": "get_real_coordinate",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических.",
+							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
 							"sid": 399938994238307
 						},
 						{
 							"name": "get_center",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "",
+							"comment": "Получить центральную позицию клетки. [b]Данная переменная типа boolean: принимается 1 или 0",
 							"sid": 218800474812381
 						}
 					],
@@ -352,14 +394,14 @@
 							"name": "get_real_coordinate",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических.",
+							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
 							"sid": 384247316510384
 						},
 						{
 							"name": "get_center",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "",
+							"comment": "[b]Данная переменная типа boolean: принимается 1 или 0",
 							"sid": 744043986030420
 						}
 					],
@@ -516,6 +558,95 @@
 							]
 						}
 					]
+				},
+				{
+					"functionName": "grid_pos_to_index",
+					"functionDescription": "Выводит индекс клетки, находящейся на указанной позиции.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "X координата",
+							"sid": 839813809592288
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "У координата",
+							"sid": 588193306560752
+						},
+						{
+							"name": "logical_coordinates",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Являются ли вводимые координаты логическими, поставьте 0, если координаты физические (к примеру, 13.450, 23.55)). [b]Данная переменная типа boolean: принимается 1 или 0",
+							"sid": 329856647551542
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 590951658836968,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 884565112777325,
+									"parameters": {
+										"variable": "logical_coordinates"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 774442526974301,
+									"parameters": {
+										"value": "y * grid_config.Get(\"gridWidth\") + x"
+									}
+								}
+							],
+							"sid": 990014381972948
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 201667004091525
+								}
+							],
+							"actions": [],
+							"sid": 942853820235550,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 786012879223698,
+											"parameters": {
+												"value": "int(y / grid_config.Get(\"cellSize\")) * grid_config.Get(\"gridWidth\") + int(X / grid_config.Get(\"cellSize\"))"
+											}
+										}
+									],
+									"sid": 971157111984935
+								}
+							]
+						}
+					]
 				}
 			],
 			"sid": 881450906732652
@@ -606,10 +737,10 @@
 										{
 											"id": "set-size",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 560762420607486,
+											"sid": 157095069667940,
 											"parameters": {
-												"width": "(grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
-												"height": "(grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+												"width": "Functions.grid_get_real_width + cell_size + cell_offset",
+												"height": "Functions.grid_get_real_height + cell_size + cell_offset"
 											}
 										},
 										{
@@ -1743,7 +1874,7 @@
 							"name": "originPosition",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "0 - TopLeft, 1 - center, 2 - BottomRight",
+							"comment": "0 - TopLeft, 1 - center, 2 - BottomRight, 3 - bottom",
 							"sid": 639817642797747
 						},
 						{
@@ -1860,6 +1991,40 @@
 								}
 							],
 							"sid": 869646477470075
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 390260156643166
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 866875654388581,
+									"parameters": {
+										"variable": "originPosition",
+										"comparison": 0,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_string",
+									"sid": 765271219954909,
+									"parameters": [
+										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
+										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
+										"string",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
+									]
+								}
+							],
+							"sid": 897533822548467
 						}
 					]
 				},
@@ -1918,10 +2083,10 @@
 									"actions": [
 										{
 											"callFunction": "draw_string_on_cell",
-											"sid": 919456365841030,
+											"sid": 982801186937568,
 											"parameters": [
 												"loopindex",
-												"1",
+												"3",
 												"str((Functions.grid_index_to_x(loopindex, 0, 0) & \",\") & Functions.grid_index_to_y(loopindex, 0, 0))"
 											]
 										}
@@ -2025,7 +2190,7 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 849168629106407,
+					"sid": 178733991174842,
 					"children": [
 						{
 							"eventType": "block",
@@ -2034,7 +2199,7 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 793467913223492,
+									"sid": 761024860354231,
 									"parameters": {
 										"object-to-create": "grid_unit",
 										"layer": "\"units\"",
@@ -2042,9 +2207,83 @@
 										"y": "Functions.grid_index_to_y(index, 1, 1)",
 										"create-hierarchy": false
 									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "grid_unit",
+									"sid": 885112300764797,
+									"parameters": {
+										"instance-variable": "index",
+										"value": "index"
+									}
+								},
+								{
+									"id": "set-size",
+									"objectClass": "grid_unit",
+									"sid": 490461450764170,
+									"parameters": {
+										"width": "grid_config.Get(\"cellSize\") * 0.9",
+										"height": "grid_config.Get(\"cellSize\") * 0.9"
+									}
 								}
 							],
-							"sid": 980093056842640
+							"sid": 406310802914378
+						}
+					]
+				},
+				{
+					"functionName": "unit_move_to",
+					"functionDescription": "Двигает юнита на клетку (через твин напрямую)",
+					"functionCategory": "#unit",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "UID",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "UID номер Юнита.",
+							"sid": 696002888743142
+						},
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки, на которую нужно перейти.",
+							"sid": 378245831195759
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 127981611395257,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "grid_unit",
+									"sid": 155260189102123,
+									"parameters": {
+										"unique-id": "UID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "move-to-position",
+									"objectClass": "grid_unit",
+									"sid": 807147526902663,
+									"behaviorType": "MoveTo",
+									"parameters": {
+										"x": "Functions.grid_index_to_x(index, 1, 1)",
+										"y": "Functions.grid_index_to_y(index, 1, 1)",
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 994796110620749
 						}
 					]
 				}

@@ -123,6 +123,10 @@
 						{
 							"callFunction": "draw_coordinates",
 							"sid": 740832462677629
+						},
+						{
+							"callFunction": "draw_indexes",
+							"sid": 889987379772972
 						}
 					],
 					"sid": 509017071766911
@@ -147,10 +151,17 @@
 								false,
 								"3"
 							]
-						},
+						}
+					],
+					"sid": 614020216425388
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
 						{
 							"callFunction": "draw_circle_on_cell",
-							"sid": 645513636453891,
+							"sid": 488845010977953,
 							"parameters": [
 								"10",
 								"\"red\"",
@@ -161,7 +172,7 @@
 						},
 						{
 							"callFunction": "draw_circle_on_cell",
-							"sid": 893116976623490,
+							"sid": 374643837100046,
 							"parameters": [
 								"10",
 								"\"black\"",
@@ -171,9 +182,91 @@
 							]
 						}
 					],
-					"sid": 614020216425388
+					"sid": 848329181714764
 				}
 			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 564213908247592,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "unit_move_to",
+					"sid": 681017163425832,
+					"disabled": true,
+					"parameters": [
+						"grid_unit.UID",
+						"5"
+					]
+				},
+				{
+					"id": "alert",
+					"objectClass": "Browser",
+					"sid": 398600498867548,
+					"parameters": {
+						"message": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+					}
+				}
+			],
+			"sid": 132268253444151
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 276163523151126
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "debug_text",
+					"sid": 478853111046189,
+					"disabled": true,
+					"parameters": {
+						"text": "int(Mouse.X / grid_config.Get(\"cellSize\")) & \", \" & int(Mouse.Y / grid_config.Get(\"cellSize\"))"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "debug_text",
+					"sid": 992845073940503,
+					"disabled": true,
+					"parameters": {
+						"text": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "debug_text",
+					"sid": 327190252418233,
+					"parameters": {
+						"text": "int(Mouse.X) & \", \" & int(Mouse.Y)"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "debug_text",
+					"sid": 511206849035919,
+					"disabled": true,
+					"parameters": {
+						"text": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+					}
+				}
+			],
+			"sid": 308737534093936
 		}
 	],
 	"sid": 604163391678533

@@ -13,9 +13,9 @@
 	],
 	"behaviorTypes": [
 		{
-			"behaviorId": "Tween",
-			"name": "Tween",
-			"sid": 594918924347286
+			"behaviorId": "MoveTo",
+			"name": "MoveTo",
+			"sid": 751988772203467
 		}
 	],
 	"effectTypes": [],
@@ -24,14 +24,14 @@
 			{
 				"frames": [
 					{
-						"width": 65,
-						"height": 65,
+						"width": 100,
+						"height": 100,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 4009983,
+						"imageSpriteId": 9549556,
 						"collisionPoly": {
 							"points": [
 								0.15384615384615385,

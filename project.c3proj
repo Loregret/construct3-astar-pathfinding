@@ -55,9 +55,17 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "Browser",
+			"name": "Browser",
+			"author": "Scirra",
+			"version": "r285.3",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
-			"id": "Tween",
-			"name": "Tween",
+			"id": "MoveTo",
+			"name": "Move To",
 			"author": "Scirra",
 			"version": "r285.3",
 			"bundled": false
@@ -65,7 +73,9 @@
 	],
 	"uniqueId": "93ythsvn5zn",
 	"objectTypes": {
-		"items": [],
+		"items": [
+			"debug_text"
+		],
 		"subfolders": [
 			{
 				"items": [
@@ -80,7 +90,8 @@
 			},
 			{
 				"items": [
-					"Mouse"
+					"Mouse",
+					"Browser"
 				],
 				"subfolders": [],
 				"name": "system"
