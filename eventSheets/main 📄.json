@@ -63,7 +63,7 @@
 			"eventType": "variable",
 			"name": "cell_size",
 			"type": "number",
-			"initialValue": "50",
+			"initialValue": "65",
 			"comment": "Размер одной клетки.",
 			"isStatic": false,
 			"isConstant": false,
@@ -73,7 +73,7 @@
 			"eventType": "variable",
 			"name": "cell_offset",
 			"type": "number",
-			"initialValue": "5",
+			"initialValue": "4",
 			"comment": "Промежутки между клетками.",
 			"isStatic": false,
 			"isConstant": false,
@@ -110,6 +110,13 @@
 				{
 					"callFunction": "draw_coordinates",
 					"sid": 508465209539181
+				},
+				{
+					"callFunction": "create_unit",
+					"sid": 619307020430402,
+					"parameters": [
+						"0"
+					]
 				}
 			],
 			"sid": 196702205840917

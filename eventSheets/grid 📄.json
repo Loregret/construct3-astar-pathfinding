@@ -327,7 +327,7 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "[h3] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
+					"text": "[h2] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
 				},
 				{
 					"functionName": "draw_grid",
@@ -359,7 +359,7 @@
 							"text": "Рисование сетки с помощью [b]Drawing Canvas[/b]."
 						}
 					],
-					"sid": 393361076268270,
+					"sid": 177580606119246,
 					"children": [
 						{
 							"eventType": "comment",
@@ -371,7 +371,7 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 691544731186106,
+									"sid": 630946479273336,
 									"parameters": {
 										"name": "\"y\"",
 										"start-index": "0",
@@ -380,7 +380,7 @@
 								}
 							],
 							"actions": [],
-							"sid": 253593494773819,
+							"sid": 815296065513007,
 							"children": [
 								{
 									"eventType": "block",
@@ -388,7 +388,7 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 335523784939707,
+											"sid": 698202590237000,
 											"parameters": {
 												"name": "\"x\"",
 												"start-index": "0",
@@ -404,7 +404,7 @@
 										{
 											"id": "set-size",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 380071383516596,
+											"sid": 560762420607486,
 											"parameters": {
 												"width": "(grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
 												"height": "(grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
@@ -417,7 +417,7 @@
 										{
 											"id": "fill-rect",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 668475367627654,
+											"sid": 656516895218286,
 											"parameters": {
 												"left": "loopindex(\"x\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
 												"top": "loopindex(\"y\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
@@ -429,7 +429,7 @@
 										{
 											"id": "outline-rect",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 383650336113130,
+											"sid": 979843269624818,
 											"parameters": {
 												"left": "loopindex(\"x\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
 												"top": "loopindex(\"y\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
@@ -440,7 +440,7 @@
 											}
 										}
 									],
-									"sid": 581492143511221
+									"sid": 440135278319630
 								}
 							]
 						},
@@ -454,7 +454,7 @@
 								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 799104991549408,
+									"sid": 850328392601261,
 									"parameters": {
 										"variable": "scroll_to_center"
 									}
@@ -464,16 +464,24 @@
 								{
 									"id": "scroll-to-position",
 									"objectClass": "System",
-									"sid": 468158773306267,
+									"sid": 664278900100970,
 									"parameters": {
 										"x": "((grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellOffset\")))/2",
 										"y": "((grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellOffset\")))/2"
 									}
 								}
 							],
-							"sid": 975928345523892
+							"sid": 968506086593138
 						}
 					]
+				},
+				{
+					"eventType": "comment",
+					"text": "[h2] Низкоуровневые функции"
+				},
+				{
+					"eventType": "comment",
+					"text": "[h3] Рисование по координатам"
 				},
 				{
 					"functionName": "draw_string",
@@ -576,7 +584,477 @@
 					]
 				},
 				{
-					"functionName": "draw_text_on_cell",
+					"functionName": "draw_rectangle",
+					"functionDescription": "Нарисовать квадрат на drawing canvas.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "color",
+							"type": "string",
+							"initialValue": "",
+							"comment": "Выбор цвета квадрата. (Варианты: red, green, blue, black)",
+							"sid": 211860357166292
+						},
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 418540345122711
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 318053338112829
+						},
+						{
+							"name": "size",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 491548001791563
+						},
+						{
+							"name": "fill",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"sid": 970901520893246
+						},
+						{
+							"name": "thickness",
+							"type": "number",
+							"initialValue": "2",
+							"comment": "",
+							"sid": 374075485002639
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Рисование квадратов разной величины, цветов и толщины."
+						}
+					],
+					"sid": 254386748420567,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "R",
+							"type": "number",
+							"initialValue": "100",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 198496683551604
+						},
+						{
+							"eventType": "variable",
+							"name": "G",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 814064227558515
+						},
+						{
+							"eventType": "variable",
+							"name": "B",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 647194770738984
+						},
+						{
+							"eventType": "comment",
+							"text": "Выбор цвета"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [],
+							"sid": 300304818695866,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 983268677966845,
+											"parameters": {
+												"variable": "color",
+												"comparison": 0,
+												"value": "\"black\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 268157645903273,
+											"parameters": {
+												"variable": "R",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 863769138217767,
+											"parameters": {
+												"variable": "G",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 806625439116355,
+											"parameters": {
+												"variable": "B",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 983793452999010
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 271654793487176
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 311645529826240,
+											"parameters": {
+												"variable": "color",
+												"comparison": 0,
+												"value": "\"red\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 221557022969278,
+											"parameters": {
+												"variable": "R",
+												"value": "100"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 494898387831712,
+											"parameters": {
+												"variable": "G",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 830569144841663,
+											"parameters": {
+												"variable": "B",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 892717028286577
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 526986333881547
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 826839802663088,
+											"parameters": {
+												"variable": "color",
+												"comparison": 0,
+												"value": "\"green\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 504500675616990,
+											"parameters": {
+												"variable": "R",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 499099274164369,
+											"parameters": {
+												"variable": "G",
+												"value": "100"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 875073185057346,
+											"parameters": {
+												"variable": "B",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 433844179731652
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 125360792883936
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 328791920367180,
+											"parameters": {
+												"variable": "color",
+												"comparison": 0,
+												"value": "\"blue\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 432932285823458,
+											"parameters": {
+												"variable": "R",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 174831348474874,
+											"parameters": {
+												"variable": "G",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 272914671147582,
+											"parameters": {
+												"variable": "B",
+												"value": "100"
+											}
+										}
+									],
+									"sid": 432768856293610
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Рисовка"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [],
+							"sid": 162958678178693,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 879865574145171,
+											"parameters": {
+												"variable": "fill"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "fill-rect",
+											"objectClass": "grid_drawing_canvas",
+											"sid": 991960601341651,
+											"parameters": {
+												"left": "x",
+												"top": "y",
+												"right": "x + size",
+												"bottom": "y + size",
+												"color": "rgba(R, G, B, 100)"
+											}
+										}
+									],
+									"sid": 982727914776633
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 303900398450212
+										}
+									],
+									"actions": [
+										{
+											"id": "outline-rect",
+											"objectClass": "grid_drawing_canvas",
+											"sid": 700861987481351,
+											"parameters": {
+												"left": "x",
+												"top": "y",
+												"right": "x + size",
+												"bottom": "y + size",
+												"color": "rgba(R, G, B, 100)",
+												"line-thickness": "thickness"
+											}
+										}
+									],
+									"sid": 546243732136457
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "[h3] Рисование на клетках"
+				},
+				{
+					"functionName": "draw_rectangle_on_cell",
+					"functionDescription": "Выделить квадратом клетку.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки на сетке.",
+							"sid": 563062458965307
+						},
+						{
+							"name": "color",
+							"type": "string",
+							"initialValue": "red",
+							"comment": "Цвет квадрат.",
+							"sid": 920355234843036
+						},
+						{
+							"name": "fill",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Залить квадрат цветом или нет.",
+							"sid": 666976335820725
+						},
+						{
+							"name": "line_thickness",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "Толщина линии (при отсутствии заливки)",
+							"sid": 642454178150492
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Рисование квадрата на клетке."
+						}
+					],
+					"sid": 745241555470378,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 138936951668432,
+									"parameters": {
+										"variable": "fill"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_rectangle",
+									"sid": 773343163742050,
+									"parameters": [
+										"color",
+										"Functions.grid_index_to_x(index, 1) ",
+										"Functions.grid_index_to_y(index, 1) ",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										true,
+										"line_thickness"
+									]
+								}
+							],
+							"sid": 660867384787221
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 855049121788778
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_rectangle",
+									"sid": 399958589093368,
+									"parameters": [
+										"color",
+										"Functions.grid_index_to_x(index, 1)",
+										"Functions.grid_index_to_y(index, 1)",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										false,
+										"line_thickness"
+									]
+								}
+							],
+							"sid": 371423784530497
+						}
+					]
+				},
+				{
+					"functionName": "draw_string_on_cell",
 					"functionDescription": "Рисует текст на клетке.",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
@@ -612,7 +1090,7 @@
 							"text": "Рисование текста на клетке."
 						}
 					],
-					"sid": 719224089600577,
+					"sid": 697496901447248,
 					"children": [
 						{
 							"eventType": "block",
@@ -620,7 +1098,7 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 777678000834014,
+									"sid": 128385101607289,
 									"parameters": {
 										"variable": "originPosition",
 										"comparison": 0,
@@ -631,7 +1109,7 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 132494167077361,
+									"sid": 262516191262278,
 									"parameters": [
 										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
 										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
@@ -641,7 +1119,7 @@
 									]
 								}
 							],
-							"sid": 210614280092326
+							"sid": 565671194168057
 						},
 						{
 							"eventType": "block",
@@ -649,12 +1127,12 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 706588302742518
+									"sid": 796826415363919
 								},
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 579613061311592,
+									"sid": 969075654175529,
 									"parameters": {
 										"variable": "originPosition",
 										"comparison": 0,
@@ -665,7 +1143,7 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 817510361208520,
+									"sid": 516348629291577,
 									"parameters": [
 										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
 										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
@@ -675,7 +1153,7 @@
 									]
 								}
 							],
-							"sid": 838950632046680
+							"sid": 246624754052566
 						},
 						{
 							"eventType": "block",
@@ -683,12 +1161,12 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 400951423352950
+									"sid": 277020380723815
 								},
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 719120273477495,
+									"sid": 364895064342329,
 									"parameters": {
 										"variable": "originPosition",
 										"comparison": 0,
@@ -699,7 +1177,7 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 133969683749063,
+									"sid": 127522293826096,
 									"parameters": [
 										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.75",
 										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
@@ -709,9 +1187,13 @@
 									]
 								}
 							],
-							"sid": 228774739463055
+							"sid": 869646477470075
 						}
 					]
+				},
+				{
+					"eventType": "comment",
+					"text": "[h2] Высокоуровневые функции"
 				},
 				{
 					"functionName": "draw_coordinates",
@@ -763,7 +1245,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "draw_text_on_cell",
+											"callFunction": "draw_string_on_cell",
 											"sid": 919456365841030,
 											"parameters": [
 												"loopindex",
@@ -828,7 +1310,7 @@
 									],
 									"actions": [
 										{
-											"callFunction": "draw_text_on_cell",
+											"callFunction": "draw_string_on_cell",
 											"sid": 500845801978352,
 											"parameters": [
 												"loopindex",
@@ -880,12 +1362,12 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 605668502282824,
+									"sid": 824763759174843,
 									"parameters": {
 										"object-to-create": "grid_unit",
 										"layer": "\"units\"",
-										"x": "Functions.grid_index_to_x(index, 0)",
-										"y": "Functions.grid_index_to_y(index, 0)",
+										"x": "Functions.grid_index_to_x(index, 1)",
+										"y": "Functions.grid_index_to_y(index, 1)",
 										"create-hierarchy": false
 									}
 								}
