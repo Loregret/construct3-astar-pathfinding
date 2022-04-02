@@ -64,7 +64,7 @@
 					"behaviors": {
 						"MoveTo": {
 							"properties": {
-								"max-speed": 200,
+								"max-speed": 350,
 								"acceleration": 1000,
 								"deceleration": 1000,
 								"rotate-speed": 0,

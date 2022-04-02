@@ -122,7 +122,7 @@
 					"actions": [
 						{
 							"callFunction": "draw_grid",
-							"sid": 410988254622001,
+							"sid": 325956889312974,
 							"parameters": [
 								true,
 								"2"
@@ -151,13 +151,46 @@
 							]
 						},
 						{
-							"callFunction": "draw_rectangle_on_cell",
-							"sid": 231521003950860,
+							"callFunction": "grid_block_index",
+							"sid": 431787968609657,
 							"parameters": [
-								"52",
-								"\"red\"",
-								false,
-								"3"
+								"66"
+							]
+						},
+						{
+							"callFunction": "grid_block_index",
+							"sid": 771910561808479,
+							"parameters": [
+								"67"
+							]
+						},
+						{
+							"callFunction": "grid_block_index",
+							"sid": 930616394986233,
+							"parameters": [
+								"68"
+							]
+						},
+						{
+							"callFunction": "grid_block_index",
+							"sid": 291472773980956,
+							"parameters": [
+								"69"
+							]
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 815410142311191,
+							"parameters": {
+								"seconds": "1"
+							}
+						},
+						{
+							"callFunction": "grid_unblock_index",
+							"sid": 890891518423224,
+							"parameters": [
+								"69"
 							]
 						}
 					],

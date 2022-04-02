@@ -6,6 +6,98 @@
 			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции. \nЭто означает, что вы можете скопировать в своей проект папку [b]grid + этот Лист Событий[/b]. \nТаким образом, вы получите полностью рабочий функционал сетки."
 		},
 		{
+			"functionName": "grid_unblock_index",
+			"functionDescription": "Разблокирует клетку.",
+			"functionCategory": "#grid",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "index",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "Индекс клетки.",
+					"sid": 154391309974676
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 410130538767557,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 151430956364245,
+							"parameters": {
+								"x": "index",
+								"value": "1"
+							}
+						},
+						{
+							"id": "clear-canvas",
+							"objectClass": "grid_drawing_canvas",
+							"sid": 522449183346199,
+							"parameters": {
+								"color": "rgba(85, 85, 85, 0)"
+							}
+						},
+						{
+							"callFunction": "draw_grid",
+							"sid": 670420520431075,
+							"parameters": [
+								true,
+								"grid_config.Get(\"gridThickness\")"
+							]
+						}
+					],
+					"sid": 359261329064897
+				}
+			]
+		},
+		{
+			"functionName": "grid_block_index",
+			"functionDescription": "Блокирует клетку.",
+			"functionCategory": "#grid",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "index",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "Индекс клетки.",
+					"sid": 350205810310020
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 104932453920347,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 340490368714943,
+							"parameters": {
+								"x": "index",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 915576175784652
+				}
+			]
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Сетка - логика",
@@ -927,11 +1019,21 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 630946479273336,
+									"sid": 751802717717057,
 									"parameters": {
 										"name": "\"y\"",
 										"start-index": "0",
 										"end-index": "grid_config.Get(\"gridHeight\") - 1"
+									}
+								},
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 929006998447912,
+									"parameters": {
+										"name": "\"x\"",
+										"start-index": "0",
+										"end-index": "grid_config.Get(\"gridWidth\") - 1"
 									}
 								}
 							],
@@ -939,135 +1041,136 @@
 							"sid": 815296065513007,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "x_position",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "Х позиция клетки.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 323073386514257
+								},
+								{
+									"eventType": "variable",
+									"name": "y_position",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "Y позиция клетки.",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 876089376513232
+								},
+								{
 									"eventType": "block",
-									"conditions": [
+									"conditions": [],
+									"actions": [
 										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 698202590237000,
+											"type": "comment",
+											"text": "Подстраивание размера полотна под размеры сетки."
+										},
+										{
+											"id": "set-size",
+											"objectClass": "grid_drawing_canvas",
+											"sid": 636099465836631,
 											"parameters": {
-												"name": "\"x\"",
-												"start-index": "0",
-												"end-index": "grid_config.Get(\"gridWidth\") - 1"
+												"width": "Functions.grid_get_real_width + cell_size",
+												"height": "Functions.grid_get_real_height + cell_size"
 											}
 										}
 									],
-									"actions": [],
-									"sid": 440135278319630,
-									"children": [
+									"sid": 978679037003898
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
 										{
-											"eventType": "variable",
-											"name": "x_position",
-											"type": "number",
-											"initialValue": "0",
-											"comment": "Х позиция клетки.",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 450670421932256
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 715209122963331,
+											"parameters": {
+												"variable": "x_position",
+												"value": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) "
+											}
 										},
 										{
-											"eventType": "variable",
-											"name": "y_position",
-											"type": "number",
-											"initialValue": "0",
-											"comment": "Y позиция клетки.",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 962714886674908
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "Подстраивание размера полотна под размеры сетки."
-												},
-												{
-													"id": "set-size",
-													"objectClass": "grid_drawing_canvas",
-													"sid": 403310894754989,
-													"parameters": {
-														"width": "Functions.grid_get_real_width + cell_size",
-														"height": "Functions.grid_get_real_height + cell_size"
-													}
-												}
-											],
-											"sid": 648176591890056
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 455778989041567,
-													"parameters": {
-														"variable": "x_position",
-														"value": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) "
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 455538995119135,
-													"parameters": {
-														"variable": "y_position",
-														"value": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) "
-													}
-												},
-												{
-													"type": "comment",
-													"text": "Рисовка границ и заливки клетки."
-												},
-												{
-													"id": "fill-rect",
-													"objectClass": "grid_drawing_canvas",
-													"sid": 477847496887847,
-													"parameters": {
-														"left": "x_position + grid_config.Get(\"cellOffset\")",
-														"top": "y_position + grid_config.Get(\"cellOffset\")",
-														"right": "x_position + grid_config.Get(\"cellSize\")",
-														"bottom": "y_position + grid_config.Get(\"cellSize\")",
-														"color": "rgba(80, 80, 80, 100)"
-													}
-												}
-											],
-											"sid": 797126173946645
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 335889145533408,
-													"parameters": {
-														"variable": "line_thickness",
-														"comparison": 4,
-														"value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "outline-rect",
-													"objectClass": "grid_drawing_canvas",
-													"sid": 563768695224774,
-													"parameters": {
-														"left": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellOffset\")",
-														"top": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellOffset\")",
-														"right": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
-														"bottom": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
-														"color": "rgba(35, 35, 35, 100)",
-														"line-thickness": "line_thickness"
-													}
-												}
-											],
-											"sid": 405856681975316
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 600882032175588,
+											"parameters": {
+												"variable": "y_position",
+												"value": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) "
+											}
 										}
-									]
+									],
+									"sid": 257979103341656
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Рисовка границ и заливки клетки."
+										},
+										{
+											"id": "fill-rect",
+											"objectClass": "grid_drawing_canvas",
+											"sid": 449912561614997,
+											"parameters": {
+												"left": "x_position + grid_config.Get(\"cellOffset\")",
+												"top": "y_position + grid_config.Get(\"cellOffset\")",
+												"right": "x_position + grid_config.Get(\"cellSize\")",
+												"bottom": "y_position + grid_config.Get(\"cellSize\")",
+												"color": "rgba(80, 80, 80, 100)"
+											}
+										}
+									],
+									"sid": 530578206817251
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 516428499931976,
+											"parameters": {
+												"variable": "line_thickness",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Огранка клеток"
+										},
+										{
+											"id": "add-key",
+											"objectClass": "grid_config",
+											"sid": 724824520435061,
+											"parameters": {
+												"key": "\"gridThickness\"",
+												"value": "line_thickness"
+											}
+										},
+										{
+											"id": "outline-rect",
+											"objectClass": "grid_drawing_canvas",
+											"sid": 428919696189880,
+											"parameters": {
+												"left": "x_position + grid_config.Get(\"cellOffset\")",
+												"top": "y_position + grid_config.Get(\"cellOffset\")",
+												"right": "x_position + grid_config.Get(\"cellSize\")",
+												"bottom": "y_position + grid_config.Get(\"cellSize\")",
+												"color": "rgba(35, 35, 35, 100)",
+												"line-thickness": "line_thickness"
+											}
+										}
+									],
+									"sid": 406012340664008
 								}
 							]
 						},
@@ -2120,12 +2223,12 @@
 							"actions": [
 								{
 									"callFunction": "draw_rectangle",
-									"sid": 773343163742050,
+									"sid": 785240812611203,
 									"parameters": [
 										"color",
-										"Functions.grid_index_to_x(index, 1, 0)",
-										"Functions.grid_index_to_y(index, 1, 0)",
-										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										"Functions.grid_index_to_x(index, 1, 0) + grid_config.Get(\"gridThickness\")/2",
+										"Functions.grid_index_to_y(index, 1, 0) + grid_config.Get(\"gridThickness\")/2",
+										"grid_config.Get(\"cellSize\") - (grid_config.Get(\"gridThickness\") + grid_config.Get(\"cellOffset\")) + 1",
 										true,
 										"thickness"
 									]
@@ -2145,12 +2248,12 @@
 							"actions": [
 								{
 									"callFunction": "draw_rectangle",
-									"sid": 399958589093368,
+									"sid": 885355294464603,
 									"parameters": [
 										"color",
-										"Functions.grid_index_to_x(index, 1, 0)",
-										"Functions.grid_index_to_y(index, 1, 0)",
-										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										"Functions.grid_index_to_x(index, 1, 0) + grid_config.Get(\"gridThickness\")/2",
+										"Functions.grid_index_to_y(index, 1, 0) + grid_config.Get(\"gridThickness\")/2",
+										"grid_config.Get(\"cellSize\") - (grid_config.Get(\"gridThickness\") + grid_config.Get(\"cellOffset\")) + 1",
 										false,
 										"thickness"
 									]
@@ -2526,15 +2629,6 @@
 									}
 								},
 								{
-									"id": "set-instvar-value",
-									"objectClass": "grid_unit",
-									"sid": 885112300764797,
-									"parameters": {
-										"instance-variable": "index",
-										"value": "index"
-									}
-								},
-								{
 									"id": "set-size",
 									"objectClass": "grid_unit",
 									"sid": 486816761549276,
@@ -2542,9 +2636,80 @@
 										"width": "grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\") * 0.9",
 										"height": "grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\") * 0.9"
 									}
+								},
+								{
+									"callFunction": "unit_place_to_index",
+									"sid": 153572612702558,
+									"parameters": [
+										"grid_unit.UID",
+										"index"
+									]
 								}
 							],
 							"sid": 406310802914378
+						}
+					]
+				},
+				{
+					"functionName": "unit_place_to_index",
+					"functionDescription": "Устанавливает позицию юнита на клетку.",
+					"functionCategory": "#unit",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "UID",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "UID номер Юнита.",
+							"sid": 133041551999892
+						},
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 531321422652728
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 899001091450671,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "grid_unit",
+									"sid": 591823901411232,
+									"parameters": {
+										"unique-id": "UID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "grid_unit",
+									"sid": 361334699062424,
+									"parameters": {
+										"instance-variable": "index",
+										"value": "index"
+									}
+								},
+								{
+									"id": "set-at-x",
+									"objectClass": "grid_cells",
+									"sid": 411595592165422,
+									"parameters": {
+										"x": "index",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 913185724227412
 						}
 					]
 				},
@@ -2609,9 +2774,28 @@
 												"comparison": 0,
 												"second-value": "1"
 											}
+										},
+										{
+											"id": "compare-at-x",
+											"objectClass": "grid_cells",
+											"sid": 541223120415478,
+											"parameters": {
+												"x": "index",
+												"comparison": 4,
+												"value": "0"
+											}
 										}
 									],
 									"actions": [
+										{
+											"id": "set-at-x",
+											"objectClass": "grid_cells",
+											"sid": 418104848653422,
+											"parameters": {
+												"x": "grid_unit.index",
+												"value": "1"
+											}
+										},
 										{
 											"id": "move-to-position",
 											"objectClass": "grid_unit",
@@ -2624,13 +2808,12 @@
 											}
 										},
 										{
-											"id": "set-instvar-value",
-											"objectClass": "grid_unit",
-											"sid": 868857693942872,
-											"parameters": {
-												"instance-variable": "index",
-												"value": "index"
-											}
+											"callFunction": "unit_place_to_index",
+											"sid": 162260375998483,
+											"parameters": [
+												"grid_unit.UID",
+												"index"
+											]
 										}
 									],
 									"sid": 763058987118534
