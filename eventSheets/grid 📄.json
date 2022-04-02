@@ -167,6 +167,13 @@
 							"initialValue": "false",
 							"comment": "Получить реальные координаты вместо логических.",
 							"sid": 399938994238307
+						},
+						{
+							"name": "get_center",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"sid": 218800474812381
 						}
 					],
 					"eventType": "function-block",
@@ -175,36 +182,74 @@
 					"sid": 633742221527150,
 					"children": [
 						{
-							"eventType": "comment",
-							"text": "Реальные координаты (15, 30, 45...)"
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 212180858410368,
+									"sid": 744119349607547,
 									"parameters": {
-										"variable": "get_real_coordinate"
+										"variable": "get_center"
 									}
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 930656952977252,
+							"children": [
 								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 910429605499403,
-									"parameters": {
-										"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
-									}
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 993435737572925,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 935347144901561,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")  + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2"
+											}
+										}
+									],
+									"sid": 373177619132309
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 978746935481055
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 312385801803068,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 439042024498594
 								}
-							],
-							"sid": 684450603501306
-						},
-						{
-							"eventType": "comment",
-							"text": "Логические координаты (0, 1, 2...)"
+							]
 						},
 						{
 							"eventType": "block",
@@ -212,20 +257,66 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 508871422884990
+									"sid": 617695207369718
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 431647171120811,
+							"children": [
 								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 762319553136127,
-									"parameters": {
-										"value": "(index % grid_config.Get(\"gridWidth\"))"
-									}
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 233619060452092,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 310824570180348,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
+											}
+										}
+									],
+									"sid": 141285222478065
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 745218674845143
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 303962936822903,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 201696715565964
 								}
-							],
-							"sid": 108276804703753
+							]
 						}
 					]
 				},
@@ -253,6 +344,13 @@
 							"initialValue": "false",
 							"comment": "Получить реальные координаты вместо логических.",
 							"sid": 384247316510384
+						},
+						{
+							"name": "get_center",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"sid": 744043986030420
 						}
 					],
 					"eventType": "function-block",
@@ -261,36 +359,74 @@
 					"sid": 733813060456151,
 					"children": [
 						{
-							"eventType": "comment",
-							"text": "Реальные координаты (15, 30, 45...)"
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 553162969334590,
+									"sid": 409526003481645,
 									"parameters": {
-										"variable": "get_real_coordinate"
+										"variable": "get_center"
 									}
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 732024735563472,
+							"children": [
 								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 528609206049485,
-									"parameters": {
-										"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
-									}
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 269843913782546,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 265597245351262,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")  + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2"
+											}
+										}
+									],
+									"sid": 813811442813570
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 847907952422229
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 673299858847054,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 964681169605213
 								}
-							],
-							"sid": 696720388934773
-						},
-						{
-							"eventType": "comment",
-							"text": "Логические координаты (0, 1, 2...)"
+							]
 						},
 						{
 							"eventType": "block",
@@ -298,20 +434,66 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 259092044319990
+									"sid": 755641867014767
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 195202383084768,
+							"children": [
 								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 240002021644461,
-									"parameters": {
-										"value": "int(index / grid_config.Get(\"gridWidth\"))"
-									}
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 303516211738807,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 677403196046413,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
+											}
+										}
+									],
+									"sid": 640511679154070
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 528421714702233
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 688251596621585,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 748978406617402
 								}
-							],
-							"sid": 888034838068961
+							]
 						}
 					]
 				}
@@ -1016,8 +1198,8 @@
 									"sid": 773343163742050,
 									"parameters": [
 										"color",
-										"Functions.grid_index_to_x(index, 1) ",
-										"Functions.grid_index_to_y(index, 1) ",
+										"Functions.grid_index_to_x(index, 1, 0)",
+										"Functions.grid_index_to_y(index, 1, 0)",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										true,
 										"line_thickness"
@@ -1041,8 +1223,8 @@
 									"sid": 399958589093368,
 									"parameters": [
 										"color",
-										"Functions.grid_index_to_x(index, 1)",
-										"Functions.grid_index_to_y(index, 1)",
+										"Functions.grid_index_to_x(index, 1, 0)",
+										"Functions.grid_index_to_y(index, 1, 0)",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										false,
 										"line_thickness"
@@ -1111,8 +1293,8 @@
 									"callFunction": "draw_string",
 									"sid": 262516191262278,
 									"parameters": [
-										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
-										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
+										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
+										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
 										"string",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
@@ -1145,8 +1327,8 @@
 									"callFunction": "draw_string",
 									"sid": 516348629291577,
 									"parameters": [
-										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
-										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
+										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
+										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
 										"string",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
@@ -1179,8 +1361,8 @@
 									"callFunction": "draw_string",
 									"sid": 127522293826096,
 									"parameters": [
-										"Functions.grid_index_to_x(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.75",
-										"Functions.grid_index_to_y(index, 1) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
+										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.75",
+										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
 										"string",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
@@ -1250,7 +1432,7 @@
 											"parameters": [
 												"loopindex",
 												"1",
-												"str((Functions.grid_index_to_x(loopindex, 0) & \",\") & Functions.grid_index_to_y(loopindex, 0))"
+												"str((Functions.grid_index_to_x(loopindex, 0, 0) & \",\") & Functions.grid_index_to_y(loopindex, 0, 0))"
 											]
 										}
 									],
@@ -1366,8 +1548,8 @@
 									"parameters": {
 										"object-to-create": "grid_unit",
 										"layer": "\"units\"",
-										"x": "Functions.grid_index_to_x(index, 1)",
-										"y": "Functions.grid_index_to_y(index, 1)",
+										"x": "Functions.grid_index_to_x(index, 1, 0)",
+										"y": "Functions.grid_index_to_y(index, 1, 0)",
 										"create-hierarchy": false
 									}
 								}
