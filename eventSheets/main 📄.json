@@ -70,14 +70,22 @@
 			"sid": 981812038493186
 		},
 		{
+			"eventType": "comment",
+			"text": "Промежутки: большие значения могут вызвать фрустрацию, т.к. промежуток косвенно является частью клетки и забирает часть размера."
+		},
+		{
 			"eventType": "variable",
 			"name": "cell_offset",
 			"type": "number",
-			"initialValue": "4",
+			"initialValue": "5",
 			"comment": "Промежутки между клетками.",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 348825377449189
+		},
+		{
+			"eventType": "comment",
+			"text": "TODO:\n- Функцию выбора и получение цвета\n- Выбор цвета для текста"
 		},
 		{
 			"eventType": "block",
@@ -114,10 +122,10 @@
 					"actions": [
 						{
 							"callFunction": "draw_grid",
-							"sid": 734993577278850,
+							"sid": 410988254622001,
 							"parameters": [
 								true,
-								"1"
+								"2"
 							]
 						},
 						{
@@ -137,16 +145,16 @@
 					"actions": [
 						{
 							"callFunction": "create_unit",
-							"sid": 684980051928087,
+							"sid": 424441702499031,
 							"parameters": [
-								"0"
+								"52"
 							]
 						},
 						{
 							"callFunction": "draw_rectangle_on_cell",
-							"sid": 168620262370121,
+							"sid": 231521003950860,
 							"parameters": [
-								"0",
+								"52",
 								"\"red\"",
 								false,
 								"3"
@@ -154,35 +162,6 @@
 						}
 					],
 					"sid": 614020216425388
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "draw_circle_on_cell",
-							"sid": 488845010977953,
-							"parameters": [
-								"10",
-								"\"red\"",
-								"15",
-								true,
-								"1"
-							]
-						},
-						{
-							"callFunction": "draw_circle_on_cell",
-							"sid": 374643837100046,
-							"parameters": [
-								"10",
-								"\"black\"",
-								"15",
-								false,
-								"2"
-							]
-						}
-					],
-					"sid": 848329181714764
 				}
 			]
 		},
@@ -202,20 +181,11 @@
 			"actions": [
 				{
 					"callFunction": "unit_move_to",
-					"sid": 681017163425832,
-					"disabled": true,
+					"sid": 401092436778514,
 					"parameters": [
 						"grid_unit.UID",
-						"5"
+						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
 					]
-				},
-				{
-					"id": "alert",
-					"objectClass": "Browser",
-					"sid": 398600498867548,
-					"parameters": {
-						"message": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
-					}
 				}
 			],
 			"sid": 132268253444151
@@ -233,36 +203,102 @@
 				{
 					"id": "set-text",
 					"objectClass": "debug_text",
-					"sid": 478853111046189,
+					"sid": 346383510922054,
+					"parameters": {
+						"text": "\"\""
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 820389959266534,
+					"parameters": {
+						"text": "\"[b] FPS: [/b]\" & fps"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 639320785818541,
+					"parameters": {
+						"text": "newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 366487286817451,
+					"parameters": {
+						"text": "\"[b] Mouse: [/b]\" & int(Mouse.X) & \", \" & int(Mouse.Y)"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 116756405040310,
+					"parameters": {
+						"text": "newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 725649496148378,
+					"parameters": {
+						"text": "\"[b] Grid Size: [/b]\" & grid_config.Get(\"gridWidth\") & \", \" & grid_config.Get(\"gridHeight\")"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 983617444161656,
+					"parameters": {
+						"text": "newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 539939090522291,
+					"disabled": true,
+					"parameters": {
+						"text": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 230877045887925,
+					"disabled": true,
+					"parameters": {
+						"text": "newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 367026899110364,
 					"disabled": true,
 					"parameters": {
 						"text": "int(Mouse.X / grid_config.Get(\"cellSize\")) & \", \" & int(Mouse.Y / grid_config.Get(\"cellSize\"))"
 					}
 				},
 				{
-					"id": "set-text",
+					"id": "append-text",
 					"objectClass": "debug_text",
-					"sid": 992845073940503,
+					"sid": 218213990180233,
+					"disabled": true,
+					"parameters": {
+						"text": "newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "debug_text",
+					"sid": 414840616724355,
 					"disabled": true,
 					"parameters": {
 						"text": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
-					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "debug_text",
-					"sid": 327190252418233,
-					"parameters": {
-						"text": "int(Mouse.X) & \", \" & int(Mouse.Y)"
-					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "debug_text",
-					"sid": 511206849035919,
-					"disabled": true,
-					"parameters": {
-						"text": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
 					}
 				}
 			],

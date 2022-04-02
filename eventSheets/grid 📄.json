@@ -13,6 +13,213 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"functionName": "grid_is_indexes_neighbours",
+					"functionDescription": "Проверяет являются ли клетки соседями",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index1",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 129782070052385
+						},
+						{
+							"name": "index2",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 559260790234958
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 460001110691980,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 161122721856539,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 + 1"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 509815703677340,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 - 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 280269758761986,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 666836015114237,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 971084491574706,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 - grid_config.Get(\"gridWidth\")"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 593962730975015,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 + grid_config.Get(\"gridWidth\")"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 451980082684612,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 504018142425027,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 550951658707941,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 - grid_config.Get(\"gridWidth\") - 1"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 739248734114977,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 - grid_config.Get(\"gridWidth\") + 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 542512901640829,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 645698785105170,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 674882104121595,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 + grid_config.Get(\"gridWidth\") -1"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 172787942064424,
+									"parameters": {
+										"first-value": "index2",
+										"comparison": 0,
+										"second-value": "index1 + grid_config.Get(\"gridWidth\") +1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 905529653362739,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 137251639849459,
+							"isOrBlock": true
+						}
+					]
+				},
+				{
+					"functionName": "grid_scroll_to_center",
+					"functionDescription": "Навести камеру на центр сетки.",
+					"functionCategory": "#grid",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 545775456916998,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "scroll-to-position",
+									"objectClass": "System",
+									"sid": 599715262706199,
+									"parameters": {
+										"x": "((grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellOffset\")))/2",
+										"y": "((grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellOffset\")))/2"
+									}
+								}
+							],
+							"sid": 398984074290477
+						}
+					]
+				},
+				{
 					"functionName": "grid_get_real_height",
 					"functionDescription": "Получить реальную ширину сетки в пикселях.",
 					"functionCategory": "#grid",
@@ -21,17 +228,25 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
+					"actions": [],
+					"sid": 464428747989931,
+					"children": [
 						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 686225130421235,
-							"parameters": {
-								"value": "((grid_config.Get(\"gridHeight\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
-							}
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 984812073171859,
+									"parameters": {
+										"value": "((grid_config.Get(\"gridHeight\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+									}
+								}
+							],
+							"sid": 156458972681811
 						}
-					],
-					"sid": 464428747989931
+					]
 				},
 				{
 					"functionName": "grid_get_real_width",
@@ -42,17 +257,25 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
+					"actions": [],
+					"sid": 163527063349550,
+					"children": [
 						{
-							"id": "set-function-return-value",
-							"objectClass": "Functions",
-							"sid": 429020758318607,
-							"parameters": {
-								"value": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
-							}
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 948484871357176,
+									"parameters": {
+										"value": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+									}
+								}
+							],
+							"sid": 710331412500853
 						}
-					],
-					"sid": 163527063349550
+					]
 				},
 				{
 					"eventType": "comment",
@@ -137,10 +360,10 @@
 								{
 									"id": "add-key",
 									"objectClass": "grid_config",
-									"sid": 973030548208925,
+									"sid": 222056738712790,
 									"parameters": {
 										"key": "\"cellOffset\"",
-										"value": "cellOffset"
+										"value": "abs(cellOffset)"
 									}
 								}
 							],
@@ -729,51 +952,122 @@
 											}
 										}
 									],
-									"actions": [
+									"actions": [],
+									"sid": 440135278319630,
+									"children": [
 										{
-											"type": "comment",
-											"text": "Подстраивание размера полотна под размеры сетки."
+											"eventType": "variable",
+											"name": "x_position",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "Х позиция клетки.",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 450670421932256
 										},
 										{
-											"id": "set-size",
-											"objectClass": "grid_drawing_canvas",
-											"sid": 157095069667940,
-											"parameters": {
-												"width": "Functions.grid_get_real_width + cell_size + cell_offset",
-												"height": "Functions.grid_get_real_height + cell_size + cell_offset"
-											}
+											"eventType": "variable",
+											"name": "y_position",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "Y позиция клетки.",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 962714886674908
 										},
 										{
-											"type": "comment",
-											"text": "Рисовка границ и заливки клетки."
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "Подстраивание размера полотна под размеры сетки."
+												},
+												{
+													"id": "set-size",
+													"objectClass": "grid_drawing_canvas",
+													"sid": 403310894754989,
+													"parameters": {
+														"width": "Functions.grid_get_real_width + cell_size",
+														"height": "Functions.grid_get_real_height + cell_size"
+													}
+												}
+											],
+											"sid": 648176591890056
 										},
 										{
-											"id": "fill-rect",
-											"objectClass": "grid_drawing_canvas",
-											"sid": 656516895218286,
-											"parameters": {
-												"left": "loopindex(\"x\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
-												"top": "loopindex(\"y\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
-												"right": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
-												"bottom": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
-												"color": "rgba(80, 80, 80, 100)"
-											}
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 455778989041567,
+													"parameters": {
+														"variable": "x_position",
+														"value": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) "
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 455538995119135,
+													"parameters": {
+														"variable": "y_position",
+														"value": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) "
+													}
+												},
+												{
+													"type": "comment",
+													"text": "Рисовка границ и заливки клетки."
+												},
+												{
+													"id": "fill-rect",
+													"objectClass": "grid_drawing_canvas",
+													"sid": 477847496887847,
+													"parameters": {
+														"left": "x_position + grid_config.Get(\"cellOffset\")",
+														"top": "y_position + grid_config.Get(\"cellOffset\")",
+														"right": "x_position + grid_config.Get(\"cellSize\")",
+														"bottom": "y_position + grid_config.Get(\"cellSize\")",
+														"color": "rgba(80, 80, 80, 100)"
+													}
+												}
+											],
+											"sid": 797126173946645
 										},
 										{
-											"id": "outline-rect",
-											"objectClass": "grid_drawing_canvas",
-											"sid": 979843269624818,
-											"parameters": {
-												"left": "loopindex(\"x\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
-												"top": "loopindex(\"y\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")",
-												"right": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
-												"bottom": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
-												"color": "rgba(0, 0, 0, 100)",
-												"line-thickness": "line_thickness"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 335889145533408,
+													"parameters": {
+														"variable": "line_thickness",
+														"comparison": 4,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "outline-rect",
+													"objectClass": "grid_drawing_canvas",
+													"sid": 563768695224774,
+													"parameters": {
+														"left": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellOffset\")",
+														"top": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellOffset\")",
+														"right": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
+														"bottom": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")",
+														"color": "rgba(35, 35, 35, 100)",
+														"line-thickness": "line_thickness"
+													}
+												}
+											],
+											"sid": 405856681975316
 										}
-									],
-									"sid": 440135278319630
+									]
 								}
 							]
 						},
@@ -795,13 +1089,8 @@
 							],
 							"actions": [
 								{
-									"id": "scroll-to-position",
-									"objectClass": "System",
-									"sid": 664278900100970,
-									"parameters": {
-										"x": "((grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellOffset\")))/2",
-										"y": "((grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellOffset\")))/2"
-									}
+									"callFunction": "grid_scroll_to_center",
+									"sid": 937869681708193
 								}
 							],
 							"sid": 968506086593138
@@ -845,6 +1134,13 @@
 							"sid": 300630115436314
 						},
 						{
+							"name": "fontSize",
+							"type": "number",
+							"initialValue": "10",
+							"comment": "Размер шрифта.",
+							"sid": 866468243379637
+						},
+						{
 							"name": "textWidth",
 							"type": "number",
 							"initialValue": "45",
@@ -883,6 +1179,14 @@
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": false
+									}
+								},
+								{
+									"id": "set-font-size",
+									"objectClass": "grid_text",
+									"sid": 793909661887252,
+									"parameters": {
+										"size-pt": " fontSize"
 									}
 								},
 								{
@@ -1883,6 +2187,13 @@
 							"initialValue": "",
 							"comment": "Текст.",
 							"sid": 590252856629342
+						},
+						{
+							"name": "fontSize",
+							"type": "number",
+							"initialValue": "10",
+							"comment": "Размер шрифта.",
+							"sid": 437615091349032
 						}
 					],
 					"eventType": "function-block",
@@ -1912,11 +2223,12 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 262516191262278,
+									"sid": 162284945799088,
 									"parameters": [
 										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
 										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
 										"string",
+										"fontSize",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
 									]
@@ -1946,11 +2258,12 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 516348629291577,
+									"sid": 301052377836177,
 									"parameters": [
 										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
 										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
 										"string",
+										"fontSize",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
 									]
@@ -1980,11 +2293,12 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 127522293826096,
+									"sid": 311735079725812,
 									"parameters": [
 										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.75",
 										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
 										"string",
+										"fontSize",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
 									]
@@ -2014,11 +2328,12 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 765271219954909,
+									"sid": 456253797409492,
 									"parameters": [
 										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2",
 										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
 										"string",
+										"fontSize",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
 									]
@@ -2083,11 +2398,12 @@
 									"actions": [
 										{
 											"callFunction": "draw_string_on_cell",
-											"sid": 982801186937568,
+											"sid": 984982804406436,
 											"parameters": [
 												"loopindex",
 												"3",
-												"str((Functions.grid_index_to_x(loopindex, 0, 0) & \",\") & Functions.grid_index_to_y(loopindex, 0, 0))"
+												"str((Functions.grid_index_to_x(loopindex, 0, 0) & \", \") & Functions.grid_index_to_y(loopindex, 0, 0))",
+												"10"
 											]
 										}
 									],
@@ -2148,11 +2464,12 @@
 									"actions": [
 										{
 											"callFunction": "draw_string_on_cell",
-											"sid": 500845801978352,
+											"sid": 990727746958755,
 											"parameters": [
 												"loopindex",
 												"1",
-												"str(loopindex)"
+												"str(\"[b]\" & loopindex & \"[/b]\")",
+												"15"
 											]
 										}
 									],
@@ -2220,10 +2537,10 @@
 								{
 									"id": "set-size",
 									"objectClass": "grid_unit",
-									"sid": 490461450764170,
+									"sid": 486816761549276,
 									"parameters": {
-										"width": "grid_config.Get(\"cellSize\") * 0.9",
-										"height": "grid_config.Get(\"cellSize\") * 0.9"
+										"width": "grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\") * 0.9",
+										"height": "grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\") * 0.9"
 									}
 								}
 							],
@@ -2268,22 +2585,57 @@
 									"parameters": {
 										"unique-id": "UID"
 									}
-								}
-							],
-							"actions": [
+								},
 								{
-									"id": "move-to-position",
+									"id": "is-moving",
 									"objectClass": "grid_unit",
-									"sid": 807147526902663,
+									"sid": 747614965951829,
 									"behaviorType": "MoveTo",
-									"parameters": {
-										"x": "Functions.grid_index_to_x(index, 1, 1)",
-										"y": "Functions.grid_index_to_y(index, 1, 1)",
-										"mode": "direct"
-									}
+									"isInverted": true
 								}
 							],
-							"sid": 994796110620749
+							"actions": [],
+							"sid": 994796110620749,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 834822058044707,
+											"parameters": {
+												"first-value": "Functions.grid_is_indexes_neighbours(grid_unit.index, index)",
+												"comparison": 0,
+												"second-value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "move-to-position",
+											"objectClass": "grid_unit",
+											"sid": 619967058649679,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"x": "Functions.grid_index_to_x(index, 1, 1)",
+												"y": "Functions.grid_index_to_y(index, 1, 1)",
+												"mode": "direct"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "grid_unit",
+											"sid": 868857693942872,
+											"parameters": {
+												"instance-variable": "index",
+												"value": "index"
+											}
+										}
+									],
+									"sid": 763058987118534
+								}
+							]
 						}
 					]
 				}

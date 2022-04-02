@@ -156,12 +156,22 @@
 					},
 					"uid": 9,
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Anchor": {
+							"properties": {
+								"left-edge": "window-left",
+								"top-edge": "window-top",
+								"right-edge": "none",
+								"bottom-edge": "none",
+								"enabled": true
+							}
+						}
+					},
 					"world": {
-						"x": 32,
+						"x": 0,
 						"y": 0,
-						"width": 160,
-						"height": 240,
+						"width": 640,
+						"height": 720,
 						"originX": 0,
 						"originY": 0,
 						"color": [
