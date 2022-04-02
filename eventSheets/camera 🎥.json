@@ -19,7 +19,7 @@
 							"eventType": "variable",
 							"name": "camera_zoom_is_global",
 							"type": "boolean",
-							"initialValue": "false",
+							"initialValue": "true",
 							"comment": "",
 							"isStatic": true,
 							"isConstant": false,

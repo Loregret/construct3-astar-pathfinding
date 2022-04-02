@@ -33,7 +33,7 @@
 			"eventType": "variable",
 			"name": "grid_width",
 			"type": "number",
-			"initialValue": "10",
+			"initialValue": "15",
 			"comment": "Ширина сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -43,7 +43,7 @@
 			"eventType": "variable",
 			"name": "grid_height",
 			"type": "number",
-			"initialValue": "10",
+			"initialValue": "8",
 			"comment": "Высота сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -63,7 +63,7 @@
 			"eventType": "variable",
 			"name": "cell_size",
 			"type": "number",
-			"initialValue": "65",
+			"initialValue": "70",
 			"comment": "Размер одной клетки.",
 			"isStatic": false,
 			"isConstant": false,
@@ -88,38 +88,92 @@
 					"sid": 478686921535960
 				}
 			],
-			"actions": [
+			"actions": [],
+			"sid": 196702205840917,
+			"children": [
 				{
-					"callFunction": "create_grid",
-					"sid": 523850587521645,
-					"parameters": [
-						"grid_width",
-						"grid_height",
-						"cell_size",
-						"cell_offset"
-					]
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"callFunction": "create_grid",
+							"sid": 413236635755020,
+							"parameters": [
+								"grid_width",
+								"grid_height",
+								"cell_size",
+								"cell_offset"
+							]
+						}
+					],
+					"sid": 420790384846364
 				},
 				{
-					"callFunction": "draw_grid",
-					"sid": 701530787421391,
-					"parameters": [
-						true,
-						"1"
-					]
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"callFunction": "draw_grid",
+							"sid": 734993577278850,
+							"parameters": [
+								true,
+								"1"
+							]
+						},
+						{
+							"callFunction": "draw_coordinates",
+							"sid": 740832462677629
+						}
+					],
+					"sid": 509017071766911
 				},
 				{
-					"callFunction": "draw_coordinates",
-					"sid": 508465209539181
-				},
-				{
-					"callFunction": "create_unit",
-					"sid": 619307020430402,
-					"parameters": [
-						"0"
-					]
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"callFunction": "create_unit",
+							"sid": 684980051928087,
+							"parameters": [
+								"0"
+							]
+						},
+						{
+							"callFunction": "draw_rectangle_on_cell",
+							"sid": 168620262370121,
+							"parameters": [
+								"0",
+								"\"red\"",
+								false,
+								"3"
+							]
+						},
+						{
+							"callFunction": "draw_circle_on_cell",
+							"sid": 645513636453891,
+							"parameters": [
+								"10",
+								"\"red\"",
+								"15",
+								true,
+								"1"
+							]
+						},
+						{
+							"callFunction": "draw_circle_on_cell",
+							"sid": 893116976623490,
+							"parameters": [
+								"10",
+								"\"black\"",
+								"15",
+								false,
+								"2"
+							]
+						}
+					],
+					"sid": 614020216425388
 				}
-			],
-			"sid": 196702205840917
+			]
 		}
 	],
 	"sid": 604163391678533
