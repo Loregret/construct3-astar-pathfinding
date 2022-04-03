@@ -648,7 +648,7 @@
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
-							"sid": 507037128016272,
+							"sid": 476497661732983,
 							"children": [
 								{
 									"eventType": "block",
@@ -657,7 +657,7 @@
 										{
 											"id": "clear",
 											"objectClass": "grid_custom_array",
-											"sid": 414823649841485,
+											"sid": 472769320143719,
 											"parameters": {
 												"value": "-1"
 											}
@@ -665,7 +665,7 @@
 										{
 											"id": "set-size",
 											"objectClass": "grid_custom_array",
-											"sid": 665309973909102,
+											"sid": 299091429981493,
 											"parameters": {
 												"width": "0",
 												"height": "1",
@@ -673,7 +673,7 @@
 											}
 										}
 									],
-									"sid": 582821097448683
+									"sid": 223195604389674
 								}
 							]
 						},
@@ -685,7 +685,7 @@
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
-							"sid": 488479099981575,
+							"sid": 890879598118036,
 							"children": [
 								{
 									"eventType": "block",
@@ -696,7 +696,7 @@
 											"text": "вверх"
 										}
 									],
-									"sid": 475197209125134,
+									"sid": 868021531276600,
 									"children": [
 										{
 											"eventType": "block",
@@ -704,7 +704,7 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 489230893698421,
+													"sid": 319628335632941,
 													"parameters": {
 														"first-value": "Functions.grid_is_index_valid(index - grid_config.Get(\"gridWidth\"))",
 														"comparison": 0,
@@ -716,7 +716,7 @@
 												{
 													"id": "push",
 													"objectClass": "grid_custom_array",
-													"sid": 303338288612477,
+													"sid": 406494436472428,
 													"parameters": {
 														"where": "back",
 														"value": "index - grid_config.Get(\"gridWidth\")",
@@ -724,7 +724,7 @@
 													}
 												}
 											],
-											"sid": 309462627632133
+											"sid": 458843591688396
 										}
 									]
 								},
@@ -734,7 +734,7 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 497329943112853,
+											"sid": 594717779054999,
 											"parameters": {
 												"first-value": "Functions.grid_index_to_x(index, 0 , 0)",
 												"comparison": 4,
@@ -748,7 +748,7 @@
 											"text": "влево"
 										}
 									],
-									"sid": 732292641425554,
+									"sid": 223279063146582,
 									"children": [
 										{
 											"eventType": "block",
@@ -756,7 +756,7 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 934675255193585,
+													"sid": 555287601992482,
 													"parameters": {
 														"first-value": "Functions.grid_is_index_valid(index - 1)",
 														"comparison": 0,
@@ -768,7 +768,7 @@
 												{
 													"id": "push",
 													"objectClass": "grid_custom_array",
-													"sid": 461126384146333,
+													"sid": 914484910135014,
 													"parameters": {
 														"where": "back",
 														"value": "index - 1",
@@ -776,7 +776,7 @@
 													}
 												}
 											],
-											"sid": 432758722634624
+											"sid": 743842292167507
 										}
 									]
 								},
@@ -789,7 +789,7 @@
 											"text": "вниз"
 										}
 									],
-									"sid": 534751289998984,
+									"sid": 698796687462134,
 									"children": [
 										{
 											"eventType": "block",
@@ -797,7 +797,7 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 565586863382545,
+													"sid": 792255927775702,
 													"parameters": {
 														"first-value": "Functions.grid_is_index_valid(index + grid_config.Get(\"gridWidth\"))",
 														"comparison": 0,
@@ -809,7 +809,7 @@
 												{
 													"id": "push",
 													"objectClass": "grid_custom_array",
-													"sid": 800297199943162,
+													"sid": 339660955972993,
 													"parameters": {
 														"where": "back",
 														"value": "index + grid_config.Get(\"gridWidth\")",
@@ -817,7 +817,7 @@
 													}
 												}
 											],
-											"sid": 531112963922403
+											"sid": 575832013155964
 										}
 									]
 								},
@@ -827,7 +827,7 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 174174999243727,
+											"sid": 853141839581464,
 											"parameters": {
 												"first-value": "Functions.grid_index_to_x(index, 0 , 0)",
 												"comparison": 2,
@@ -841,7 +841,7 @@
 											"text": "вправо"
 										}
 									],
-									"sid": 806947630315863,
+									"sid": 101597455973814,
 									"children": [
 										{
 											"eventType": "block",
@@ -849,7 +849,7 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 522046236052318,
+													"sid": 317078628523033,
 													"parameters": {
 														"first-value": "Functions.grid_is_index_valid(index + 1)",
 														"comparison": 0,
@@ -861,7 +861,7 @@
 												{
 													"id": "push",
 													"objectClass": "grid_custom_array",
-													"sid": 442112454312812,
+													"sid": 263152746485233,
 													"parameters": {
 														"where": "back",
 														"value": "index + 1",
@@ -869,7 +869,7 @@
 													}
 												}
 											],
-											"sid": 668903135582685
+											"sid": 238726241213335
 										}
 									]
 								}
@@ -883,7 +883,7 @@
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
-							"sid": 162964090494141,
+							"sid": 858200496593412,
 							"children": [
 								{
 									"eventType": "block",
@@ -891,7 +891,7 @@
 										{
 											"id": "is-empty",
 											"objectClass": "grid_custom_array",
-											"sid": 142811748750849,
+											"sid": 728567448323649,
 											"isInverted": true
 										}
 									],
@@ -899,13 +899,50 @@
 										{
 											"id": "set-function-return-value",
 											"objectClass": "Functions",
-											"sid": 785609602003240,
+											"sid": 361362771334671,
 											"parameters": {
 												"value": "grid_custom_array.AsJSON"
 											}
 										}
 									],
-									"sid": 201227731793226
+									"sid": 107290272010790
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Очистка x2"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [],
+							"sid": 953398439079444,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "clear",
+											"objectClass": "grid_custom_array",
+											"sid": 708410769557431,
+											"parameters": {
+												"value": "-1"
+											}
+										},
+										{
+											"id": "set-size",
+											"objectClass": "grid_custom_array",
+											"sid": 202049152270385,
+											"parameters": {
+												"width": "0",
+												"height": "1",
+												"depth": "1"
+											}
+										}
+									],
+									"sid": 430243341825551
 								}
 							]
 						}

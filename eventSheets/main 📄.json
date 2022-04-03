@@ -91,6 +91,38 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 118316652440462,
+					"parameters": {
+						"interval-seconds": "3"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "draw_clear",
+					"sid": 876902084380056
+				},
+				{
+					"callFunction": "grid_redraw",
+					"sid": 310140959685806
+				},
+				{
+					"callFunction": "astar_breadth_first_search",
+					"sid": 684855273017564,
+					"parameters": [
+						"55",
+						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+					]
+				}
+			],
+			"sid": 483642834243892
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
 					"sid": 478686921535960
@@ -198,18 +230,19 @@
 					"conditions": [],
 					"actions": [
 						{
-							"callFunction": "astar_start",
-							"sid": 692868385152767,
+							"callFunction": "astar_breadth_first_fill",
+							"sid": 148761320698389,
 							"parameters": [
 								"55"
 							]
 						},
 						{
 							"callFunction": "astar_breadth_first_search",
-							"sid": 210322351744407,
+							"sid": 681266304523147,
+							"disabled": true,
 							"parameters": [
-								"0",
-								"0"
+								"55",
+								"int(random(0,119))"
 							]
 						}
 					],
@@ -266,7 +299,6 @@
 					],
 					"actions": [],
 					"sid": 738525779134100,
-					"disabled": true,
 					"children": [
 						{
 							"eventType": "block",
@@ -369,8 +401,7 @@
 									}
 								}
 							],
-							"sid": 816871832257220,
-							"disabled": true
+							"sid": 816871832257220
 						}
 					]
 				}
