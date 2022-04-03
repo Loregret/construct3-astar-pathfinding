@@ -199,14 +199,18 @@
 					"actions": [
 						{
 							"callFunction": "astar_start",
-							"sid": 267690385319425,
+							"sid": 692868385152767,
 							"parameters": [
-								"1"
+								"55"
 							]
 						},
 						{
 							"callFunction": "astar_breadth_first_search",
-							"sid": 210322351744407
+							"sid": 210322351744407,
+							"parameters": [
+								"0",
+								"0"
+							]
 						}
 					],
 					"sid": 499218361109427

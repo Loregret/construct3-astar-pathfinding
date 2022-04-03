@@ -273,8 +273,12 @@
 			"instanceVariables": {}
 		},
 		{
-			"type": "astar_came_from",
-			"properties": {},
+			"type": "astar_path",
+			"properties": {
+				"width": 0,
+				"height": 1,
+				"depth": 1
+			},
 			"uid": 14,
 			"instanceVariables": {}
 		}
