@@ -230,108 +230,120 @@
 					"id": "every-tick",
 					"objectClass": "System",
 					"sid": 276163523151126
+				},
+				{
+					"id": "is-in-preview",
+					"objectClass": "System",
+					"sid": 342804116877532
 				}
 			],
-			"actions": [
+			"actions": [],
+			"sid": 308737534093936,
+			"children": [
 				{
-					"id": "set-text",
-					"objectClass": "debug_text",
-					"sid": 346383510922054,
-					"parameters": {
-						"text": "\"\""
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 887966052032907,
-					"parameters": {
-						"text": "\"[b]FPS: [/b]\" & fps"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 639320785818541,
-					"parameters": {
-						"text": "newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 127152311090870,
-					"parameters": {
-						"text": "\"[b]Mouse: [/b]\" & int(Mouse.X) & \", \" & int(Mouse.Y)"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 116756405040310,
-					"parameters": {
-						"text": "newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 136995562544036,
-					"parameters": {
-						"text": "\"[b]Grid Size: [/b]\" & grid_config.Get(\"gridWidth\") & \", \" & grid_config.Get(\"gridHeight\")"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 983617444161656,
-					"parameters": {
-						"text": "newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 558114240802890,
-					"parameters": {
-						"text": "\"[b]Cell Index:[/b] \" & Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 230877045887925,
-					"parameters": {
-						"text": "newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 224992215591840,
-					"parameters": {
-						"text": "\"[b]Cell XY:[/b] \" & int(Mouse.X / grid_config.Get(\"cellSize\")) & \", \" & int(Mouse.Y / grid_config.Get(\"cellSize\"))"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 218213990180233,
-					"parameters": {
-						"text": "newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "debug_text",
-					"sid": 414840616724355,
-					"disabled": true,
-					"parameters": {
-						"text": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
-					}
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "debug_text",
+							"sid": 747874297899494,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 849209199276376,
+							"parameters": {
+								"text": "\"[b]FPS: [/b]\" & fps"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 581764659473847,
+							"parameters": {
+								"text": "newline"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 275847031389098,
+							"parameters": {
+								"text": "\"[b]Mouse: [/b]\" & int(Mouse.X) & \", \" & int(Mouse.Y)"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 733892217973040,
+							"parameters": {
+								"text": "newline"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 718754766755856,
+							"parameters": {
+								"text": "\"[b]Grid Size: [/b]\" & grid_config.Get(\"gridWidth\") & \", \" & grid_config.Get(\"gridHeight\")"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 922933421125554,
+							"parameters": {
+								"text": "newline"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 694669532844407,
+							"parameters": {
+								"text": "\"[b]Cell Index:[/b] \" & Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 816904688353395,
+							"parameters": {
+								"text": "newline"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 559403483125330,
+							"parameters": {
+								"text": "\"[b]Cell XY:[/b] \" & int(Mouse.X / grid_config.Get(\"cellSize\")) & \", \" & int(Mouse.Y / grid_config.Get(\"cellSize\"))"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 618907189490964,
+							"parameters": {
+								"text": "newline"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "debug_text",
+							"sid": 826400504738242,
+							"parameters": {
+								"text": "\"[b]Grid Size: [/b]\" & Functions.grid_get_real_width & \", \" & Functions.grid_get_real_height"
+							}
+						}
+					],
+					"sid": 970041303339173
 				}
-			],
-			"sid": 308737534093936
+			]
 		}
 	],
 	"sid": 604163391678533
