@@ -2,6 +2,10 @@
 	"name": "Astar ⭐",
 	"events": [
 		{
+			"eventType": "comment",
+			"text": "[b]Зависимости:[/b]\n- grid_is_index_free()\n- draw_rectangle_on_cell()"
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Другие алгоритмы",
