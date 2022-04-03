@@ -104,7 +104,7 @@
 					"conditions": [],
 					"actions": [
 						{
-							"callFunction": "create_grid",
+							"callFunction": "grid_create",
 							"sid": 413236635755020,
 							"parameters": [
 								"grid_width",
