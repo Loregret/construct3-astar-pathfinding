@@ -1167,6 +1167,75 @@
 					]
 				},
 				{
+					"functionName": "grid_is_index_free",
+					"functionDescription": "Выводит 1 если индекс свободен, 0 - если занят.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 257018980966119
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 644716912672895,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-at-x",
+									"objectClass": "grid_cells",
+									"sid": 198216390512499,
+									"parameters": {
+										"x": "index",
+										"comparison": 4,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 724581062584522,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 273846204333919
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 692599210624712
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 147169365581437,
+									"parameters": {
+										"value": "0"
+									}
+								}
+							],
+							"sid": 579062481720111
+						}
+					]
+				},
+				{
 					"functionName": "grid_get_cells",
 					"functionDescription": "Получить массив клеток.",
 					"functionCategory": "#grid",
@@ -3210,6 +3279,16 @@
 									"parameters": {
 										"unique-id": "UID"
 									}
+								},
+								{
+									"id": "compare-at-x",
+									"objectClass": "grid_cells",
+									"sid": 151071804097852,
+									"parameters": {
+										"x": "index",
+										"comparison": 4,
+										"value": "0"
+									}
 								}
 							],
 							"actions": [
@@ -3345,7 +3424,8 @@
 										},
 										{
 											"callFunction": "grid_update",
-											"sid": 705593322121644
+											"sid": 705593322121644,
+											"disabled": true
 										}
 									],
 									"sid": 763058987118534

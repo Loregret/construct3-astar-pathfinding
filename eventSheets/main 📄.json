@@ -88,36 +88,97 @@
 			"text": "TODO:\n- Функцию выбора и получение цвета\n- Выбор цвета для текста"
 		},
 		{
+			"eventType": "comment",
+			"text": "- Избавиться от зависимостей в поиске пути\n\n"
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 118316652440462,
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 693127624867881,
 					"parameters": {
-						"interval-seconds": "3"
+						"mouse-button": "left",
+						"click-type": "clicked"
 					}
 				}
 			],
-			"actions": [
+			"actions": [],
+			"sid": 483642834243892,
+			"children": [
 				{
-					"callFunction": "draw_clear",
-					"sid": 876902084380056
-				},
-				{
-					"callFunction": "grid_redraw",
-					"sid": 310140959685806
-				},
-				{
-					"callFunction": "astar_breadth_first_search",
-					"sid": 684855273017564,
-					"parameters": [
-						"55",
-						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 257065678375154,
+							"parameters": {
+								"first-value": "Functions.grid_is_index_valid(Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0))",
+								"comparison": 0,
+								"second-value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "draw_clear",
+							"sid": 613084020258448
+						},
+						{
+							"callFunction": "grid_update",
+							"sid": 604279168531962
+						},
+						{
+							"callFunction": "astar_breadth_first_search",
+							"sid": 421758520674042,
+							"parameters": [
+								"grid_unit.index",
+								"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+							]
+						}
+					],
+					"sid": 331420425422154,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 851532953682968,
+									"parameters": {
+										"name": "\"i\"",
+										"start-index": "0",
+										"end-index": "astar_path.Width-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "unit_move_to",
+									"sid": 135560454798450,
+									"parameters": [
+										"grid_unit.UID",
+										"astar_path.At(astar_path.Width-1)"
+									]
+								},
+								{
+									"id": "pop",
+									"objectClass": "astar_path",
+									"sid": 628591474516281,
+									"parameters": {
+										"where": "back",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 939885021528182
+						}
 					]
 				}
-			],
-			"sid": 483642834243892
+			]
 		},
 		{
 			"eventType": "block",
@@ -177,10 +238,9 @@
 					"actions": [
 						{
 							"callFunction": "create_unit",
-							"sid": 424441702499031,
-							"disabled": true,
+							"sid": 103851519540328,
 							"parameters": [
-								"52"
+								"55"
 							]
 						}
 					],
@@ -193,7 +253,6 @@
 						{
 							"callFunction": "grid_block_index",
 							"sid": 599033263519033,
-							"disabled": true,
 							"parameters": [
 								"66"
 							]
@@ -201,7 +260,6 @@
 						{
 							"callFunction": "grid_block_index",
 							"sid": 162145023330763,
-							"disabled": true,
 							"parameters": [
 								"67"
 							]
@@ -209,7 +267,6 @@
 						{
 							"callFunction": "grid_block_index",
 							"sid": 188154136994084,
-							"disabled": true,
 							"parameters": [
 								"68"
 							]
@@ -217,36 +274,12 @@
 						{
 							"callFunction": "grid_block_index",
 							"sid": 118283933395443,
-							"disabled": true,
 							"parameters": [
 								"69"
 							]
 						}
 					],
 					"sid": 831732220551776
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "astar_breadth_first_fill",
-							"sid": 148761320698389,
-							"parameters": [
-								"55"
-							]
-						},
-						{
-							"callFunction": "astar_breadth_first_search",
-							"sid": 681266304523147,
-							"disabled": true,
-							"parameters": [
-								"55",
-								"int(random(0,119))"
-							]
-						}
-					],
-					"sid": 499218361109427
 				}
 			]
 		},
@@ -270,16 +303,7 @@
 							}
 						}
 					],
-					"actions": [
-						{
-							"callFunction": "unit_move_to",
-							"sid": 409448554286168,
-							"parameters": [
-								"grid_unit.UID",
-								"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
-							]
-						}
-					],
+					"actions": [],
 					"sid": 283296629338567,
 					"disabled": true
 				},
