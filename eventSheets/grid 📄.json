@@ -855,12 +855,16 @@
 					"conditions": [],
 					"actions": [
 						{
-							"callFunction": "redraw_grid",
+							"callFunction": "grid_redraw",
 							"sid": 928542133147336
 						}
 					],
 					"sid": 558504791211945,
 					"children": [
+						{
+							"eventType": "comment",
+							"text": "Отрисовка кастомных фигур."
+						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -878,6 +882,10 @@
 							"actions": [],
 							"sid": 903230064912303,
 							"children": [
+								{
+									"eventType": "comment",
+									"text": "Блокированные клетки."
+								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -1089,6 +1097,78 @@
 			"children": [
 				{
 					"eventType": "comment",
+					"text": "[h2] Функции с Canvas[/h2]\n\n- Глобальные функции для управления Drawing Canvas."
+				},
+				{
+					"functionName": "grid_redraw",
+					"functionDescription": "Перерисовка сетки без нужды вводить параметры.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Перерисовка сетки без нужды вводить параметры."
+						}
+					],
+					"sid": 956484407772088,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "draw_grid",
+									"sid": 372343219820268,
+									"parameters": [
+										false,
+										"grid_config.Get(\"gridThickness\")"
+									]
+								}
+							],
+							"sid": 252192903339908
+						}
+					]
+				},
+				{
+					"functionName": "draw_clear",
+					"functionDescription": "Очистка сетки полностью.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Очистка сетки полностью."
+						}
+					],
+					"sid": 432588178476505,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "clear-canvas",
+									"objectClass": "grid_drawing_canvas",
+									"sid": 875888842495120,
+									"parameters": {
+										"color": "rgba(85, 85, 85, 0)"
+									}
+								}
+							],
+							"sid": 409717439992929
+						}
+					]
+				},
+				{
+					"eventType": "comment",
 					"text": "[h2] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
 				},
 				{
@@ -1121,7 +1201,7 @@
 							"text": "Рисование сетки с помощью [b]Drawing Canvas[/b]."
 						}
 					],
-					"sid": 722502609005758,
+					"sid": 479381254057023,
 					"children": [
 						{
 							"eventType": "comment",
@@ -1133,7 +1213,7 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 629015554664956,
+									"sid": 423968758163200,
 									"parameters": {
 										"name": "\"y\"",
 										"start-index": "0",
@@ -1143,7 +1223,7 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 914797356115760,
+									"sid": 533456416610588,
 									"parameters": {
 										"name": "\"x\"",
 										"start-index": "0",
@@ -1152,7 +1232,7 @@
 								}
 							],
 							"actions": [],
-							"sid": 979697846016381,
+							"sid": 352379509579988,
 							"children": [
 								{
 									"eventType": "variable",
@@ -1162,7 +1242,7 @@
 									"comment": "Х позиция клетки.",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 254522075305609
+									"sid": 543313323961822
 								},
 								{
 									"eventType": "variable",
@@ -1172,7 +1252,7 @@
 									"comment": "Y позиция клетки.",
 									"isStatic": true,
 									"isConstant": false,
-									"sid": 707036705665463
+									"sid": 201285140767988
 								},
 								{
 									"eventType": "block",
@@ -1181,7 +1261,7 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 266591244044194,
+											"sid": 326412176051661,
 											"parameters": {
 												"variable": "x_position",
 												"value": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) "
@@ -1190,14 +1270,14 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 401089320532515,
+											"sid": 338920105305360,
 											"parameters": {
 												"variable": "y_position",
 												"value": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) "
 											}
 										}
 									],
-									"sid": 710531023013016
+									"sid": 468233244645155
 								},
 								{
 									"eventType": "block",
@@ -1210,14 +1290,14 @@
 										{
 											"id": "set-size",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 709798505155275,
+											"sid": 646038731656758,
 											"parameters": {
 												"width": "Functions.grid_get_real_width + cell_size",
 												"height": "Functions.grid_get_real_height + cell_size"
 											}
 										}
 									],
-									"sid": 229469906424269
+									"sid": 609483779336338
 								},
 								{
 									"eventType": "block",
@@ -1230,7 +1310,7 @@
 										{
 											"id": "fill-rect",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 170020594607628,
+											"sid": 412398895214901,
 											"parameters": {
 												"left": "x_position + grid_config.Get(\"cellOffset\")",
 												"top": "y_position + grid_config.Get(\"cellOffset\")",
@@ -1240,7 +1320,7 @@
 											}
 										}
 									],
-									"sid": 935657225509014
+									"sid": 606642183864486
 								},
 								{
 									"eventType": "block",
@@ -1248,7 +1328,7 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 825371798805508,
+											"sid": 563772032384687,
 											"parameters": {
 												"variable": "line_thickness",
 												"comparison": 4,
@@ -1264,7 +1344,7 @@
 										{
 											"id": "add-key",
 											"objectClass": "grid_config",
-											"sid": 973917658150330,
+											"sid": 467453277901706,
 											"parameters": {
 												"key": "\"gridThickness\"",
 												"value": "line_thickness"
@@ -1273,7 +1353,7 @@
 										{
 											"id": "outline-rect",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 799235289917145,
+											"sid": 777347008356526,
 											"parameters": {
 												"left": "x_position + grid_config.Get(\"cellOffset\")",
 												"top": "y_position + grid_config.Get(\"cellOffset\")",
@@ -1284,7 +1364,7 @@
 											}
 										}
 									],
-									"sid": 763079786260246
+									"sid": 597554125437313
 								}
 							]
 						},
@@ -1298,7 +1378,7 @@
 								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 914821645302081,
+									"sid": 512185974628646,
 									"parameters": {
 										"variable": "scroll_to_center"
 									}
@@ -1307,10 +1387,10 @@
 							"actions": [
 								{
 									"callFunction": "grid_scroll_to_center",
-									"sid": 756908813232842
+									"sid": 433074026620659
 								}
 							],
-							"sid": 547520325045066
+							"sid": 506665153409447
 						}
 					]
 				},
@@ -1333,7 +1413,7 @@
 							"text": "Рисование логической координаты каждой клетки на сетке."
 						}
 					],
-					"sid": 916358522071380,
+					"sid": 692954948025498,
 					"children": [
 						{
 							"eventType": "block",
@@ -1341,7 +1421,7 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 170072339340908,
+									"sid": 145910972184293,
 									"parameters": {
 										"name": "\"index\"",
 										"start-index": "0",
@@ -1350,7 +1430,7 @@
 								}
 							],
 							"actions": [],
-							"sid": 239290059619143,
+							"sid": 868613372216859,
 							"children": [
 								{
 									"eventType": "block",
@@ -1358,7 +1438,7 @@
 										{
 											"id": "compare-at-x",
 											"objectClass": "grid_cells",
-											"sid": 518257264883076,
+											"sid": 503323682455291,
 											"parameters": {
 												"x": "loopindex",
 												"comparison": 4,
@@ -1369,7 +1449,7 @@
 									"actions": [
 										{
 											"callFunction": "draw_string_on_cell",
-											"sid": 556798777194924,
+											"sid": 189587854975896,
 											"parameters": [
 												"loopindex",
 												"3",
@@ -1378,7 +1458,7 @@
 											]
 										}
 									],
-									"sid": 312695145251547
+									"sid": 254125643726894
 								}
 							]
 						}
@@ -1399,7 +1479,7 @@
 							"text": "Рисование индекса каждой клетки на сетке."
 						}
 					],
-					"sid": 777592371850373,
+					"sid": 215657112845069,
 					"children": [
 						{
 							"eventType": "block",
@@ -1407,7 +1487,7 @@
 								{
 									"id": "for",
 									"objectClass": "System",
-									"sid": 868196366373314,
+									"sid": 327558844694066,
 									"parameters": {
 										"name": "\"index\"",
 										"start-index": "0",
@@ -1416,7 +1496,7 @@
 								}
 							],
 							"actions": [],
-							"sid": 472440697632048,
+							"sid": 915363753031674,
 							"children": [
 								{
 									"eventType": "block",
@@ -1424,7 +1504,7 @@
 										{
 											"id": "compare-at-x",
 											"objectClass": "grid_cells",
-											"sid": 132527568442578,
+											"sid": 358808695954728,
 											"parameters": {
 												"x": "loopindex",
 												"comparison": 4,
@@ -1435,7 +1515,7 @@
 									"actions": [
 										{
 											"callFunction": "draw_string_on_cell",
-											"sid": 947385436054439,
+											"sid": 723424538303598,
 											"parameters": [
 												"loopindex",
 												"1",
@@ -1444,77 +1524,9 @@
 											]
 										}
 									],
-									"sid": 420672088752978
+									"sid": 247315726537753
 								}
 							]
-						}
-					]
-				},
-				{
-					"functionName": "redraw_grid",
-					"functionDescription": "Перерисовка сетки без нужды вводить параметры.",
-					"functionCategory": "#draw",
-					"functionReturnType": "none",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Перерисовка сетки без нужды вводить параметры."
-						}
-					],
-					"sid": 982542501028109,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"callFunction": "draw_grid",
-									"sid": 741918731296853,
-									"parameters": [
-										true,
-										"grid_config.Get(\"gridThickness\")"
-									]
-								}
-							],
-							"sid": 822241294265660
-						}
-					]
-				},
-				{
-					"functionName": "draw_clear",
-					"functionDescription": "Очистка сетки полностью.",
-					"functionCategory": "#draw",
-					"functionReturnType": "none",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Очистка сетки полностью."
-						}
-					],
-					"sid": 156497679075928,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "clear-canvas",
-									"objectClass": "grid_drawing_canvas",
-									"sid": 633818697077465,
-									"parameters": {
-										"color": "rgba(85, 85, 85, 0)"
-									}
-								}
-							],
-							"sid": 717452292816742
 						}
 					]
 				}
