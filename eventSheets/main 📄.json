@@ -33,7 +33,7 @@
 			"eventType": "variable",
 			"name": "grid_width",
 			"type": "number",
-			"initialValue": "14",
+			"initialValue": "16",
 			"comment": "Ширина сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -86,26 +86,6 @@
 		{
 			"eventType": "comment",
 			"text": "TODO:\n- Функцию выбора и получение цвета\n- Выбор цвета для текста"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 473964334485760,
-					"parameters": {
-						"interval-seconds": "0.5"
-					}
-				}
-			],
-			"actions": [
-				{
-					"callFunction": "astar_breadth_first_search",
-					"sid": 274740276694626
-				}
-			],
-			"sid": 521109473145625
 		},
 		{
 			"eventType": "block",
@@ -230,6 +210,26 @@
 			]
 		},
 		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 890379400312148,
+					"parameters": {
+						"interval-seconds": "0.5"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "astar_breadth_first_search",
+					"sid": 666448040896538
+				}
+			],
+			"sid": 430658945474071
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "WIP",
@@ -278,6 +278,7 @@
 					],
 					"actions": [],
 					"sid": 738525779134100,
+					"disabled": true,
 					"children": [
 						{
 							"eventType": "block",
@@ -380,7 +381,8 @@
 									}
 								}
 							],
-							"sid": 816871832257220
+							"sid": 816871832257220,
+							"disabled": true
 						}
 					]
 				}
