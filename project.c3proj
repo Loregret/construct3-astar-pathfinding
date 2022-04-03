@@ -107,9 +107,10 @@
 			},
 			{
 				"items": [
-					"frontier",
-					"reached",
-					"neighbours"
+					"astar_frontier",
+					"astar_reached",
+					"astar_neighbours",
+					"astar_came_from"
 				],
 				"subfolders": [],
 				"name": "astar"

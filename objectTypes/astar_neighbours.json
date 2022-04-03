@@ -1,5 +1,5 @@
 {
-	"name": "neighbours",
+	"name": "astar_neighbours",
 	"plugin-id": "Arr",
 	"sid": 520481789865808,
 	"isGlobal": true,

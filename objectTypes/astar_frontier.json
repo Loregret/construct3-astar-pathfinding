@@ -1,7 +1,7 @@
 {
-	"name": "reached",
+	"name": "astar_frontier",
 	"plugin-id": "Arr",
-	"sid": 876427623985058,
+	"sid": 385277515432720,
 	"isGlobal": true,
 	"instanceVariables": []
 }

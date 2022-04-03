@@ -192,6 +192,24 @@
 						}
 					],
 					"sid": 831732220551776
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"callFunction": "astar_start",
+							"sid": 267690385319425,
+							"parameters": [
+								"1"
+							]
+						},
+						{
+							"callFunction": "astar_breadth_first_search",
+							"sid": 210322351744407
+						}
+					],
+					"sid": 499218361109427
 				}
 			]
 		},

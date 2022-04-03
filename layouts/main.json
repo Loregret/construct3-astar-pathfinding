@@ -233,7 +233,7 @@
 			"instanceVariables": {}
 		},
 		{
-			"type": "frontier",
+			"type": "astar_frontier",
 			"properties": {
 				"width": 0,
 				"height": 1,
@@ -243,7 +243,7 @@
 			"instanceVariables": {}
 		},
 		{
-			"type": "reached",
+			"type": "astar_reached",
 			"properties": {
 				"width": 0,
 				"height": 1,
@@ -263,13 +263,19 @@
 			"instanceVariables": {}
 		},
 		{
-			"type": "neighbours",
+			"type": "astar_neighbours",
 			"properties": {
 				"width": 0,
 				"height": 1,
 				"depth": 1
 			},
 			"uid": 13,
+			"instanceVariables": {}
+		},
+		{
+			"type": "astar_came_from",
+			"properties": {},
+			"uid": 14,
 			"instanceVariables": {}
 		}
 	],
