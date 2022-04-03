@@ -94,17 +94,7 @@
 					"grid_unit",
 					"grid_custom_array"
 				],
-				"subfolders": [
-					{
-						"items": [
-							"frontier",
-							"reached",
-							"neighbours"
-						],
-						"subfolders": [],
-						"name": "astar"
-					}
-				],
+				"subfolders": [],
 				"name": "grid"
 			},
 			{
@@ -114,6 +104,15 @@
 				],
 				"subfolders": [],
 				"name": "system"
+			},
+			{
+				"items": [
+					"frontier",
+					"reached",
+					"neighbours"
+				],
+				"subfolders": [],
+				"name": "astar"
 			}
 		]
 	},
@@ -135,7 +134,8 @@
 			"Main 📄",
 			"Grid 📄",
 			"License ⚖️",
-			"Camera 🎥"
+			"Camera 🎥",
+			"Astar ⭐"
 		],
 		"subfolders": []
 	},

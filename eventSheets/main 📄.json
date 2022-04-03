@@ -192,42 +192,8 @@
 						}
 					],
 					"sid": 831732220551776
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "astar_start",
-							"sid": 431140987180403,
-							"parameters": [
-								"49"
-							]
-						}
-					],
-					"sid": 439196573196218
 				}
 			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 890379400312148,
-					"parameters": {
-						"interval-seconds": "0.5"
-					}
-				}
-			],
-			"actions": [
-				{
-					"callFunction": "astar_breadth_first_search",
-					"sid": 666448040896538
-				}
-			],
-			"sid": 430658945474071
 		},
 		{
 			"eventType": "group",
