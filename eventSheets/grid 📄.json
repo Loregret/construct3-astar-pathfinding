@@ -100,10 +100,539 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Сетка - логика",
-			"description": "Логическая часть сетки.",
+			"title": "Сетка - получение данных",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"functionName": "grid_get_real_height",
+					"functionDescription": "Получить реальную ширину сетки в пикселях.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 434480185352708,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 887457791837165,
+									"parameters": {
+										"value": "((grid_config.Get(\"gridHeight\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+									}
+								}
+							],
+							"sid": 549940396268707
+						}
+					]
+				},
+				{
+					"functionName": "grid_get_real_width",
+					"functionDescription": "Получить реальную ширину сетки в пикселях.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 965212125624817,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 255911731072559,
+									"parameters": {
+										"value": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
+									}
+								}
+							],
+							"sid": 599413147763658
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": " Вывести [b]Х[/b] координату для определенного индекса."
+				},
+				{
+					"functionName": "grid_index_to_x",
+					"functionDescription": "Возвращает Х положение указанного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 809496154519055
+						},
+						{
+							"name": "get_real_coordinate",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
+							"sid": 399938994238307
+						},
+						{
+							"name": "get_center",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Получить центральную позицию клетки. [b]Данная переменная типа boolean: принимается 1 или 0",
+							"sid": 218800474812381
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 332790062553500,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 797563387949680,
+									"parameters": {
+										"variable": "get_center"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Получить координаты Центра клетки."
+								}
+							],
+							"sid": 186047214495306,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 214391911154924,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 116246647492981,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")  + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2"
+											}
+										}
+									],
+									"sid": 983476507418489
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 341944520387476
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 486115199345067,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 541002614026473
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 247379737250287
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Получить координаты верхнего левого угла клетки."
+								}
+							],
+							"sid": 498691816804737,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 564390994000753,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 779571431756637,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
+											}
+										}
+									],
+									"sid": 717469854220358
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 996029257875373
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 132104088302252,
+											"parameters": {
+												"value": "(index % grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 656586683574803
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": " Вывести [b]У[/b] координату для определенного индекса."
+				},
+				{
+					"functionName": "grid_index_to_y",
+					"functionDescription": "Возвращает Y положение указанного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 986309586774039
+						},
+						{
+							"name": "get_real_coordinate",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
+							"sid": 384247316510384
+						},
+						{
+							"name": "get_center",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "[b]Данная переменная типа boolean: принимается 1 или 0",
+							"sid": 744043986030420
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 936999516539743,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 289539912716610,
+									"parameters": {
+										"variable": "get_center"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Получить координаты Центра клетки."
+								}
+							],
+							"sid": 757156134418748,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 503154563755966,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 434880069545310,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")  + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2"
+											}
+										}
+									],
+									"sid": 371383780766209
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 906567154347933
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 586235612550461,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 835904066185411
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 872470285653613
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Получить координаты верхнего левого угла клетки."
+								}
+							],
+							"sid": 578014272352023,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Реальные координаты (15, 30, 45...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 183370709052824,
+											"parameters": {
+												"variable": "get_real_coordinate"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 349199338679412,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
+											}
+										}
+									],
+									"sid": 934915810176752
+								},
+								{
+									"eventType": "comment",
+									"text": "Логические координаты (0, 1, 2...)"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 889972917809457
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 891805808236202,
+											"parameters": {
+												"value": "int(index / grid_config.Get(\"gridWidth\"))"
+											}
+										}
+									],
+									"sid": 873554856272799
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Получить индекс, введя позицию (в массиве либо реальные в пикселях)"
+				},
+				{
+					"functionName": "grid_pos_to_index",
+					"functionDescription": "Выводит индекс клетки, находящейся на указанной позиции.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "X координата",
+							"sid": 839813809592288
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "У координата",
+							"sid": 588193306560752
+						},
+						{
+							"name": "logical_coordinates",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Являются ли вводимые координаты логическими, поставьте 0, если координаты физические (к примеру, 13.450, 23.55)). [b]Данная переменная типа boolean: принимается 1 или 0",
+							"sid": 329856647551542
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 635177453630727,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 821307603964570,
+									"parameters": {
+										"variable": "logical_coordinates"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 364062556603409,
+									"parameters": {
+										"value": "y * grid_config.Get(\"gridWidth\") + x"
+									}
+								}
+							],
+							"sid": 450103639881791
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 251760018865310
+								}
+							],
+							"actions": [],
+							"sid": 208316192784014,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 486795797763087,
+											"parameters": {
+												"value": "int(y / grid_config.Get(\"cellSize\")) * grid_config.Get(\"gridWidth\") + int(X / grid_config.Get(\"cellSize\"))"
+											}
+										}
+									],
+									"sid": 152643815546763
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Проверить являются ли клетки соседними."
+				},
 				{
 					"functionName": "grid_is_indexes_neighbours",
 					"functionDescription": "Проверяет являются ли клетки соседями",
@@ -124,20 +653,31 @@
 							"initialValue": "-1",
 							"comment": "",
 							"sid": 559260790234958
+						},
+						{
+							"name": "diagonals",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "Проверять ли по диагонали.",
+							"sid": 994113582827973
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 460001110691980,
+					"sid": 108019161890209,
 					"children": [
+						{
+							"eventType": "comment",
+							"text": "По горизонтали"
+						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 161122721856539,
+									"sid": 523384484538540,
 									"parameters": {
 										"first-value": "index2",
 										"comparison": 0,
@@ -147,7 +687,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 509815703677340,
+									"sid": 602339484806681,
 									"parameters": {
 										"first-value": "index2",
 										"comparison": 0,
@@ -159,14 +699,18 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 280269758761986,
+									"sid": 728550301642734,
 									"parameters": {
 										"value": "1"
 									}
 								}
 							],
-							"sid": 666836015114237,
+							"sid": 689686887284472,
 							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "По вертикали"
 						},
 						{
 							"eventType": "block",
@@ -174,7 +718,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 971084491574706,
+									"sid": 629188194149664,
 									"parameters": {
 										"first-value": "index2",
 										"comparison": 0,
@@ -184,7 +728,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 593962730975015,
+									"sid": 656980628677350,
 									"parameters": {
 										"first-value": "index2",
 										"comparison": 0,
@@ -196,91 +740,122 @@
 								{
 									"id": "set-function-return-value",
 									"objectClass": "Functions",
-									"sid": 451980082684612,
+									"sid": 855329280811049,
 									"parameters": {
 										"value": "1"
 									}
 								}
 							],
-							"sid": 504018142425027,
+							"sid": 143945463104266,
 							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "По диагонали"
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-two-values",
+									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 550951658707941,
+									"sid": 269872357545695,
 									"parameters": {
-										"first-value": "index2",
-										"comparison": 0,
-										"second-value": "index1 - grid_config.Get(\"gridWidth\") - 1"
+										"variable": "diagonals"
 									}
+								}
+							],
+							"actions": [],
+							"sid": 594023088393129,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 914287825652484,
+											"parameters": {
+												"first-value": "index2",
+												"comparison": 0,
+												"second-value": "index1 - grid_config.Get(\"gridWidth\") - 1"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 928776072835851,
+											"parameters": {
+												"first-value": "index2",
+												"comparison": 0,
+												"second-value": "index1 - grid_config.Get(\"gridWidth\") + 1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 347825772170612,
+											"parameters": {
+												"value": "1"
+											}
+										}
+									],
+									"sid": 126658357733353,
+									"isOrBlock": true
 								},
 								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 739248734114977,
-									"parameters": {
-										"first-value": "index2",
-										"comparison": 0,
-										"second-value": "index1 - grid_config.Get(\"gridWidth\") + 1"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 781574485198093,
+											"parameters": {
+												"first-value": "index2",
+												"comparison": 0,
+												"second-value": "index1 + grid_config.Get(\"gridWidth\") -1"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 313822699895713,
+											"parameters": {
+												"first-value": "index2",
+												"comparison": 0,
+												"second-value": "index1 + grid_config.Get(\"gridWidth\") +1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-function-return-value",
+											"objectClass": "Functions",
+											"sid": 326740756110398,
+											"parameters": {
+												"value": "1"
+											}
+										}
+									],
+									"sid": 833517675918768,
+									"isOrBlock": true
 								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 542512901640829,
-									"parameters": {
-										"value": "1"
-									}
-								}
-							],
-							"sid": 645698785105170,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 674882104121595,
-									"parameters": {
-										"first-value": "index2",
-										"comparison": 0,
-										"second-value": "index1 + grid_config.Get(\"gridWidth\") -1"
-									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 172787942064424,
-									"parameters": {
-										"first-value": "index2",
-										"comparison": 0,
-										"second-value": "index1 + grid_config.Get(\"gridWidth\") +1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 905529653362739,
-									"parameters": {
-										"value": "1"
-									}
-								}
-							],
-							"sid": 137251639849459,
-							"isOrBlock": true
+							]
 						}
 					]
-				},
+				}
+			],
+			"sid": 148593248802757
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Сетка - логика",
+			"description": "Логическая часть сетки.",
+			"isActiveOnStart": true,
+			"children": [
 				{
 					"functionName": "grid_scroll_to_center",
 					"functionDescription": "Навести камеру на центр сетки.",
@@ -308,64 +883,6 @@
 								}
 							],
 							"sid": 398984074290477
-						}
-					]
-				},
-				{
-					"functionName": "grid_get_real_height",
-					"functionDescription": "Получить реальную ширину сетки в пикселях.",
-					"functionCategory": "#grid",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 464428747989931,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 984812073171859,
-									"parameters": {
-										"value": "((grid_config.Get(\"gridHeight\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
-									}
-								}
-							],
-							"sid": 156458972681811
-						}
-					]
-				},
-				{
-					"functionName": "grid_get_real_width",
-					"functionDescription": "Получить реальную ширину сетки в пикселях.",
-					"functionCategory": "#grid",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 163527063349550,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 948484871357176,
-									"parameters": {
-										"value": "((grid_config.Get(\"gridWidth\")-1) * grid_config.Get(\"cellSize\")) + grid_config.Get(\"cellSize\")"
-									}
-								}
-							],
-							"sid": 710331412500853
 						}
 					]
 				},
@@ -497,469 +1014,6 @@
 								}
 							],
 							"sid": 473131806495029
-						}
-					]
-				},
-				{
-					"eventType": "comment",
-					"text": " Вывести [b]Х[/b] координату для определенного индекса."
-				},
-				{
-					"functionName": "grid_index_to_x",
-					"functionDescription": "Возвращает Х положение указанного индекса.",
-					"functionCategory": "#grid",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "index",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "Индекс клетки.",
-							"sid": 809496154519055
-						},
-						{
-							"name": "get_real_coordinate",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
-							"sid": 399938994238307
-						},
-						{
-							"name": "get_center",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Получить центральную позицию клетки. [b]Данная переменная типа boolean: принимается 1 или 0",
-							"sid": 218800474812381
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 633742221527150,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 744119349607547,
-									"parameters": {
-										"variable": "get_center"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты Центра клетки."
-								}
-							],
-							"sid": 930656952977252,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 993435737572925,
-											"parameters": {
-												"variable": "get_real_coordinate"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 935347144901561,
-											"parameters": {
-												"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")  + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2"
-											}
-										}
-									],
-									"sid": 373177619132309
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 978746935481055
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 312385801803068,
-											"parameters": {
-												"value": "(index % grid_config.Get(\"gridWidth\"))"
-											}
-										}
-									],
-									"sid": 439042024498594
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 617695207369718
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты верхнего левого угла клетки."
-								}
-							],
-							"sid": 431647171120811,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 233619060452092,
-											"parameters": {
-												"variable": "get_real_coordinate"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 310824570180348,
-											"parameters": {
-												"value": "(index % grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
-											}
-										}
-									],
-									"sid": 141285222478065
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 745218674845143
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 303962936822903,
-											"parameters": {
-												"value": "(index % grid_config.Get(\"gridWidth\"))"
-											}
-										}
-									],
-									"sid": 201696715565964
-								}
-							]
-						}
-					]
-				},
-				{
-					"eventType": "comment",
-					"text": " Вывести [b]У[/b] координату для определенного индекса."
-				},
-				{
-					"functionName": "grid_index_to_y",
-					"functionDescription": "Возвращает Y положение указанного индекса.",
-					"functionCategory": "#grid",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "index",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "Индекс клетки.",
-							"sid": 986309586774039
-						},
-						{
-							"name": "get_real_coordinate",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
-							"sid": 384247316510384
-						},
-						{
-							"name": "get_center",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "[b]Данная переменная типа boolean: принимается 1 или 0",
-							"sid": 744043986030420
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 733813060456151,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 409526003481645,
-									"parameters": {
-										"variable": "get_center"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты Центра клетки."
-								}
-							],
-							"sid": 732024735563472,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 269843913782546,
-											"parameters": {
-												"variable": "get_real_coordinate"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 265597245351262,
-											"parameters": {
-												"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")  + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 2"
-											}
-										}
-									],
-									"sid": 813811442813570
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 847907952422229
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 673299858847054,
-											"parameters": {
-												"value": "int(index / grid_config.Get(\"gridWidth\"))"
-											}
-										}
-									],
-									"sid": 964681169605213
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 755641867014767
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты верхнего левого угла клетки."
-								}
-							],
-							"sid": 195202383084768,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 303516211738807,
-											"parameters": {
-												"variable": "get_real_coordinate"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 677403196046413,
-											"parameters": {
-												"value": "int(index / grid_config.Get(\"gridWidth\")) * grid_config.Get(\"cellSize\") + grid_config.Get(\"cellOffset\")"
-											}
-										}
-									],
-									"sid": 640511679154070
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 528421714702233
-										}
-									],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 688251596621585,
-											"parameters": {
-												"value": "int(index / grid_config.Get(\"gridWidth\"))"
-											}
-										}
-									],
-									"sid": 748978406617402
-								}
-							]
-						}
-					]
-				},
-				{
-					"functionName": "grid_pos_to_index",
-					"functionDescription": "Выводит индекс клетки, находящейся на указанной позиции.",
-					"functionCategory": "#grid",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "x",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "X координата",
-							"sid": 839813809592288
-						},
-						{
-							"name": "y",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "У координата",
-							"sid": 588193306560752
-						},
-						{
-							"name": "logical_coordinates",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "Являются ли вводимые координаты логическими, поставьте 0, если координаты физические (к примеру, 13.450, 23.55)). [b]Данная переменная типа boolean: принимается 1 или 0",
-							"sid": 329856647551542
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 590951658836968,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 884565112777325,
-									"parameters": {
-										"variable": "logical_coordinates"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 774442526974301,
-									"parameters": {
-										"value": "y * grid_config.Get(\"gridWidth\") + x"
-									}
-								}
-							],
-							"sid": 990014381972948
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 201667004091525
-								}
-							],
-							"actions": [],
-							"sid": 942853820235550,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-function-return-value",
-											"objectClass": "Functions",
-											"sid": 786012879223698,
-											"parameters": {
-												"value": "int(y / grid_config.Get(\"cellSize\")) * grid_config.Get(\"gridWidth\") + int(X / grid_config.Get(\"cellSize\"))"
-											}
-										}
-									],
-									"sid": 971157111984935
-								}
-							]
 						}
 					]
 				}
@@ -2770,7 +2824,7 @@
 											"objectClass": "System",
 											"sid": 834822058044707,
 											"parameters": {
-												"first-value": "Functions.grid_is_indexes_neighbours(grid_unit.index, index)",
+												"first-value": "Functions.grid_is_indexes_neighbours(grid_unit.index, index, 0)",
 												"comparison": 0,
 												"second-value": "1"
 											}
