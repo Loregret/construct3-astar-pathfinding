@@ -91,9 +91,20 @@
 					"grid_drawing_canvas",
 					"grid_text",
 					"grid_config",
-					"grid_unit"
+					"grid_unit",
+					"grid_custom_array"
 				],
-				"subfolders": [],
+				"subfolders": [
+					{
+						"items": [
+							"frontier",
+							"reached",
+							"neighbours"
+						],
+						"subfolders": [],
+						"name": "astar"
+					}
+				],
 				"name": "grid"
 			},
 			{

@@ -533,6 +533,258 @@
 					]
 				},
 				{
+					"functionName": "grid_is_index_valid",
+					"functionDescription": "Проверяет валидность индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 687269176114983
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Проверяет валидность индекса."
+						}
+					],
+					"sid": 852145344790061,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 308353085447788,
+									"parameters": {
+										"value": "index",
+										"lower-bound": "0",
+										"upper-bound": "grid_cells.Width - 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 497723352119348,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 188305405015724
+						}
+					]
+				},
+				{
+					"functionName": "grid_get_cells",
+					"functionDescription": "Получить массив клеток.",
+					"functionCategory": "#grid",
+					"functionReturnType": "string",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить массив клеток."
+						},
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 959116303264830,
+							"parameters": {
+								"value": "grid_cells.AsJSON"
+							}
+						}
+					],
+					"sid": 538331881913905
+				},
+				{
+					"functionName": "grid_get_neighbours",
+					"functionDescription": "Функция для того, чтобы получить список соседей для определенного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "string",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 218682453461699
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 966153858063798,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "clear",
+									"objectClass": "grid_custom_array",
+									"sid": 589597388851547,
+									"parameters": {
+										"value": "-1"
+									}
+								},
+								{
+									"id": "set-size",
+									"objectClass": "grid_custom_array",
+									"sid": 179634940159251,
+									"parameters": {
+										"width": "0",
+										"height": "1",
+										"depth": "1"
+									}
+								}
+							],
+							"sid": 507037128016272
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 873567364169207,
+									"parameters": {
+										"first-value": "Functions.grid_is_index_valid(index - 1)",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push",
+									"objectClass": "grid_custom_array",
+									"sid": 370677284162369,
+									"parameters": {
+										"where": "back",
+										"value": "index - 1",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 842682903143755
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 768032884523225,
+									"parameters": {
+										"first-value": "Functions.grid_is_index_valid(index + 1)",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push",
+									"objectClass": "grid_custom_array",
+									"sid": 801046385637409,
+									"parameters": {
+										"where": "back",
+										"value": "index + 1",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 139435062149839
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 401384850637682,
+									"parameters": {
+										"first-value": "Functions.grid_is_index_valid(index - grid_config.Get(\"gridWidth\"))",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push",
+									"objectClass": "grid_custom_array",
+									"sid": 305325698118107,
+									"parameters": {
+										"where": "back",
+										"value": "index - grid_config.Get(\"gridWidth\")",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 778232574273371
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 856390543454432,
+									"parameters": {
+										"first-value": "Functions.grid_is_index_valid(index + grid_config.Get(\"gridWidth\"))",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push",
+									"objectClass": "grid_custom_array",
+									"sid": 510635795973535,
+									"parameters": {
+										"where": "back",
+										"value": "index + grid_config.Get(\"gridWidth\")",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 346893538537942
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 876206506403233,
+									"parameters": {
+										"value": "grid_custom_array.AsJSON"
+									}
+								}
+							],
+							"sid": 550779267071076
+						}
+					]
+				},
+				{
 					"functionName": "grid_is_indexes_neighbours",
 					"functionDescription": "Проверяет являются ли клетки соседями",
 					"functionCategory": "#grid",
@@ -2913,8 +3165,316 @@
 			"title": "A٭ Поиск Пути",
 			"description": "Алгоритм поиска пути.",
 			"isActiveOnStart": true,
-			"children": [],
-			"sid": 720937801200661
+			"children": [
+				{
+					"functionName": "astar_start",
+					"functionDescription": "",
+					"functionCategory": "#astar",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "start_index",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "",
+							"sid": 771011202913669
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 266171653933266,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "start"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [],
+							"sid": 374035623661430,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "clear",
+											"objectClass": "frontier",
+											"sid": 202605916706894,
+											"parameters": {
+												"value": "-1"
+											}
+										},
+										{
+											"id": "set-size",
+											"objectClass": "frontier",
+											"sid": 251266233973235,
+											"parameters": {
+												"width": "0",
+												"height": "1",
+												"depth": "1"
+											}
+										},
+										{
+											"id": "push",
+											"objectClass": "frontier",
+											"sid": 939626903465133,
+											"parameters": {
+												"where": "back",
+												"value": "start_index",
+												"axis": "x"
+											}
+										}
+									],
+									"sid": 704888294728387
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "clear",
+											"objectClass": "neighbours",
+											"sid": 407165875317192,
+											"parameters": {
+												"value": "-1"
+											}
+										},
+										{
+											"id": "set-size",
+											"objectClass": "neighbours",
+											"sid": 653633706210642,
+											"parameters": {
+												"width": "0",
+												"height": "1",
+												"depth": "1"
+											}
+										}
+									],
+									"sid": 283680813510239
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "clear",
+											"objectClass": "reached",
+											"sid": 897006027025295,
+											"parameters": {
+												"value": "-1"
+											}
+										},
+										{
+											"id": "set-size",
+											"objectClass": "reached",
+											"sid": 297434062279294,
+											"parameters": {
+												"width": "0",
+												"height": "1",
+												"depth": "1"
+											}
+										},
+										{
+											"id": "push",
+											"objectClass": "reached",
+											"sid": 942052634678540,
+											"parameters": {
+												"where": "back",
+												"value": "start_index",
+												"axis": "x"
+											}
+										},
+										{
+											"callFunction": "draw_rectangle_on_cell",
+											"sid": 947074370406769,
+											"parameters": [
+												"start_index",
+												"\"yellow\"",
+												"50",
+												false,
+												"8"
+											]
+										}
+									],
+									"sid": 202073141763745
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Breadth First Search"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "repeat",
+									"objectClass": "System",
+									"sid": 351941485713858,
+									"parameters": {
+										"count": "5"
+									}
+								},
+								{
+									"id": "is-empty",
+									"objectClass": "frontier",
+									"sid": 643427627034813,
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 847843286199879,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [],
+									"sid": 613597362443782,
+									"children": [
+										{
+											"eventType": "variable",
+											"name": "current",
+											"type": "number",
+											"initialValue": "-1",
+											"comment": "",
+											"isStatic": true,
+											"isConstant": false,
+											"sid": 352191980297176
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 508704169587014,
+													"parameters": {
+														"variable": "current",
+														"value": "frontier.At(0)"
+													}
+												},
+												{
+													"id": "load",
+													"objectClass": "neighbours",
+													"sid": 578732615075024,
+													"parameters": {
+														"json": "Functions.grid_get_neighbours(current)"
+													}
+												}
+											],
+											"sid": 445138092681282
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 639005823040948,
+													"parameters": {
+														"name": "\"next\"",
+														"start-index": "0",
+														"end-index": "neighbours.Width - 1"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 803123366211510,
+											"children": [
+												{
+													"eventType": "variable",
+													"name": "next",
+													"type": "number",
+													"initialValue": "-1",
+													"comment": "",
+													"isStatic": true,
+													"isConstant": false,
+													"sid": 846273008990597
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 916922064281577,
+															"parameters": {
+																"variable": "next",
+																"value": "neighbours.At(loopindex)"
+															}
+														}
+													],
+													"sid": 912093863223911
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "contains-value",
+															"objectClass": "reached",
+															"sid": 313938519574204,
+															"parameters": {
+																"value": "next"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "pop",
+															"objectClass": "frontier",
+															"sid": 613202106225991,
+															"parameters": {
+																"where": "front",
+																"axis": "x"
+															}
+														},
+														{
+															"id": "push",
+															"objectClass": "reached",
+															"sid": 257212997463626,
+															"parameters": {
+																"where": "back",
+																"value": "next",
+																"axis": "x"
+															}
+														},
+														{
+															"callFunction": "draw_rectangle_on_cell",
+															"sid": 896786349057656,
+															"parameters": [
+																"next",
+																"\"blue\"",
+																"50",
+																true,
+																"1"
+															]
+														}
+													],
+													"sid": 139926030946473
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 720937801200661,
+			"background-color": [
+				0.8666666666666667,
+				0.9607843137254902,
+				0.8588235294117647,
+				1
+			]
 		}
 	],
 	"sid": 362270193592792

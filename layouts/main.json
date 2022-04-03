@@ -231,6 +231,46 @@
 			"properties": {},
 			"uid": 6,
 			"instanceVariables": {}
+		},
+		{
+			"type": "frontier",
+			"properties": {
+				"width": 0,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 10,
+			"instanceVariables": {}
+		},
+		{
+			"type": "reached",
+			"properties": {
+				"width": 0,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 11,
+			"instanceVariables": {}
+		},
+		{
+			"type": "grid_custom_array",
+			"properties": {
+				"width": 0,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 12,
+			"instanceVariables": {}
+		},
+		{
+			"type": "neighbours",
+			"properties": {
+				"width": 0,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 13,
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],
