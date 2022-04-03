@@ -87,7 +87,7 @@
 							"name": "get_center",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Получить центральную позицию клетки. [b]Данная переменная типа boolean: принимается 1 или 0",
+							"comment": "Получить центральную позицию клетки (если real_coordinate = 0). [b]Данная переменная типа boolean: принимается 1 или 0",
 							"sid": 218800474812381
 						}
 					],
@@ -275,7 +275,7 @@
 							"name": "get_center",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "[b]Данная переменная типа boolean: принимается 1 или 0",
+							"comment": "Получить центральную позицию клетки (если real_coordinate = 0). [b]Данная переменная типа boolean: принимается 1 или 0",
 							"sid": 744043986030420
 						}
 					],
@@ -661,11 +661,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 873567364169207,
+									"sid": 236691832220472,
 									"parameters": {
-										"first-value": "Functions.grid_is_index_valid(index - 1)",
-										"comparison": 0,
-										"second-value": "1"
+										"first-value": "index - 1",
+										"comparison": 4,
+										"second-value": "0"
 									}
 								}
 							],
@@ -689,11 +689,39 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 768032884523225,
+									"sid": 266787352138512,
 									"parameters": {
-										"first-value": "Functions.grid_is_index_valid(index + 1)",
-										"comparison": 0,
-										"second-value": "1"
+										"first-value": "index - grid_config.Get(\"gridWidth\")",
+										"comparison": 4,
+										"second-value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push",
+									"objectClass": "grid_custom_array",
+									"sid": 205054385914862,
+									"parameters": {
+										"where": "back",
+										"value": "index - grid_config.Get(\"gridWidth\")",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 547412441725477
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 857360064592041,
+									"parameters": {
+										"first-value": "Functions.grid_index_to_x(index+1, 0 , 0)",
+										"comparison": 2,
+										"second-value": "grid_config.Get(\"gridWidth\") - 1"
 									}
 								}
 							],
@@ -717,39 +745,11 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 401384850637682,
+									"sid": 166264096336674,
 									"parameters": {
-										"first-value": "Functions.grid_is_index_valid(index - grid_config.Get(\"gridWidth\"))",
-										"comparison": 0,
-										"second-value": "1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "push",
-									"objectClass": "grid_custom_array",
-									"sid": 305325698118107,
-									"parameters": {
-										"where": "back",
-										"value": "index - grid_config.Get(\"gridWidth\")",
-										"axis": "x"
-									}
-								}
-							],
-							"sid": 778232574273371
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 856390543454432,
-									"parameters": {
-										"first-value": "Functions.grid_is_index_valid(index + grid_config.Get(\"gridWidth\"))",
-										"comparison": 0,
-										"second-value": "1"
+										"first-value": "Functions.grid_index_to_y(index+grid_config.Get(\"gridWIdth\"), 0 , 0)",
+										"comparison": 2,
+										"second-value": "grid_config.Get(\"gridHeight\") - 1"
 									}
 								}
 							],
@@ -769,7 +769,14 @@
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "is-empty",
+									"objectClass": "grid_custom_array",
+									"sid": 595090602359789,
+									"isInverted": true
+								}
+							],
 							"actions": [
 								{
 									"id": "set-function-return-value",
@@ -3290,13 +3297,13 @@
 										},
 										{
 											"callFunction": "draw_rectangle_on_cell",
-											"sid": 947074370406769,
+											"sid": 226807452652697,
 											"parameters": [
 												"start_index",
-												"\"yellow\"",
-												"50",
-												false,
-												"8"
+												"\"green\"",
+												"45",
+												true,
+												"1"
 											]
 										}
 									],
@@ -3314,9 +3321,9 @@
 								{
 									"id": "repeat",
 									"objectClass": "System",
-									"sid": 351941485713858,
+									"sid": 543692323010766,
 									"parameters": {
-										"count": "5"
+										"count": "1"
 									}
 								},
 								{
@@ -3330,21 +3337,21 @@
 							"sid": 847843286199879,
 							"children": [
 								{
+									"eventType": "variable",
+									"name": "current",
+									"type": "number",
+									"initialValue": "-1",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 593290872101915
+								},
+								{
 									"eventType": "block",
 									"conditions": [],
 									"actions": [],
 									"sid": 613597362443782,
 									"children": [
-										{
-											"eventType": "variable",
-											"name": "current",
-											"type": "number",
-											"initialValue": "-1",
-											"comment": "",
-											"isStatic": true,
-											"isConstant": false,
-											"sid": 352191980297176
-										},
 										{
 											"eventType": "block",
 											"conditions": [],
@@ -3375,7 +3382,7 @@
 												{
 													"id": "for",
 													"objectClass": "System",
-													"sid": 639005823040948,
+													"sid": 548553889665995,
 													"parameters": {
 														"name": "\"next\"",
 														"start-index": "0",
@@ -3384,7 +3391,7 @@
 												}
 											],
 											"actions": [],
-											"sid": 803123366211510,
+											"sid": 181570788566560,
 											"children": [
 												{
 													"eventType": "variable",
@@ -3394,7 +3401,7 @@
 													"comment": "",
 													"isStatic": true,
 													"isConstant": false,
-													"sid": 846273008990597
+													"sid": 394967405883107
 												},
 												{
 													"eventType": "block",
@@ -3403,14 +3410,14 @@
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 916922064281577,
+															"sid": 171293705974216,
 															"parameters": {
 																"variable": "next",
 																"value": "neighbours.At(loopindex)"
 															}
 														}
 													],
-													"sid": 912093863223911
+													"sid": 400895497421876
 												},
 												{
 													"eventType": "block",
@@ -3418,7 +3425,7 @@
 														{
 															"id": "contains-value",
 															"objectClass": "reached",
-															"sid": 313938519574204,
+															"sid": 713968445093562,
 															"parameters": {
 																"value": "next"
 															},
@@ -3427,18 +3434,19 @@
 													],
 													"actions": [
 														{
-															"id": "pop",
+															"id": "push",
 															"objectClass": "frontier",
-															"sid": 613202106225991,
+															"sid": 258586906272236,
 															"parameters": {
 																"where": "front",
+																"value": "next",
 																"axis": "x"
 															}
 														},
 														{
 															"id": "push",
 															"objectClass": "reached",
-															"sid": 257212997463626,
+															"sid": 392336761441300,
 															"parameters": {
 																"where": "back",
 																"value": "next",
@@ -3447,7 +3455,8 @@
 														},
 														{
 															"callFunction": "draw_rectangle_on_cell",
-															"sid": 896786349057656,
+															"sid": 156500776977935,
+															"disabled": true,
 															"parameters": [
 																"next",
 																"\"blue\"",
@@ -3457,9 +3466,37 @@
 															]
 														}
 													],
-													"sid": 139926030946473
+													"sid": 599935140395128
 												}
 											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"callFunction": "draw_rectangle_on_cell",
+													"sid": 267509753495733,
+													"disabled": true,
+													"parameters": [
+														"current",
+														"\"yellow\"",
+														"50",
+														false,
+														"8"
+													]
+												},
+												{
+													"id": "delete",
+													"objectClass": "frontier",
+													"sid": 215689119571816,
+													"parameters": {
+														"index": "current",
+														"axis": "x"
+													}
+												}
+											],
+											"sid": 809524878092409
 										}
 									]
 								}
