@@ -91,6 +91,26 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 473964334485760,
+					"parameters": {
+						"interval-seconds": "0.5"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "astar_breadth_first_search",
+					"sid": 274740276694626
+				}
+			],
+			"sid": 521109473145625
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
 					"sid": 478686921535960
