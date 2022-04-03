@@ -244,9 +244,9 @@
 				{
 					"id": "append-text",
 					"objectClass": "debug_text",
-					"sid": 820389959266534,
+					"sid": 887966052032907,
 					"parameters": {
-						"text": "\"[b] FPS: [/b]\" & fps"
+						"text": "\"[b]FPS: [/b]\" & fps"
 					}
 				},
 				{
@@ -260,9 +260,9 @@
 				{
 					"id": "append-text",
 					"objectClass": "debug_text",
-					"sid": 366487286817451,
+					"sid": 127152311090870,
 					"parameters": {
-						"text": "\"[b] Mouse: [/b]\" & int(Mouse.X) & \", \" & int(Mouse.Y)"
+						"text": "\"[b]Mouse: [/b]\" & int(Mouse.X) & \", \" & int(Mouse.Y)"
 					}
 				},
 				{
@@ -276,9 +276,9 @@
 				{
 					"id": "append-text",
 					"objectClass": "debug_text",
-					"sid": 725649496148378,
+					"sid": 136995562544036,
 					"parameters": {
-						"text": "\"[b] Grid Size: [/b]\" & grid_config.Get(\"gridWidth\") & \", \" & grid_config.Get(\"gridHeight\")"
+						"text": "\"[b]Grid Size: [/b]\" & grid_config.Get(\"gridWidth\") & \", \" & grid_config.Get(\"gridHeight\")"
 					}
 				},
 				{
@@ -292,17 +292,15 @@
 				{
 					"id": "append-text",
 					"objectClass": "debug_text",
-					"sid": 539939090522291,
-					"disabled": true,
+					"sid": 558114240802890,
 					"parameters": {
-						"text": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+						"text": "\"[b]Cell Index:[/b] \" & Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
 					}
 				},
 				{
 					"id": "append-text",
 					"objectClass": "debug_text",
 					"sid": 230877045887925,
-					"disabled": true,
 					"parameters": {
 						"text": "newline"
 					}
@@ -310,17 +308,15 @@
 				{
 					"id": "append-text",
 					"objectClass": "debug_text",
-					"sid": 367026899110364,
-					"disabled": true,
+					"sid": 224992215591840,
 					"parameters": {
-						"text": "int(Mouse.X / grid_config.Get(\"cellSize\")) & \", \" & int(Mouse.Y / grid_config.Get(\"cellSize\"))"
+						"text": "\"[b]Cell XY:[/b] \" & int(Mouse.X / grid_config.Get(\"cellSize\")) & \", \" & int(Mouse.Y / grid_config.Get(\"cellSize\"))"
 					}
 				},
 				{
 					"id": "append-text",
 					"objectClass": "debug_text",
 					"sid": 218213990180233,
-					"disabled": true,
 					"parameters": {
 						"text": "newline"
 					}

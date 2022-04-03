@@ -6,90 +6,6 @@
 			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции. \nЭто означает, что вы можете скопировать в своей проект папку [b]grid + этот Лист Событий[/b]. \nТаким образом, вы получите полностью рабочий функционал сетки."
 		},
 		{
-			"functionName": "grid_unblock_index",
-			"functionDescription": "Разблокирует клетку.",
-			"functionCategory": "#grid",
-			"functionReturnType": "none",
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "index",
-					"type": "number",
-					"initialValue": "-1",
-					"comment": "Индекс клетки.",
-					"sid": 154391309974676
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [],
-			"sid": 410130538767557,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 151430956364245,
-							"parameters": {
-								"x": "index",
-								"value": "1"
-							}
-						},
-						{
-							"callFunction": "grid_update",
-							"sid": 733574221721713
-						}
-					],
-					"sid": 359261329064897
-				}
-			]
-		},
-		{
-			"functionName": "grid_block_index",
-			"functionDescription": "Блокирует клетку.",
-			"functionCategory": "#grid",
-			"functionReturnType": "none",
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "index",
-					"type": "number",
-					"initialValue": "-1",
-					"comment": "Индекс клетки.",
-					"sid": 350205810310020
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [],
-			"sid": 104932453920347,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 340490368714943,
-							"parameters": {
-								"x": "index",
-								"value": "0"
-							}
-						},
-						{
-							"callFunction": "grid_update",
-							"sid": 298870617132761
-						}
-					],
-					"sid": 915576175784652
-				}
-			]
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Сетка - получение данных 🗄️",
@@ -1051,6 +967,100 @@
 					]
 				},
 				{
+					"functionName": "grid_unblock_index",
+					"functionDescription": "Разблокирует клетку.",
+					"functionCategory": "#grid",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 154391309974676
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 359524174182645,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-at-x",
+									"objectClass": "grid_cells",
+									"sid": 210688687970459,
+									"parameters": {
+										"x": "index",
+										"value": "1"
+									}
+								},
+								{
+									"callFunction": "grid_update",
+									"sid": 197466056155588
+								}
+							],
+							"sid": 375795403996710
+						}
+					]
+				},
+				{
+					"functionName": "grid_block_index",
+					"functionDescription": "Блокирует клетку.",
+					"functionCategory": "#grid",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 350205810310020
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 381243955099857,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-at-x",
+									"objectClass": "grid_cells",
+									"sid": 717282063935255,
+									"parameters": {
+										"x": "index",
+										"value": "0"
+									}
+								},
+								{
+									"callFunction": "grid_update",
+									"sid": 436479090618604
+								}
+							],
+							"sid": 824720774764972
+						}
+					]
+				}
+			],
+			"sid": 881450906732652
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Сетка - прочее 🗄️",
+			"description": "Минорные функции сетки, которые не вписываются в обычные категории.",
+			"isActiveOnStart": true,
+			"children": [
+				{
 					"functionName": "grid_scroll_to_center",
 					"functionDescription": "Навести камеру на центр сетки.",
 					"functionCategory": "#grid",
@@ -1065,7 +1075,7 @@
 							"text": "Наводка камеры на центр сетки."
 						}
 					],
-					"sid": 545775456916998,
+					"sid": 739882707195290,
 					"children": [
 						{
 							"eventType": "block",
@@ -1074,19 +1084,19 @@
 								{
 									"id": "scroll-to-position",
 									"objectClass": "System",
-									"sid": 599715262706199,
+									"sid": 628219398808231,
 									"parameters": {
 										"x": "((grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridWidth\") * grid_config.Get(\"cellOffset\")))/2",
 										"y": "((grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellSize\") + grid_config.Get(\"gridHeight\") * grid_config.Get(\"cellOffset\")))/2"
 									}
 								}
 							],
-							"sid": 398984074290477
+							"sid": 527896964488227
 						}
 					]
 				}
 			],
-			"sid": 881450906732652
+			"sid": 396121643245287
 		},
 		{
 			"eventType": "group",
@@ -1169,7 +1179,7 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "[h2] Данная функция рисует сетку. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
+					"text": "[h2] Главная функция для рисовки сетки. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
 				},
 				{
 					"functionName": "draw_grid",
@@ -2814,7 +2824,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Создание юнита."
+						}
+					],
 					"sid": 178733991174842,
 					"children": [
 						{
@@ -2879,7 +2894,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Поместить юнита на клетку (только логика)"
+						}
+					],
 					"sid": 899001091450671,
 					"children": [
 						{
@@ -2942,7 +2962,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Основная функция для передвижения юнита."
+						}
+					],
 					"sid": 127981611395257,
 					"children": [
 						{
