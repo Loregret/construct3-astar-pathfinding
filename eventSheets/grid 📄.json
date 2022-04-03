@@ -105,10 +105,6 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "comment",
-					"text": "Получить реальную высоту сетки."
-				},
-				{
 					"functionName": "grid_get_real_height",
 					"functionDescription": "Получить реальную ширину сетки в пикселях.",
 					"functionCategory": "#grid",
@@ -118,6 +114,10 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить реальную высоту сетки."
+						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
@@ -130,10 +130,6 @@
 					"sid": 434480185352708
 				},
 				{
-					"eventType": "comment",
-					"text": "Получить реальную ширину сетки."
-				},
-				{
 					"functionName": "grid_get_real_width",
 					"functionDescription": "Получить реальную ширину сетки в пикселях.",
 					"functionCategory": "#grid",
@@ -144,6 +140,10 @@
 					"conditions": [],
 					"actions": [
 						{
+							"type": "comment",
+							"text": "Получить реальную ширину сетки."
+						},
+						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
 							"sid": 735169936131387,
@@ -153,10 +153,6 @@
 						}
 					],
 					"sid": 965212125624817
-				},
-				{
-					"eventType": "comment",
-					"text": " Вывести [b]Х[/b] координату для определенного индекса."
 				},
 				{
 					"functionName": "grid_index_to_x",
@@ -189,7 +185,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": " Вывести [b]Х[/b] координату для определенного индекса."
+						}
+					],
 					"sid": 332790062553500,
 					"children": [
 						{
@@ -342,10 +343,6 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": " Вывести [b]У[/b] координату для определенного индекса."
-				},
-				{
 					"functionName": "grid_index_to_y",
 					"functionDescription": "Возвращает Y положение указанного индекса.",
 					"functionCategory": "#grid",
@@ -376,7 +373,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Вывести [b]У[/b] координату для определенного индекса."
+						}
+					],
 					"sid": 936999516539743,
 					"children": [
 						{
@@ -529,10 +531,6 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": "Получить индекс, введя позицию (в массиве либо реальные в пикселях)"
-				},
-				{
 					"functionName": "grid_pos_to_index",
 					"functionDescription": "Выводит индекс клетки, находящейся на указанной позиции.",
 					"functionCategory": "#grid",
@@ -563,7 +561,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить индекс, введя позицию (в массиве либо реальные в пикселях)"
+						}
+					],
 					"sid": 635177453630727,
 					"children": [
 						{
@@ -622,10 +625,6 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": "Проверить являются ли клетки соседними."
-				},
-				{
 					"functionName": "grid_is_indexes_neighbours",
 					"functionDescription": "Проверяет являются ли клетки соседями",
 					"functionCategory": "#grid",
@@ -656,7 +655,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Проверить являются ли клетки соседними."
+						}
+					],
 					"sid": 108019161890209,
 					"children": [
 						{
@@ -857,7 +861,12 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Наводка камеры на центр сетки."
+						}
+					],
 					"sid": 545775456916998,
 					"children": [
 						{
@@ -877,10 +886,6 @@
 							"sid": 398984074290477
 						}
 					]
-				},
-				{
-					"eventType": "comment",
-					"text": "Создание массива сетки."
 				},
 				{
 					"functionName": "create_grid",
@@ -920,7 +925,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Создание массива сетки."
+						}
+					],
 					"sid": 835961037784850,
 					"children": [
 						{
@@ -1118,6 +1128,31 @@
 											"conditions": [],
 											"actions": [
 												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 570352278970381,
+													"parameters": {
+														"variable": "x_position",
+														"value": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) "
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 598024426633100,
+													"parameters": {
+														"variable": "y_position",
+														"value": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) "
+													}
+												}
+											],
+											"sid": 907091763912046
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
 													"type": "comment",
 													"text": "Подстраивание размера полотна под размеры сетки."
 												},
@@ -1132,31 +1167,6 @@
 												}
 											],
 											"sid": 117870580836990
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 863514376607936,
-													"parameters": {
-														"variable": "x_position",
-														"value": "(loopindex(\"x\") * grid_config.Get(\"cellSize\")) "
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 439197604467054,
-													"parameters": {
-														"variable": "y_position",
-														"value": "(loopindex(\"y\") * grid_config.Get(\"cellSize\")) "
-													}
-												}
-											],
-											"sid": 569992871585323
 										},
 										{
 											"eventType": "block",
@@ -1255,7 +1265,7 @@
 						},
 						{
 							"eventType": "comment",
-							"text": "[h2] Циклические функции[/h3]\n\nРисование по всем клеткам, циклически."
+							"text": "[h2] Циклические функции[/h3]\n\n- Рисование по всем клеткам, циклически."
 						},
 						{
 							"functionName": "draw_coordinates",
@@ -1401,7 +1411,7 @@
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "[h3] Рисование по координатам"
+							"text": "[h2]Рисование по координатам[/h3]\n\n- Рисование по X, Y координатам."
 						},
 						{
 							"functionName": "draw_string",
@@ -2252,7 +2262,7 @@
 						},
 						{
 							"eventType": "comment",
-							"text": "[h3] Рисование по клеткам"
+							"text": "[h2]Рисование по клеткам[/h3]\n\n- Рисование на определенных клетках."
 						},
 						{
 							"functionName": "draw_string_on_cell",
