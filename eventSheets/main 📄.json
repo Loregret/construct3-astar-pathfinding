@@ -33,7 +33,7 @@
 			"eventType": "variable",
 			"name": "grid_width",
 			"type": "number",
-			"initialValue": "15",
+			"initialValue": "14",
 			"comment": "Ширина сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -149,52 +149,48 @@
 							"parameters": [
 								"52"
 							]
-						},
+						}
+					],
+					"sid": 614020216425388
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
 						{
 							"callFunction": "grid_block_index",
-							"sid": 431787968609657,
+							"sid": 599033263519033,
+							"disabled": true,
 							"parameters": [
 								"66"
 							]
 						},
 						{
 							"callFunction": "grid_block_index",
-							"sid": 771910561808479,
+							"sid": 162145023330763,
+							"disabled": true,
 							"parameters": [
 								"67"
 							]
 						},
 						{
 							"callFunction": "grid_block_index",
-							"sid": 930616394986233,
+							"sid": 188154136994084,
+							"disabled": true,
 							"parameters": [
 								"68"
 							]
 						},
 						{
 							"callFunction": "grid_block_index",
-							"sid": 291472773980956,
-							"parameters": [
-								"69"
-							]
-						},
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 815410142311191,
-							"parameters": {
-								"seconds": "1"
-							}
-						},
-						{
-							"callFunction": "grid_unblock_index",
-							"sid": 890891518423224,
+							"sid": 118283933395443,
+							"disabled": true,
 							"parameters": [
 								"69"
 							]
 						}
 					],
-					"sid": 614020216425388
+					"sid": 831732220551776
 				}
 			]
 		},
