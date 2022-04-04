@@ -202,7 +202,8 @@
 						},
 						{
 							"callFunction": "astar_frontier_sort_by_priority",
-							"sid": 161067503244129
+							"sid": 161067503244129,
+							"disabled": true
 						}
 					],
 					"sid": 997024148670114

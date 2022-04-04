@@ -182,7 +182,7 @@
 	},
 	"properties": {
 		"description": "Шаблон для поиска пути по клеткам на сетке.",
-		"version": "0.3",
+		"version": "0.7",
 		"author": "Loregret",
 		"authorEmail": "loregrets@yahoo.com",
 		"authorWebsite": "tinyurl.com/loregret",

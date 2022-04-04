@@ -1457,6 +1457,16 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
+													"sid": 238398825599663,
+													"parameters": {
+														"first-value": "loopindex(\"j\")",
+														"comparison": 2,
+														"second-value": "astar_frontier.Width-1"
+													}
+												},
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
 													"sid": 531758561721141,
 													"parameters": {
 														"first-value": "astar_frontier.At(loopindex(\"j\"), 1)",
@@ -1626,8 +1636,15 @@
 						},
 						{
 							"callFunction": "astar_frontier_sort_by_priority",
-							"sid": 834704136174466,
-							"disabled": true
+							"sid": 834704136174466
+						},
+						{
+							"id": "reverse",
+							"objectClass": "astar_frontier",
+							"sid": 249459252405586,
+							"parameters": {
+								"axis": "x"
+							}
 						}
 					],
 					"sid": 993570817205795
