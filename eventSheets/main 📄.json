@@ -145,11 +145,10 @@
 							"sid": 651682868454803
 						},
 						{
-							"callFunction": "astar_dijkstra",
-							"sid": 851492474641185,
+							"callFunction": "astar_find_path",
+							"sid": 309579295477808,
 							"parameters": [
-								"0",
-								"0"
+								"72"
 							]
 						}
 					],
@@ -440,7 +439,8 @@
 									}
 								}
 							],
-							"sid": 816871832257220
+							"sid": 816871832257220,
+							"disabled": true
 						}
 					]
 				}
