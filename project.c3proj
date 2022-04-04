@@ -110,7 +110,8 @@
 					"astar_frontier",
 					"astar_reached",
 					"astar_neighbours",
-					"astar_path"
+					"astar_path",
+					"astar_cost_so_far"
 				],
 				"subfolders": [],
 				"name": "astar"

@@ -281,6 +281,16 @@
 			},
 			"uid": 14,
 			"instanceVariables": {}
+		},
+		{
+			"type": "astar_cost_so_far",
+			"properties": {
+				"width": 10,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 15,
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],
