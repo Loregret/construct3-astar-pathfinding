@@ -1167,6 +1167,48 @@
 					]
 				},
 				{
+					"functionName": "grid_get_index_cost",
+					"functionDescription": "Получить стоимость пути указанного индекса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "index",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "Индекс клетки.",
+							"sid": 554963582034256
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить стоимость пути указанного индекса."
+						}
+					],
+					"sid": 161315182582957,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 841860957139225,
+									"parameters": {
+										"value": "grid_cells.At(index)"
+									}
+								}
+							],
+							"sid": 951897434302100
+						}
+					]
+				},
+				{
 					"functionName": "grid_is_index_free",
 					"functionDescription": "Выводит 1 если индекс свободен, 0 - если занят.",
 					"functionCategory": "#grid",
@@ -1183,7 +1225,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Проверка на незанятость клетки."
+						}
+					],
 					"sid": 644716912672895,
 					"children": [
 						{
@@ -1927,6 +1974,74 @@
 				{
 					"eventType": "comment",
 					"text": "[h2] Циклические функции[/h3]\n\n- Рисование по всем клеткам, циклически."
+				},
+				{
+					"functionName": "draw_movement_cost",
+					"functionDescription": "Рисует стоиомость пути для клеток.",
+					"functionCategory": "#draw",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Рисование логической координаты каждой клетки на сетке."
+						}
+					],
+					"sid": 559918781891327,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 825465868399667,
+									"parameters": {
+										"name": "\"index\"",
+										"start-index": "0",
+										"end-index": "grid_cells.Width-1"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 721730838552444,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-at-x",
+											"objectClass": "grid_cells",
+											"sid": 646548031433970,
+											"parameters": {
+												"x": "loopindex",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "draw_string_on_cell",
+											"sid": 326531276616938,
+											"parameters": [
+												"loopindex",
+												"0",
+												"str(grid_cells.At(loopindex))",
+												"10",
+												"\"blue\"",
+												"100"
+											]
+										}
+									],
+									"sid": 479520110566298
+								}
+							]
+						}
+					]
 				},
 				{
 					"functionName": "draw_coordinates",
@@ -2809,12 +2924,12 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 327438917343000,
+									"sid": 884151147760877,
 									"parameters": [
 										"color",
 										"opacity",
-										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
-										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 4",
+										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 5",
+										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 5",
 										"string",
 										"fontSize",
 										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",

@@ -95,102 +95,13 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-click",
-					"objectClass": "Mouse",
-					"sid": 693127624867881,
-					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked"
-					}
-				}
-			],
-			"actions": [],
-			"sid": 483642834243892,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 257065678375154,
-							"parameters": {
-								"first-value": "Functions.grid_is_index_valid(Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0))",
-								"comparison": 0,
-								"second-value": "1"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "draw_clear",
-							"sid": 613084020258448
-						},
-						{
-							"callFunction": "grid_update",
-							"sid": 604279168531962
-						},
-						{
-							"callFunction": "astar_breadth_first_search",
-							"sid": 421758520674042,
-							"parameters": [
-								"grid_unit.index",
-								"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
-							]
-						}
-					],
-					"sid": 331420425422154,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 851532953682968,
-									"parameters": {
-										"name": "\"i\"",
-										"start-index": "0",
-										"end-index": "astar_path.Width-1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "unit_move_to",
-									"sid": 135560454798450,
-									"parameters": [
-										"grid_unit.UID",
-										"astar_path.At(astar_path.Width-1)"
-									]
-								},
-								{
-									"id": "pop",
-									"objectClass": "astar_path",
-									"sid": 628591474516281,
-									"parameters": {
-										"where": "back",
-										"axis": "x"
-									}
-								}
-							],
-							"sid": 939885021528182
-						}
-					]
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
-					"sid": 478686921535960
+					"sid": 723859175260482
 				}
 			],
 			"actions": [],
-			"sid": 196702205840917,
+			"sid": 861262203267799,
 			"children": [
 				{
 					"eventType": "block",
@@ -198,7 +109,7 @@
 					"actions": [
 						{
 							"callFunction": "grid_create",
-							"sid": 413236635755020,
+							"sid": 549902450508053,
 							"parameters": [
 								"grid_width",
 								"grid_height",
@@ -207,7 +118,7 @@
 							]
 						}
 					],
-					"sid": 420790384846364
+					"sid": 249353197126343
 				},
 				{
 					"eventType": "block",
@@ -215,7 +126,7 @@
 					"actions": [
 						{
 							"callFunction": "draw_grid",
-							"sid": 346469740475049,
+							"sid": 739070983555119,
 							"parameters": [
 								true,
 								"2"
@@ -223,63 +134,26 @@
 						},
 						{
 							"callFunction": "draw_coordinates",
-							"sid": 740832462677629
+							"sid": 532639106130186
 						},
 						{
 							"callFunction": "draw_indexes",
-							"sid": 889987379772972
-						}
-					],
-					"sid": 509017071766911
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "create_unit",
-							"sid": 103851519540328,
-							"parameters": [
-								"55"
-							]
-						}
-					],
-					"sid": 614020216425388
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "grid_block_index",
-							"sid": 599033263519033,
-							"parameters": [
-								"66"
-							]
+							"sid": 105229666631802
 						},
 						{
-							"callFunction": "grid_block_index",
-							"sid": 162145023330763,
-							"parameters": [
-								"67"
-							]
+							"callFunction": "draw_movement_cost",
+							"sid": 651682868454803
 						},
 						{
-							"callFunction": "grid_block_index",
-							"sid": 188154136994084,
+							"callFunction": "astar_dijkstra",
+							"sid": 851492474641185,
 							"parameters": [
-								"68"
-							]
-						},
-						{
-							"callFunction": "grid_block_index",
-							"sid": 118283933395443,
-							"parameters": [
-								"69"
+								"0",
+								"0"
 							]
 						}
 					],
-					"sid": 831732220551776
+					"sid": 997024148670114
 				}
 			]
 		},
@@ -290,6 +164,164 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-click",
+							"objectClass": "Mouse",
+							"sid": 957282142579075,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 901926493902813,
+					"disabled": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 125662304084728,
+									"parameters": {
+										"first-value": "Functions.grid_is_index_valid(Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0))",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_clear",
+									"sid": 397616871045969
+								},
+								{
+									"callFunction": "grid_update",
+									"sid": 575396551810748
+								},
+								{
+									"callFunction": "astar_breadth_first_search",
+									"sid": 272649326106145,
+									"parameters": [
+										"grid_unit.index",
+										"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+									]
+								}
+							],
+							"sid": 573752034170846,
+							"disabled": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 782208154064840,
+											"parameters": {
+												"name": "\"i\"",
+												"start-index": "0",
+												"end-index": "astar_path.Width-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "unit_move_to",
+											"sid": 142297562251818,
+											"parameters": [
+												"grid_unit.UID",
+												"astar_path.At(astar_path.Width-1)"
+											]
+										},
+										{
+											"id": "pop",
+											"objectClass": "astar_path",
+											"sid": 608394736113205,
+											"parameters": {
+												"where": "back",
+												"axis": "x"
+											}
+										}
+									],
+									"sid": 545528601950266,
+									"disabled": true
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 116115881977522
+						}
+					],
+					"actions": [],
+					"sid": 444250700611410,
+					"disabled": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "create_unit",
+									"sid": 990276919915259,
+									"parameters": [
+										"55"
+									]
+								}
+							],
+							"sid": 366121882308532,
+							"disabled": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "grid_block_index",
+									"sid": 976245245171011,
+									"parameters": [
+										"66"
+									]
+								},
+								{
+									"callFunction": "grid_block_index",
+									"sid": 196142013539467,
+									"parameters": [
+										"67"
+									]
+								},
+								{
+									"callFunction": "grid_block_index",
+									"sid": 201374979129819,
+									"parameters": [
+										"68"
+									]
+								},
+								{
+									"callFunction": "grid_block_index",
+									"sid": 896707289291406,
+									"parameters": [
+										"69"
+									]
+								}
+							],
+							"sid": 664679391056562,
+							"disabled": true
+						}
+					]
+				},
 				{
 					"eventType": "block",
 					"conditions": [
