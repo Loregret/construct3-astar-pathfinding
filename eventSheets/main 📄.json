@@ -151,6 +151,58 @@
 							"parameters": [
 								"72"
 							]
+						},
+						{
+							"callFunction": "astar_frontier_put",
+							"sid": 632792554786368,
+							"parameters": [
+								"1",
+								"5"
+							]
+						},
+						{
+							"callFunction": "astar_frontier_put",
+							"sid": 716511044100844,
+							"parameters": [
+								"2",
+								"9"
+							]
+						},
+						{
+							"callFunction": "astar_frontier_put",
+							"sid": 868073375780635,
+							"parameters": [
+								"3",
+								"6"
+							]
+						},
+						{
+							"callFunction": "astar_frontier_put",
+							"sid": 828982307523076,
+							"parameters": [
+								"4",
+								"3"
+							]
+						},
+						{
+							"callFunction": "astar_frontier_put",
+							"sid": 296846650303865,
+							"parameters": [
+								"5",
+								"2"
+							]
+						},
+						{
+							"callFunction": "astar_frontier_put",
+							"sid": 516793233300994,
+							"parameters": [
+								"6",
+								"1"
+							]
+						},
+						{
+							"callFunction": "astar_frontier_sort_by_priority",
+							"sid": 161067503244129
 						}
 					],
 					"sid": 997024148670114
