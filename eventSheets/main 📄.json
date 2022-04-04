@@ -147,6 +147,7 @@
 						{
 							"callFunction": "astar_find_path",
 							"sid": 309579295477808,
+							"disabled": true,
 							"parameters": [
 								"72"
 							]
@@ -178,7 +179,6 @@
 					],
 					"actions": [],
 					"sid": 901926493902813,
-					"disabled": true,
 					"children": [
 						{
 							"eventType": "block",
@@ -213,7 +213,6 @@
 								}
 							],
 							"sid": 573752034170846,
-							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -248,8 +247,7 @@
 											}
 										}
 									],
-									"sid": 545528601950266,
-									"disabled": true
+									"sid": 545528601950266
 								}
 							]
 						}
@@ -266,7 +264,6 @@
 					],
 					"actions": [],
 					"sid": 444250700611410,
-					"disabled": true,
 					"children": [
 						{
 							"eventType": "block",
@@ -280,8 +277,7 @@
 									]
 								}
 							],
-							"sid": 366121882308532,
-							"disabled": true
+							"sid": 366121882308532
 						},
 						{
 							"eventType": "block",
@@ -316,8 +312,7 @@
 									]
 								}
 							],
-							"sid": 664679391056562,
-							"disabled": true
+							"sid": 664679391056562
 						}
 					]
 				},
