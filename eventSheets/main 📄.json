@@ -95,21 +95,51 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 183126648346306,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "grid_update",
+					"sid": 825758723281655
+				},
+				{
+					"callFunction": "astar_greedy_search",
+					"sid": 839168398047435,
+					"parameters": [
+						"0",
+						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+					]
+				}
+			],
+			"sid": 196195483783230,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "every-x-seconds",
 					"objectClass": "System",
-					"sid": 453080159670823,
+					"sid": 998663356158388,
 					"parameters": {
-						"interval-seconds": "0.25"
+						"interval-seconds": "0.1"
 					}
 				}
 			],
 			"actions": [
 				{
 					"callFunction": "astar_djikstra_fill",
-					"sid": 328373245730999
+					"sid": 200827482729333
 				}
 			],
-			"sid": 464351547971504
+			"sid": 807957766765378
 		},
 		{
 			"eventType": "block",

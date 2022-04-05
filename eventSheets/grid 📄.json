@@ -13,6 +13,81 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"functionName": "grid_get_index_count",
+					"functionDescription": "Получить полное кол-во индексов.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить полное кол-во индексов."
+						},
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 745517747748864,
+							"parameters": {
+								"value": "grid_cells.Width"
+							}
+						}
+					],
+					"sid": 606544246846495
+				},
+				{
+					"functionName": "grid_get_height",
+					"functionDescription": "Получить высоту сетки в клетках.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить высоту сетки."
+						},
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 685457654718532,
+							"parameters": {
+								"value": "grid_config.Get(\"gridHeight\")"
+							}
+						}
+					],
+					"sid": 583532540287087
+				},
+				{
+					"functionName": "grid_get_width",
+					"functionDescription": "Получить ширину сетки в клетках.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить ширину сетки."
+						},
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 324113629611439,
+							"parameters": {
+								"value": "grid_config.Get(\"gridWidth\")"
+							}
+						}
+					],
+					"sid": 163278055713350
+				},
+				{
 					"functionName": "grid_get_real_height",
 					"functionDescription": "Получить реальную ширину сетки в пикселях.",
 					"functionCategory": "#grid",
@@ -1283,7 +1358,7 @@
 					]
 				},
 				{
-					"functionName": "grid_get_cells",
+					"functionName": "grid_get_cells_array_as_json",
 					"functionDescription": "Получить массив клеток.",
 					"functionCategory": "#grid",
 					"functionReturnType": "string",

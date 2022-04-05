@@ -3,270 +3,17 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "[b]Зависимости:[/b]\n- grid_is_index_free()\n- draw_rectangle_on_cell()\n- get_neightbours()"
+			"text": "[b]Зависимости:[/b]\n- grid_is_index_free()\n- draw_rectangle_on_cell()\n- get_neightbours()\n- grid_index_to_x\n- grid_index_to_y"
 		},
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Group1",
+			"title": "Grredy Best First Search",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"functionName": "astar_djikstra_fill",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 334024166367020,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "current",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 887620742271570
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "while",
-									"objectClass": "System",
-									"sid": 698527138592454,
-									"disabled": true
-								},
-								{
-									"id": "is-empty",
-									"objectClass": "astar_frontier",
-									"sid": 598982192626917,
-									"isInverted": true
-								}
-							],
-							"actions": [],
-							"sid": 222954343945370,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Start"
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [],
-									"sid": 321452297710553,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 237619766847396,
-													"parameters": {
-														"variable": "current",
-														"value": "Functions.astar_frontier_get"
-													}
-												},
-												{
-													"id": "load",
-													"objectClass": "astar_neighbours",
-													"sid": 135239722875850,
-													"parameters": {
-														"json": "Functions.grid_get_neighbours(current)"
-													}
-												},
-												{
-													"callFunction": "draw_rectangle_on_cell",
-													"sid": 569674124260125,
-													"parameters": [
-														"current",
-														"\"green\"",
-														"45",
-														true,
-														"1"
-													]
-												}
-											],
-											"sid": 777605193713282
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Main loop"
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [],
-									"sid": 590778095694696,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for",
-													"objectClass": "System",
-													"sid": 343235910362053,
-													"parameters": {
-														"name": "\"next\"",
-														"start-index": "0",
-														"end-index": "astar_neighbours.Width - 1"
-													}
-												}
-											],
-											"actions": [],
-											"sid": 319146929966259,
-											"children": [
-												{
-													"eventType": "variable",
-													"name": "next",
-													"type": "number",
-													"initialValue": "-1",
-													"comment": "",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 507272744312019
-												},
-												{
-													"eventType": "variable",
-													"name": "new_cost",
-													"type": "number",
-													"initialValue": "-1",
-													"comment": "",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 186085931578663
-												},
-												{
-													"eventType": "block",
-													"conditions": [],
-													"actions": [
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 207337071892498,
-															"parameters": {
-																"variable": "next",
-																"value": "astar_neighbours.At(loopindex)"
-															}
-														},
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 238517292320929,
-															"parameters": {
-																"variable": "new_cost",
-																"value": "astar_cost_so_far.At(current) + Functions.grid_get_index_cost(next)"
-															}
-														}
-													],
-													"sid": 224428214003808
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 427486467690354,
-															"parameters": {
-																"first-value": "Functions.grid_is_index_free(next)",
-																"comparison": 0,
-																"second-value": "1"
-															}
-														}
-													],
-													"actions": [],
-													"sid": 866487173689629,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "compare-at-x",
-																	"objectClass": "astar_cost_so_far",
-																	"sid": 736837741978168,
-																	"parameters": {
-																		"x": "next",
-																		"comparison": 0,
-																		"value": "-1"
-																	}
-																},
-																{
-																	"id": "compare-eventvar",
-																	"objectClass": "System",
-																	"sid": 844837400953166,
-																	"parameters": {
-																		"variable": "new_cost",
-																		"comparison": 2,
-																		"value": "astar_cost_so_far.At(next)"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"id": "set-at-x",
-																	"objectClass": "astar_cost_so_far",
-																	"sid": 992801530236929,
-																	"parameters": {
-																		"x": "next",
-																		"value": "new_cost"
-																	}
-																},
-																{
-																	"callFunction": "astar_frontier_put",
-																	"sid": 180226001436350,
-																	"parameters": [
-																		"next",
-																		"new_cost"
-																	]
-																},
-																{
-																	"id": "set-at-x",
-																	"objectClass": "astar_reached",
-																	"sid": 402624947537131,
-																	"parameters": {
-																		"x": "next",
-																		"value": "current"
-																	}
-																},
-																{
-																	"callFunction": "draw_rectangle_on_cell",
-																	"sid": 726921713768668,
-																	"parameters": [
-																		"next",
-																		"\"blue\"",
-																		"25",
-																		true,
-																		"1"
-																	]
-																}
-															],
-															"sid": 654853169547259,
-															"isOrBlock": true
-														}
-													]
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"functionName": "astar_djikstra_init",
+					"functionName": "astar_greedy_search",
 					"functionDescription": "",
 					"functionCategory": "#astar",
 					"functionReturnType": "none",
@@ -277,13 +24,20 @@
 							"type": "number",
 							"initialValue": "0",
 							"comment": "",
-							"sid": 612472726588673
+							"sid": 538699988692879
+						},
+						{
+							"name": "goal",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 848636052939871
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 320772204334544,
+					"sid": 956754266214640,
 					"children": [
 						{
 							"eventType": "block",
@@ -291,11 +45,11 @@
 							"actions": [
 								{
 									"callFunction": "astar_clean_all",
-									"sid": 986240438836295
+									"sid": 415165334366505
 								},
 								{
 									"callFunction": "astar_frontier_put",
-									"sid": 821718658834410,
+									"sid": 166804615752858,
 									"parameters": [
 										"start",
 										"0"
@@ -304,9 +58,9 @@
 								{
 									"id": "set-size",
 									"objectClass": "astar_reached",
-									"sid": 787641908354240,
+									"sid": 651031591185346,
 									"parameters": {
-										"width": "1000",
+										"width": "Functions.grid_get_index_count",
 										"height": "1",
 										"depth": "1"
 									}
@@ -314,49 +68,230 @@
 								{
 									"id": "clear",
 									"objectClass": "astar_reached",
-									"sid": 430409440932406,
+									"sid": 776664557034110,
 									"parameters": {
 										"value": "-1"
-									}
-								},
-								{
-									"type": "comment",
-									"text": ""
-								},
-								{
-									"id": "set-size",
-									"objectClass": "astar_cost_so_far",
-									"sid": 265022852536024,
-									"parameters": {
-										"width": "1000",
-										"height": "1",
-										"depth": "1"
-									}
-								},
-								{
-									"id": "clear",
-									"objectClass": "astar_cost_so_far",
-									"sid": 321513979065098,
-									"parameters": {
-										"value": "-1"
-									}
-								},
-								{
-									"id": "set-at-x",
-									"objectClass": "astar_cost_so_far",
-									"sid": 292889601803974,
-									"parameters": {
-										"x": "start",
-										"value": "0"
 									}
 								}
 							],
-							"sid": 500657966752683
+							"sid": 596307597682305
+						},
+						{
+							"eventType": "variable",
+							"name": "current",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 422771915740012
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "while",
+									"objectClass": "System",
+									"sid": 699268926023415
+								},
+								{
+									"id": "is-empty",
+									"objectClass": "astar_frontier",
+									"sid": 951572316452552,
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 621357208855754,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Start"
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [],
+									"sid": 750337824546318,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 212546700226238,
+													"parameters": {
+														"variable": "current",
+														"value": "Functions.astar_frontier_get"
+													}
+												},
+												{
+													"id": "load",
+													"objectClass": "astar_neighbours",
+													"sid": 548486248505920,
+													"parameters": {
+														"json": "Functions.grid_get_neighbours(current)"
+													}
+												},
+												{
+													"callFunction": "draw_rectangle_on_cell",
+													"sid": 257458531975380,
+													"parameters": [
+														"current",
+														"\"green\"",
+														"45",
+														true,
+														"1"
+													]
+												}
+											],
+											"sid": 983662476931861
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 509758311933407,
+											"parameters": {
+												"first-value": "current",
+												"comparison": 0,
+												"second-value": "goal"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop-loop",
+											"objectClass": "System",
+											"sid": 159561974751472
+										}
+									],
+									"sid": 534722146442912
+								},
+								{
+									"eventType": "comment",
+									"text": "Main loop"
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [],
+									"sid": 385164757120043,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 553230530910432,
+													"parameters": {
+														"name": "\"next\"",
+														"start-index": "0",
+														"end-index": "astar_neighbours.Width - 1"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 195507947151425,
+											"children": [
+												{
+													"eventType": "variable",
+													"name": "next",
+													"type": "number",
+													"initialValue": "-1",
+													"comment": "",
+													"isStatic": true,
+													"isConstant": false,
+													"sid": 445197149280025
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 988629197904274,
+															"parameters": {
+																"variable": "next",
+																"value": "astar_neighbours.At(loopindex)"
+															}
+														}
+													],
+													"sid": 679715239978541
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 517633997048380,
+															"parameters": {
+																"first-value": "Functions.grid_is_index_free(next)",
+																"comparison": 0,
+																"second-value": "1"
+															}
+														},
+														{
+															"id": "contains-value",
+															"objectClass": "astar_reached",
+															"sid": 831237036852864,
+															"parameters": {
+																"value": "next"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "draw_rectangle_on_cell",
+															"sid": 972854665990281,
+															"parameters": [
+																"next",
+																"\"blue\"",
+																"25",
+																true,
+																"1"
+															]
+														},
+														{
+															"callFunction": "astar_frontier_put",
+															"sid": 606827454741271,
+															"parameters": [
+																"next",
+																"Functions.astar_heuristic( Functions.grid_index_to_x(goal,0,0), Functions.grid_index_to_y(goal,0,0), Functions.grid_index_to_x(next,0,0), Functions.grid_index_to_y(next,0,0))"
+															]
+														},
+														{
+															"id": "set-at-x",
+															"objectClass": "astar_reached",
+															"sid": 971755951765911,
+															"parameters": {
+																"x": "next",
+																"value": "current"
+															}
+														}
+													],
+													"sid": 428682933557236
+												}
+											]
+										}
+									]
+								}
+							]
 						}
 					]
 				}
 			],
-			"sid": 120652478051472
+			"sid": 284128079189959
 		},
 		{
 			"eventType": "group",
@@ -366,381 +301,54 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"functionName": "astar_breadth_first_fill",
-					"functionDescription": "",
-					"functionCategory": "#astar",
-					"functionReturnType": "none",
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "start",
-							"type": "number",
-							"initialValue": "1",
-							"comment": "",
-							"sid": 817114910370390
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 886442534088687,
+					"eventType": "group",
+					"disabled": false,
+					"title": "Breadth first search",
+					"description": "",
+					"isActiveOnStart": true,
 					"children": [
 						{
-							"eventType": "variable",
-							"name": "current",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 823153533315541
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
+							"functionName": "astar_breadth_first_fill",
+							"functionDescription": "",
+							"functionCategory": "#astar",
+							"functionReturnType": "none",
+							"functionIsAsync": false,
+							"functionParameters": [
 								{
-									"callFunction": "astar_clean_all",
-									"sid": 471341372033210
-								},
-								{
-									"id": "push",
-									"objectClass": "astar_frontier",
-									"sid": 926576794897460,
-									"parameters": {
-										"where": "back",
-										"value": "start",
-										"axis": "x"
-									}
-								},
-								{
-									"id": "push",
-									"objectClass": "astar_reached",
-									"sid": 173640612939217,
-									"parameters": {
-										"where": "back",
-										"value": "start",
-										"axis": "x"
-									}
-								},
-								{
-									"id": "set-size",
-									"objectClass": "astar_reached",
-									"sid": 843742248275392,
-									"parameters": {
-										"width": "0",
-										"height": "2",
-										"depth": "1"
-									}
-								},
-								{
-									"id": "clear",
-									"objectClass": "astar_reached",
-									"sid": 803844806942246,
-									"parameters": {
-										"value": "-1"
-									}
+									"name": "start",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "",
+									"sid": 817114910370390
 								}
 							],
-							"sid": 585098428721027
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "while",
-									"objectClass": "System",
-									"sid": 576093218093305
-								},
-								{
-									"id": "is-empty",
-									"objectClass": "astar_frontier",
-									"sid": 905176432594617,
-									"isInverted": true
-								}
-							],
-							"actions": [],
-							"sid": 941137758400412,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Start"
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [],
-									"sid": 715255344302155,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 700024098031963,
-													"parameters": {
-														"variable": "current",
-														"value": "astar_frontier.At(0)"
-													}
-												},
-												{
-													"id": "load",
-													"objectClass": "astar_neighbours",
-													"sid": 605923629693609,
-													"parameters": {
-														"json": "Functions.grid_get_neighbours(current)"
-													}
-												},
-												{
-													"callFunction": "draw_rectangle_on_cell",
-													"sid": 283252665752166,
-													"disabled": true,
-													"parameters": [
-														"current",
-														"\"green\"",
-														"45",
-														true,
-														"1"
-													]
-												}
-											],
-											"sid": 726814752145926
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Main loop"
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [],
-									"sid": 601228847087036,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for",
-													"objectClass": "System",
-													"sid": 782658602852419,
-													"parameters": {
-														"name": "\"next\"",
-														"start-index": "0",
-														"end-index": "astar_neighbours.Width - 1"
-													}
-												}
-											],
-											"actions": [],
-											"sid": 317564503382678,
-											"children": [
-												{
-													"eventType": "variable",
-													"name": "next",
-													"type": "number",
-													"initialValue": "-1",
-													"comment": "",
-													"isStatic": true,
-													"isConstant": false,
-													"sid": 672605247529955
-												},
-												{
-													"eventType": "block",
-													"conditions": [],
-													"actions": [
-														{
-															"id": "set-eventvar-value",
-															"objectClass": "System",
-															"sid": 169767343090712,
-															"parameters": {
-																"variable": "next",
-																"value": "astar_neighbours.At(loopindex)"
-															}
-														}
-													],
-													"sid": 705682855623676
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "contains-value",
-															"objectClass": "astar_reached",
-															"sid": 602902640289231,
-															"parameters": {
-																"value": "next"
-															},
-															"isInverted": true
-														},
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 605439876008492,
-															"parameters": {
-																"first-value": "Functions.grid_is_index_free(next)",
-																"comparison": 0,
-																"second-value": "1"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "push",
-															"objectClass": "astar_frontier",
-															"sid": 180600232571718,
-															"parameters": {
-																"where": "back",
-																"value": "next",
-																"axis": "x"
-															}
-														},
-														{
-															"type": "comment",
-															"text": "Добавление истории пути."
-														},
-														{
-															"id": "set-size",
-															"objectClass": "astar_reached",
-															"sid": 130694239474756,
-															"parameters": {
-																"width": "Self.Width + 1",
-																"height": "Self.Height",
-																"depth": "Self.Depth"
-															}
-														},
-														{
-															"id": "set-at-xy",
-															"objectClass": "astar_reached",
-															"sid": 403229655870210,
-															"parameters": {
-																"x": "Self.Width-1",
-																"y": "1",
-																"value": "next"
-															}
-														},
-														{
-															"id": "set-at-xy",
-															"objectClass": "astar_reached",
-															"sid": 844771718313032,
-															"parameters": {
-																"x": "Self.Width-1",
-																"y": "0",
-																"value": "current"
-															}
-														},
-														{
-															"callFunction": "draw_rectangle_on_cell",
-															"sid": 936864198493524,
-															"disabled": true,
-															"parameters": [
-																"next",
-																"\"green\"",
-																"25",
-																true,
-																"1"
-															]
-														}
-													],
-													"sid": 116154185235184
-												}
-											]
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "End"
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [],
-									"sid": 638210229810752,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"id": "pop",
-													"objectClass": "astar_frontier",
-													"sid": 250559585944165,
-													"parameters": {
-														"where": "front",
-														"axis": "x"
-													}
-												}
-											],
-											"sid": 504382869493085
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"functionName": "astar_breadth_first_search",
-					"functionDescription": "",
-					"functionCategory": "#astar",
-					"functionReturnType": "none",
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "start",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 277611100343649
-						},
-						{
-							"name": "goal",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 574210811117265
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 682385001702666,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "current",
-							"type": "number",
-							"initialValue": "-1",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 674302281765984
-						},
-						{
-							"eventType": "comment",
-							"text": "breadth first"
-						},
-						{
-							"eventType": "block",
+							"eventType": "function-block",
 							"conditions": [],
 							"actions": [],
-							"sid": 445880447864678,
+							"sid": 788544048366680,
 							"children": [
+								{
+									"eventType": "variable",
+									"name": "current",
+									"type": "number",
+									"initialValue": "-1",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 470421307040016
+								},
 								{
 									"eventType": "block",
 									"conditions": [],
 									"actions": [
 										{
 											"callFunction": "astar_clean_all",
-											"sid": 584005439521124
+											"sid": 757794178993709
 										},
 										{
 											"id": "push",
 											"objectClass": "astar_frontier",
-											"sid": 587681978811391,
+											"sid": 109819763359526,
 											"parameters": {
 												"where": "back",
 												"value": "start",
@@ -750,7 +358,7 @@
 										{
 											"id": "push",
 											"objectClass": "astar_reached",
-											"sid": 373632681735072,
+											"sid": 112909617582210,
 											"parameters": {
 												"where": "back",
 												"value": "start",
@@ -760,7 +368,7 @@
 										{
 											"id": "set-size",
 											"objectClass": "astar_reached",
-											"sid": 337856685982615,
+											"sid": 693052303882681,
 											"parameters": {
 												"width": "0",
 												"height": "2",
@@ -770,13 +378,13 @@
 										{
 											"id": "clear",
 											"objectClass": "astar_reached",
-											"sid": 469497644834294,
+											"sid": 655292952494486,
 											"parameters": {
 												"value": "-1"
 											}
 										}
 									],
-									"sid": 700825274282058
+									"sid": 517837874469025
 								},
 								{
 									"eventType": "block",
@@ -784,41 +392,18 @@
 										{
 											"id": "while",
 											"objectClass": "System",
-											"sid": 122533956028631
+											"sid": 461114726915717
 										},
 										{
 											"id": "is-empty",
 											"objectClass": "astar_frontier",
-											"sid": 372073351922414,
+											"sid": 203556099349428,
 											"isInverted": true
 										}
 									],
 									"actions": [],
-									"sid": 970749538335730,
+									"sid": 237973103471137,
 									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 502143146135500,
-													"parameters": {
-														"variable": "current",
-														"comparison": 0,
-														"value": "goal"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "stop-loop",
-													"objectClass": "System",
-													"sid": 697799622205998
-												}
-											],
-											"sid": 792801862441339
-										},
 										{
 											"eventType": "comment",
 											"text": "Start"
@@ -827,7 +412,7 @@
 											"eventType": "block",
 											"conditions": [],
 											"actions": [],
-											"sid": 739852209424402,
+											"sid": 416737514589543,
 											"children": [
 												{
 													"eventType": "block",
@@ -836,7 +421,7 @@
 														{
 															"id": "set-eventvar-value",
 															"objectClass": "System",
-															"sid": 350306956709667,
+															"sid": 170985721343550,
 															"parameters": {
 																"variable": "current",
 																"value": "astar_frontier.At(0)"
@@ -845,14 +430,14 @@
 														{
 															"id": "load",
 															"objectClass": "astar_neighbours",
-															"sid": 723408327581819,
+															"sid": 614694725727269,
 															"parameters": {
 																"json": "Functions.grid_get_neighbours(current)"
 															}
 														},
 														{
 															"callFunction": "draw_rectangle_on_cell",
-															"sid": 943594899339994,
+															"sid": 995887627909860,
 															"disabled": true,
 															"parameters": [
 																"current",
@@ -863,7 +448,7 @@
 															]
 														}
 													],
-													"sid": 246517221470779
+													"sid": 438764132021226
 												}
 											]
 										},
@@ -875,7 +460,7 @@
 											"eventType": "block",
 											"conditions": [],
 											"actions": [],
-											"sid": 231105688227050,
+											"sid": 609609948694452,
 											"children": [
 												{
 													"eventType": "block",
@@ -883,7 +468,7 @@
 														{
 															"id": "for",
 															"objectClass": "System",
-															"sid": 513724941531078,
+															"sid": 195048083764134,
 															"parameters": {
 																"name": "\"next\"",
 																"start-index": "0",
@@ -892,7 +477,7 @@
 														}
 													],
 													"actions": [],
-													"sid": 843949131913105,
+													"sid": 637330766992167,
 													"children": [
 														{
 															"eventType": "variable",
@@ -902,7 +487,7 @@
 															"comment": "",
 															"isStatic": true,
 															"isConstant": false,
-															"sid": 592741984300672
+															"sid": 427518240354543
 														},
 														{
 															"eventType": "block",
@@ -911,14 +496,14 @@
 																{
 																	"id": "set-eventvar-value",
 																	"objectClass": "System",
-																	"sid": 690684221362924,
+																	"sid": 188613232653727,
 																	"parameters": {
 																		"variable": "next",
 																		"value": "astar_neighbours.At(loopindex)"
 																	}
 																}
 															],
-															"sid": 874032790994276
+															"sid": 243254453766596
 														},
 														{
 															"eventType": "block",
@@ -926,7 +511,7 @@
 																{
 																	"id": "contains-value",
 																	"objectClass": "astar_reached",
-																	"sid": 754498135457565,
+																	"sid": 344673206982611,
 																	"parameters": {
 																		"value": "next"
 																	},
@@ -935,7 +520,7 @@
 																{
 																	"id": "compare-two-values",
 																	"objectClass": "System",
-																	"sid": 394765369971868,
+																	"sid": 140768764269172,
 																	"parameters": {
 																		"first-value": "Functions.grid_is_index_free(next)",
 																		"comparison": 0,
@@ -947,7 +532,7 @@
 																{
 																	"id": "push",
 																	"objectClass": "astar_frontier",
-																	"sid": 428802753297247,
+																	"sid": 280169394263013,
 																	"parameters": {
 																		"where": "back",
 																		"value": "next",
@@ -961,7 +546,7 @@
 																{
 																	"id": "set-size",
 																	"objectClass": "astar_reached",
-																	"sid": 871850929574586,
+																	"sid": 638211759342933,
 																	"parameters": {
 																		"width": "Self.Width + 1",
 																		"height": "Self.Height",
@@ -971,7 +556,7 @@
 																{
 																	"id": "set-at-xy",
 																	"objectClass": "astar_reached",
-																	"sid": 507291134947236,
+																	"sid": 570532142236223,
 																	"parameters": {
 																		"x": "Self.Width-1",
 																		"y": "1",
@@ -981,7 +566,7 @@
 																{
 																	"id": "set-at-xy",
 																	"objectClass": "astar_reached",
-																	"sid": 665390581673336,
+																	"sid": 273072966598410,
 																	"parameters": {
 																		"x": "Self.Width-1",
 																		"y": "0",
@@ -990,7 +575,7 @@
 																},
 																{
 																	"callFunction": "draw_rectangle_on_cell",
-																	"sid": 476311020242961,
+																	"sid": 543947390871822,
 																	"disabled": true,
 																	"parameters": [
 																		"next",
@@ -1001,7 +586,7 @@
 																	]
 																}
 															],
-															"sid": 945913352167523
+															"sid": 526885870702365
 														}
 													]
 												}
@@ -1015,7 +600,7 @@
 											"eventType": "block",
 											"conditions": [],
 											"actions": [],
-											"sid": 545128093445428,
+											"sid": 528070560185914,
 											"children": [
 												{
 													"eventType": "block",
@@ -1024,14 +609,14 @@
 														{
 															"id": "pop",
 															"objectClass": "astar_frontier",
-															"sid": 447118294347839,
+															"sid": 363549194338819,
 															"parameters": {
 																"where": "front",
 																"axis": "x"
 															}
 														}
 													],
-													"sid": 147104758862724
+													"sid": 796193131274615
 												}
 											]
 										}
@@ -1040,119 +625,478 @@
 							]
 						},
 						{
-							"eventType": "comment",
-							"text": "pathfinding"
-						},
-						{
-							"eventType": "block",
+							"functionName": "astar_breadth_first_search",
+							"functionDescription": "",
+							"functionCategory": "#astar",
+							"functionReturnType": "none",
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "start",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 277611100343649
+								},
+								{
+									"name": "goal",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 574210811117265
+								}
+							],
+							"eventType": "function-block",
 							"conditions": [],
 							"actions": [],
-							"sid": 514686368703014,
+							"sid": 713801449211258,
 							"children": [
 								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 474890543806324,
-											"parameters": {
-												"variable": "current",
-												"value": "goal"
-											}
-										}
-									],
-									"sid": 776824903642471
+									"eventType": "variable",
+									"name": "current",
+									"type": "number",
+									"initialValue": "-1",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 832337838406056
+								},
+								{
+									"eventType": "comment",
+									"text": "breadth first"
 								},
 								{
 									"eventType": "block",
-									"conditions": [
-										{
-											"id": "while",
-											"objectClass": "System",
-											"sid": 473051060414954
-										},
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 474850178269589,
-											"parameters": {
-												"variable": "current",
-												"comparison": 1,
-												"value": "start"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "push",
-											"objectClass": "astar_path",
-											"sid": 711689017233937,
-											"parameters": {
-												"where": "back",
-												"value": "current",
-												"axis": "x"
-											}
-										},
-										{
-											"callFunction": "draw_rectangle_on_cell",
-											"sid": 589598975868721,
-											"parameters": [
-												"current",
-												"\"blue\"",
-												"50",
-												true,
-												"1"
-											]
-										}
-									],
-									"sid": 184356095243250,
+									"conditions": [],
+									"actions": [],
+									"sid": 259901959163207,
 									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"callFunction": "astar_clean_all",
+													"sid": 778248953133417
+												},
+												{
+													"id": "push",
+													"objectClass": "astar_frontier",
+													"sid": 898168621113232,
+													"parameters": {
+														"where": "back",
+														"value": "start",
+														"axis": "x"
+													}
+												},
+												{
+													"id": "push",
+													"objectClass": "astar_reached",
+													"sid": 443757040042953,
+													"parameters": {
+														"where": "back",
+														"value": "start",
+														"axis": "x"
+													}
+												},
+												{
+													"id": "set-size",
+													"objectClass": "astar_reached",
+													"sid": 982263748331559,
+													"parameters": {
+														"width": "0",
+														"height": "2",
+														"depth": "1"
+													}
+												},
+												{
+													"id": "clear",
+													"objectClass": "astar_reached",
+													"sid": 621809440963517,
+													"parameters": {
+														"value": "-1"
+													}
+												}
+											],
+											"sid": 713960945856351
+										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "for",
+													"id": "while",
 													"objectClass": "System",
-													"sid": 305092582637402,
-													"parameters": {
-														"name": "\"i\"",
-														"start-index": "0",
-														"end-index": "astar_reached.Width - 1"
-													}
+													"sid": 724985770344811
+												},
+												{
+													"id": "is-empty",
+													"objectClass": "astar_frontier",
+													"sid": 974129632263938,
+													"isInverted": true
 												}
 											],
 											"actions": [],
-											"sid": 906170314881789,
+											"sid": 186547192316172,
 											"children": [
 												{
 													"eventType": "block",
 													"conditions": [
 														{
-															"id": "compare-at-xy",
-															"objectClass": "astar_reached",
-															"sid": 626459913023285,
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 276600240703899,
 															"parameters": {
-																"x": "loopindex",
-																"y": "1",
+																"variable": "current",
 																"comparison": 0,
-																"value": "current"
+																"value": "goal"
 															}
 														}
 													],
 													"actions": [
 														{
-															"id": "set-eventvar-value",
+															"id": "stop-loop",
 															"objectClass": "System",
-															"sid": 176214181069712,
+															"sid": 536257950922991
+														}
+													],
+													"sid": 506654238060868
+												},
+												{
+													"eventType": "comment",
+													"text": "Start"
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [],
+													"sid": 584320269668214,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 593594865716213,
+																	"parameters": {
+																		"variable": "current",
+																		"value": "astar_frontier.At(0)"
+																	}
+																},
+																{
+																	"id": "load",
+																	"objectClass": "astar_neighbours",
+																	"sid": 448941604718436,
+																	"parameters": {
+																		"json": "Functions.grid_get_neighbours(current)"
+																	}
+																},
+																{
+																	"callFunction": "draw_rectangle_on_cell",
+																	"sid": 105881710436269,
+																	"disabled": true,
+																	"parameters": [
+																		"current",
+																		"\"green\"",
+																		"45",
+																		true,
+																		"1"
+																	]
+																}
+															],
+															"sid": 792809973674063
+														}
+													]
+												},
+												{
+													"eventType": "comment",
+													"text": "Main loop"
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [],
+													"sid": 429927037302887,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "for",
+																	"objectClass": "System",
+																	"sid": 930659652062868,
+																	"parameters": {
+																		"name": "\"next\"",
+																		"start-index": "0",
+																		"end-index": "astar_neighbours.Width - 1"
+																	}
+																}
+															],
+															"actions": [],
+															"sid": 638862787814326,
+															"children": [
+																{
+																	"eventType": "variable",
+																	"name": "next",
+																	"type": "number",
+																	"initialValue": "-1",
+																	"comment": "",
+																	"isStatic": true,
+																	"isConstant": false,
+																	"sid": 547763745468479
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [],
+																	"actions": [
+																		{
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 240230770885346,
+																			"parameters": {
+																				"variable": "next",
+																				"value": "astar_neighbours.At(loopindex)"
+																			}
+																		}
+																	],
+																	"sid": 823530762993783
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "contains-value",
+																			"objectClass": "astar_reached",
+																			"sid": 254944443771628,
+																			"parameters": {
+																				"value": "next"
+																			},
+																			"isInverted": true
+																		},
+																		{
+																			"id": "compare-two-values",
+																			"objectClass": "System",
+																			"sid": 413136284384694,
+																			"parameters": {
+																				"first-value": "Functions.grid_is_index_free(next)",
+																				"comparison": 0,
+																				"second-value": "1"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "push",
+																			"objectClass": "astar_frontier",
+																			"sid": 657102231902292,
+																			"parameters": {
+																				"where": "back",
+																				"value": "next",
+																				"axis": "x"
+																			}
+																		},
+																		{
+																			"type": "comment",
+																			"text": "Добавление истории пути."
+																		},
+																		{
+																			"id": "set-size",
+																			"objectClass": "astar_reached",
+																			"sid": 828018122201055,
+																			"parameters": {
+																				"width": "Self.Width + 1",
+																				"height": "Self.Height",
+																				"depth": "Self.Depth"
+																			}
+																		},
+																		{
+																			"id": "set-at-xy",
+																			"objectClass": "astar_reached",
+																			"sid": 814404546857366,
+																			"parameters": {
+																				"x": "Self.Width-1",
+																				"y": "1",
+																				"value": "next"
+																			}
+																		},
+																		{
+																			"id": "set-at-xy",
+																			"objectClass": "astar_reached",
+																			"sid": 647279904317096,
+																			"parameters": {
+																				"x": "Self.Width-1",
+																				"y": "0",
+																				"value": "current"
+																			}
+																		},
+																		{
+																			"callFunction": "draw_rectangle_on_cell",
+																			"sid": 912524827514970,
+																			"disabled": true,
+																			"parameters": [
+																				"next",
+																				"\"green\"",
+																				"25",
+																				true,
+																				"1"
+																			]
+																		}
+																	],
+																	"sid": 342700961576789
+																}
+															]
+														}
+													]
+												},
+												{
+													"eventType": "comment",
+													"text": "End"
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [],
+													"sid": 785969005789726,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [],
+															"actions": [
+																{
+																	"id": "pop",
+																	"objectClass": "astar_frontier",
+																	"sid": 402064956840473,
+																	"parameters": {
+																		"where": "front",
+																		"axis": "x"
+																	}
+																}
+															],
+															"sid": 353431333628829
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "pathfinding"
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [],
+									"sid": 109567187614681,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 705533300994489,
+													"parameters": {
+														"variable": "current",
+														"value": "goal"
+													}
+												}
+											],
+											"sid": 385082628931810
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "while",
+													"objectClass": "System",
+													"sid": 987146043331976
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 887678131805625,
+													"parameters": {
+														"variable": "current",
+														"comparison": 1,
+														"value": "start"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "push",
+													"objectClass": "astar_path",
+													"sid": 703551156288190,
+													"parameters": {
+														"where": "back",
+														"value": "current",
+														"axis": "x"
+													}
+												},
+												{
+													"callFunction": "draw_rectangle_on_cell",
+													"sid": 508984115752610,
+													"parameters": [
+														"current",
+														"\"blue\"",
+														"50",
+														true,
+														"1"
+													]
+												}
+											],
+											"sid": 188840623626510,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for",
+															"objectClass": "System",
+															"sid": 434298746690942,
 															"parameters": {
-																"variable": "current",
-																"value": "astar_reached.At(loopindex, 0)"
+																"name": "\"i\"",
+																"start-index": "0",
+																"end-index": "astar_reached.Width - 1"
 															}
 														}
 													],
-													"sid": 880019347295302
+													"actions": [],
+													"sid": 843881892609157,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-at-xy",
+																	"objectClass": "astar_reached",
+																	"sid": 497773582696033,
+																	"parameters": {
+																		"x": "loopindex",
+																		"y": "1",
+																		"comparison": 0,
+																		"value": "current"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 942638246659089,
+																	"parameters": {
+																		"variable": "current",
+																		"value": "astar_reached.At(loopindex, 0)"
+																	}
+																}
+															],
+															"sid": 312768571493378
+														}
+													]
 												}
 											]
 										}
@@ -1160,7 +1104,361 @@
 								}
 							]
 						}
-					]
+					],
+					"sid": 674864407527219
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Djikstra",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "astar_djikstra_fill",
+							"functionDescription": "",
+							"functionCategory": "#astar",
+							"functionReturnType": "none",
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 113059424625391,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "current",
+									"type": "number",
+									"initialValue": "-1",
+									"comment": "",
+									"isStatic": true,
+									"isConstant": false,
+									"sid": 649646073686737
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "while",
+											"objectClass": "System",
+											"sid": 697308208869338,
+											"disabled": true
+										},
+										{
+											"id": "is-empty",
+											"objectClass": "astar_frontier",
+											"sid": 184015160619735,
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 272430713784786,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Start"
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [],
+											"sid": 471055239359654,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 165302786213309,
+															"parameters": {
+																"variable": "current",
+																"value": "Functions.astar_frontier_get"
+															}
+														},
+														{
+															"id": "load",
+															"objectClass": "astar_neighbours",
+															"sid": 974715211570385,
+															"parameters": {
+																"json": "Functions.grid_get_neighbours(current)"
+															}
+														},
+														{
+															"callFunction": "draw_rectangle_on_cell",
+															"sid": 390773125174986,
+															"parameters": [
+																"current",
+																"\"green\"",
+																"45",
+																true,
+																"1"
+															]
+														}
+													],
+													"sid": 403493077639586
+												}
+											]
+										},
+										{
+											"eventType": "comment",
+											"text": "Main loop"
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [],
+											"sid": 711566470772304,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for",
+															"objectClass": "System",
+															"sid": 975611750610463,
+															"parameters": {
+																"name": "\"next\"",
+																"start-index": "0",
+																"end-index": "astar_neighbours.Width - 1"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 583990692041493,
+													"children": [
+														{
+															"eventType": "variable",
+															"name": "next",
+															"type": "number",
+															"initialValue": "-1",
+															"comment": "",
+															"isStatic": true,
+															"isConstant": false,
+															"sid": 988984124522274
+														},
+														{
+															"eventType": "variable",
+															"name": "new_cost",
+															"type": "number",
+															"initialValue": "-1",
+															"comment": "",
+															"isStatic": true,
+															"isConstant": false,
+															"sid": 812645480047926
+														},
+														{
+															"eventType": "block",
+															"conditions": [],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 329119846609106,
+																	"parameters": {
+																		"variable": "next",
+																		"value": "astar_neighbours.At(loopindex)"
+																	}
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 233145089658895,
+																	"parameters": {
+																		"variable": "new_cost",
+																		"value": "astar_cost_so_far.At(current) + Functions.grid_get_index_cost(next)"
+																	}
+																}
+															],
+															"sid": 999669596075550
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 445923455051866,
+																	"parameters": {
+																		"first-value": "Functions.grid_is_index_free(next)",
+																		"comparison": 0,
+																		"second-value": "1"
+																	}
+																}
+															],
+															"actions": [],
+															"sid": 328362823688313,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-at-x",
+																			"objectClass": "astar_cost_so_far",
+																			"sid": 120833968130257,
+																			"parameters": {
+																				"x": "next",
+																				"comparison": 0,
+																				"value": "-1"
+																			}
+																		},
+																		{
+																			"id": "compare-eventvar",
+																			"objectClass": "System",
+																			"sid": 372115371004439,
+																			"parameters": {
+																				"variable": "new_cost",
+																				"comparison": 2,
+																				"value": "astar_cost_so_far.At(next)"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-at-x",
+																			"objectClass": "astar_cost_so_far",
+																			"sid": 250291745985930,
+																			"parameters": {
+																				"x": "next",
+																				"value": "new_cost"
+																			}
+																		},
+																		{
+																			"callFunction": "astar_frontier_put",
+																			"sid": 505623325097991,
+																			"parameters": [
+																				"next",
+																				"new_cost"
+																			]
+																		},
+																		{
+																			"id": "set-at-x",
+																			"objectClass": "astar_reached",
+																			"sid": 426259589105696,
+																			"parameters": {
+																				"x": "next",
+																				"value": "current"
+																			}
+																		},
+																		{
+																			"callFunction": "draw_rectangle_on_cell",
+																			"sid": 319934030837853,
+																			"parameters": [
+																				"next",
+																				"\"blue\"",
+																				"25",
+																				true,
+																				"1"
+																			]
+																		}
+																	],
+																	"sid": 382208321711786,
+																	"isOrBlock": true
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"functionName": "astar_djikstra_init",
+							"functionDescription": "",
+							"functionCategory": "#astar",
+							"functionReturnType": "none",
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "start",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 612472726588673
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 943186945197703,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "astar_clean_all",
+											"sid": 705737525869178
+										},
+										{
+											"callFunction": "astar_frontier_put",
+											"sid": 605684814595264,
+											"parameters": [
+												"start",
+												"0"
+											]
+										},
+										{
+											"id": "set-size",
+											"objectClass": "astar_reached",
+											"sid": 433856408957821,
+											"parameters": {
+												"width": "Functions.grid_get_index_count",
+												"height": "1",
+												"depth": "1"
+											}
+										},
+										{
+											"id": "clear",
+											"objectClass": "astar_reached",
+											"sid": 786974473301937,
+											"parameters": {
+												"value": "-1"
+											}
+										},
+										{
+											"type": "comment",
+											"text": ""
+										},
+										{
+											"id": "set-size",
+											"objectClass": "astar_cost_so_far",
+											"sid": 378133918779678,
+											"parameters": {
+												"width": "Functions.grid_get_index_count",
+												"height": "1",
+												"depth": "1"
+											}
+										},
+										{
+											"id": "clear",
+											"objectClass": "astar_cost_so_far",
+											"sid": 956357842322071,
+											"parameters": {
+												"value": "-1"
+											}
+										},
+										{
+											"id": "set-at-x",
+											"objectClass": "astar_cost_so_far",
+											"sid": 444172171064304,
+											"parameters": {
+												"x": "start",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 780579088452561
+								}
+							]
+						}
+					],
+					"sid": 986340830980106
 				}
 			],
 			"sid": 253338016763630
@@ -1431,7 +1729,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Astar - frontier",
+			"title": "Astar - frontier (priority queue)",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -1738,6 +2036,78 @@
 				}
 			],
 			"sid": 617535481925164
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Astar - misc",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "astar_heuristic",
+					"functionDescription": "",
+					"functionCategory": "#astar",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "pos1_x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 173623577172629
+						},
+						{
+							"name": "pos1_y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 539833375968967
+						},
+						{
+							"name": "pos2_x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 389910895008998
+						},
+						{
+							"name": "pos2_y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 788594666640660
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 346140622849821,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Manhattan distance on a square grid"
+								},
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 137016989577127,
+									"parameters": {
+										"value": "abs(pos1_x - pos2_x) + abs(pos1_y - pos2_y)"
+									}
+								}
+							],
+							"sid": 455007083120160
+						}
+					]
+				}
+			],
+			"sid": 965943394883839
 		}
 	],
 	"sid": 339607499482058
