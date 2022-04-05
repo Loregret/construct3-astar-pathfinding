@@ -112,14 +112,22 @@
 				{
 					"callFunction": "astar_greedy_search",
 					"sid": 839168398047435,
+					"disabled": true,
+					"parameters": [
+						"0",
+						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
+					]
+				},
+				{
+					"callFunction": "astar_patf",
+					"sid": 898291412069726,
 					"parameters": [
 						"0",
 						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
 					]
 				}
 			],
-			"sid": 196195483783230,
-			"disabled": true
+			"sid": 196195483783230
 		},
 		{
 			"eventType": "block",
@@ -139,7 +147,8 @@
 					"sid": 200827482729333
 				}
 			],
-			"sid": 807957766765378
+			"sid": 807957766765378,
+			"disabled": true
 		},
 		{
 			"eventType": "block",
@@ -184,7 +193,8 @@
 						},
 						{
 							"callFunction": "draw_coordinates",
-							"sid": 532639106130186
+							"sid": 532639106130186,
+							"disabled": true
 						},
 						{
 							"callFunction": "draw_indexes",
@@ -193,55 +203,55 @@
 						{
 							"id": "set-at-x",
 							"objectClass": "grid_cells",
-							"sid": 956543552734850,
+							"sid": 461924575247992,
 							"parameters": {
 								"x": "25",
-								"value": "20"
+								"value": "999"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "grid_cells",
-							"sid": 508327360674065,
+							"sid": 404157353648143,
 							"parameters": {
 								"x": "24",
-								"value": "20"
+								"value": "999"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "grid_cells",
-							"sid": 133937188078265,
+							"sid": 160160001980534,
 							"parameters": {
 								"x": "23",
-								"value": "20"
+								"value": "999"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "grid_cells",
-							"sid": 393513792524099,
+							"sid": 390855678884067,
 							"parameters": {
 								"x": "41",
-								"value": "20"
+								"value": "999"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "grid_cells",
-							"sid": 690047992823341,
+							"sid": 140169158781019,
 							"parameters": {
 								"x": "40",
-								"value": "20"
+								"value": "999"
 							}
 						},
 						{
 							"id": "set-at-x",
 							"objectClass": "grid_cells",
-							"sid": 897079505702627,
+							"sid": 814258436976965,
 							"parameters": {
 								"x": "39",
-								"value": "20"
+								"value": "999"
 							}
 						},
 						{
@@ -251,6 +261,7 @@
 						{
 							"callFunction": "astar_djikstra_init",
 							"sid": 309579295477808,
+							"disabled": true,
 							"parameters": [
 								"72"
 							]

@@ -1,7 +1,7 @@
 {
-	"name": "astar_cost_so_far",
+	"name": "astar_came_from",
 	"plugin-id": "Dictionary",
-	"sid": 733532952408563,
+	"sid": 987412072861330,
 	"isGlobal": true,
 	"instanceVariables": []
 }
