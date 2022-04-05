@@ -111,7 +111,6 @@
 					"astar_reached",
 					"astar_neighbours",
 					"astar_path",
-					"astar_cost",
 					"astar_cost_so_far",
 					"astar_came_from"
 				],
