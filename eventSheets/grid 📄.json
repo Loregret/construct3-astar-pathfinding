@@ -1813,6 +1813,11 @@
 									"parameters": {
 										"color": "rgba(85, 85, 85, 0)"
 									}
+								},
+								{
+									"id": "destroy",
+									"objectClass": "grid_text",
+									"sid": 981264811117942
 								}
 							],
 							"sid": 409717439992929

@@ -127,8 +127,7 @@
 					]
 				}
 			],
-			"sid": 196195483783230,
-			"disabled": true
+			"sid": 196195483783230
 		},
 		{
 			"eventType": "block",
@@ -148,7 +147,8 @@
 					"sid": 200827482729333
 				}
 			],
-			"sid": 807957766765378
+			"sid": 807957766765378,
+			"disabled": true
 		},
 		{
 			"eventType": "block",
@@ -261,6 +261,7 @@
 						{
 							"callFunction": "astar_djikstra_init",
 							"sid": 309579295477808,
+							"disabled": true,
 							"parameters": [
 								"72"
 							]

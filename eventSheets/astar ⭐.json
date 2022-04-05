@@ -291,19 +291,28 @@
 														},
 														{
 															"callFunction": "astar_frontier_put",
-															"sid": 243896863212648,
+															"sid": 621607458159009,
+															"disabled": true,
 															"parameters": [
 																"next",
-																"new_cost+Functions.astar_heuristic(Functions.grid_index_to_x(goal,1, 1), Functions.grid_index_to_y(goal,1,1), Functions.grid_index_to_x(next,1,1), Functions.grid_index_to_y(next,1,1))"
+																"new_cost+Functions.astar_heuristic(Functions.grid_index_to_x(goal, 1, 1), Functions.grid_index_to_y(goal, 1, 1), Functions.grid_index_to_x(next, 1, 1), Functions.grid_index_to_y(next, 1, 1))"
+															]
+														},
+														{
+															"callFunction": "astar_frontier_put",
+															"sid": 522801628360125,
+															"parameters": [
+																"next",
+																"new_cost+Functions.astar_heuristic(Functions.grid_index_to_x(goal, 1, 0), Functions.grid_index_to_y(goal, 1, 0), Functions.grid_index_to_x(next, 1, 0), Functions.grid_index_to_y(next, 1, 0))"
 															]
 														},
 														{
 															"callFunction": "draw_string_on_cell",
-															"sid": 995399975959681,
+															"sid": 216834413515244,
 															"parameters": [
 																"current",
 																"3",
-																"str(current)",
+																"str(astar_cost_so_far.Get(str(current)))",
 																"10",
 																"\"red\"",
 																"100"
