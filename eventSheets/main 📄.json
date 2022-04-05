@@ -95,6 +95,26 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 453080159670823,
+					"parameters": {
+						"interval-seconds": "0.25"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "astar_djikstra_fill",
+					"sid": 328373245730999
+				}
+			],
+			"sid": 464351547971504
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
 					"sid": 723859175260482
@@ -141,69 +161,69 @@
 							"sid": 105229666631802
 						},
 						{
-							"callFunction": "draw_movement_cost",
-							"sid": 651682868454803
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 956543552734850,
+							"parameters": {
+								"x": "25",
+								"value": "20"
+							}
 						},
 						{
-							"callFunction": "astar_find_path",
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 508327360674065,
+							"parameters": {
+								"x": "24",
+								"value": "20"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 133937188078265,
+							"parameters": {
+								"x": "23",
+								"value": "20"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 393513792524099,
+							"parameters": {
+								"x": "41",
+								"value": "20"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 690047992823341,
+							"parameters": {
+								"x": "40",
+								"value": "20"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "grid_cells",
+							"sid": 897079505702627,
+							"parameters": {
+								"x": "39",
+								"value": "20"
+							}
+						},
+						{
+							"callFunction": "draw_movement_cost",
+							"sid": 766547216035135
+						},
+						{
+							"callFunction": "astar_djikstra_init",
 							"sid": 309579295477808,
-							"disabled": true,
 							"parameters": [
 								"72"
 							]
-						},
-						{
-							"callFunction": "astar_frontier_put",
-							"sid": 632792554786368,
-							"parameters": [
-								"1",
-								"5"
-							]
-						},
-						{
-							"callFunction": "astar_frontier_put",
-							"sid": 716511044100844,
-							"parameters": [
-								"2",
-								"9"
-							]
-						},
-						{
-							"callFunction": "astar_frontier_put",
-							"sid": 868073375780635,
-							"parameters": [
-								"3",
-								"6"
-							]
-						},
-						{
-							"callFunction": "astar_frontier_put",
-							"sid": 828982307523076,
-							"parameters": [
-								"4",
-								"3"
-							]
-						},
-						{
-							"callFunction": "astar_frontier_put",
-							"sid": 296846650303865,
-							"parameters": [
-								"5",
-								"2"
-							]
-						},
-						{
-							"callFunction": "astar_frontier_put",
-							"sid": 516793233300994,
-							"parameters": [
-								"6",
-								"1"
-							]
-						},
-						{
-							"callFunction": "astar_frontier_sort_by_priority",
-							"sid": 161067503244129,
-							"disabled": true
 						}
 					],
 					"sid": 997024148670114
@@ -232,6 +252,7 @@
 					],
 					"actions": [],
 					"sid": 901926493902813,
+					"disabled": true,
 					"children": [
 						{
 							"eventType": "block",
@@ -266,6 +287,7 @@
 								}
 							],
 							"sid": 573752034170846,
+							"disabled": true,
 							"children": [
 								{
 									"eventType": "block",
@@ -300,7 +322,8 @@
 											}
 										}
 									],
-									"sid": 545528601950266
+									"sid": 545528601950266,
+									"disabled": true
 								}
 							]
 						}
@@ -317,6 +340,7 @@
 					],
 					"actions": [],
 					"sid": 444250700611410,
+					"disabled": true,
 					"children": [
 						{
 							"eventType": "block",
@@ -330,7 +354,8 @@
 									]
 								}
 							],
-							"sid": 366121882308532
+							"sid": 366121882308532,
+							"disabled": true
 						},
 						{
 							"eventType": "block",
@@ -365,7 +390,8 @@
 									]
 								}
 							],
-							"sid": 664679391056562
+							"sid": 664679391056562,
+							"disabled": true
 						}
 					]
 				},
