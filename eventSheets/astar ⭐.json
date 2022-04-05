@@ -10,7 +10,7 @@
 			"functionDescription": "",
 			"functionCategory": "",
 			"functionReturnType": "none",
-			"functionIsAsync": false,
+			"functionIsAsync": true,
 			"functionParameters": [
 				{
 					"name": "start",
@@ -105,7 +105,7 @@
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
-							"sid": 636098450143486,
+							"sid": 426329551898932,
 							"children": [
 								{
 									"eventType": "block",
@@ -114,7 +114,7 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 853107625709152,
+											"sid": 750574729629758,
 											"parameters": {
 												"variable": "current",
 												"value": "Functions.astar_frontier_get"
@@ -123,24 +123,13 @@
 										{
 											"id": "load",
 											"objectClass": "astar_neighbours",
-											"sid": 823129600758120,
+											"sid": 392299011608889,
 											"parameters": {
-												"json": "Functions.grid_get_neighbours(current)"
+												"json": "Functions.grid_get_neighbours(current, 1)"
 											}
-										},
-										{
-											"callFunction": "draw_rectangle_on_cell",
-											"sid": 787272346076884,
-											"parameters": [
-												"current",
-												"\"green\"",
-												"45",
-												true,
-												"1"
-											]
 										}
 									],
-									"sid": 364180339950922
+									"sid": 247487740305147
 								}
 							]
 						},
@@ -150,7 +139,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 279268277627333,
+									"sid": 848343433821856,
 									"parameters": {
 										"first-value": "current",
 										"comparison": 0,
@@ -162,10 +151,10 @@
 								{
 									"id": "stop-loop",
 									"objectClass": "System",
-									"sid": 372518703811133
+									"sid": 916272683853399
 								}
 							],
-							"sid": 281386285576529
+							"sid": 454964245217331
 						},
 						{
 							"eventType": "comment",
@@ -175,7 +164,7 @@
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
-							"sid": 537858355739249,
+							"sid": 351442041616588,
 							"children": [
 								{
 									"eventType": "block",
@@ -183,7 +172,7 @@
 										{
 											"id": "for",
 											"objectClass": "System",
-											"sid": 913980431433774,
+											"sid": 284715522409772,
 											"parameters": {
 												"name": "\"next\"",
 												"start-index": "0",
@@ -192,7 +181,7 @@
 										}
 									],
 									"actions": [],
-									"sid": 738042786776512,
+									"sid": 577623078678425,
 									"children": [
 										{
 											"eventType": "variable",
@@ -202,7 +191,7 @@
 											"comment": "",
 											"isStatic": true,
 											"isConstant": false,
-											"sid": 996421523558713
+											"sid": 542573266820264
 										},
 										{
 											"eventType": "variable",
@@ -212,7 +201,7 @@
 											"comment": "",
 											"isStatic": true,
 											"isConstant": false,
-											"sid": 281257553261954
+											"sid": 470131911008911
 										},
 										{
 											"eventType": "block",
@@ -221,7 +210,7 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 106318048134748,
+													"sid": 740923343625173,
 													"parameters": {
 														"variable": "next",
 														"value": "astar_neighbours.At(loopindex)"
@@ -230,14 +219,14 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 215704408625691,
+													"sid": 159981569586801,
 													"parameters": {
 														"variable": "new_cost",
 														"value": "astar_cost_so_far.Get(str(current)) + Functions.grid_get_index_cost(next)"
 													}
 												}
 											],
-											"sid": 932920517547432
+											"sid": 865024241381898
 										},
 										{
 											"eventType": "block",
@@ -245,16 +234,25 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 292917238256494,
+													"sid": 666615995617763,
 													"parameters": {
 														"first-value": "Functions.grid_is_index_free(next)",
 														"comparison": 0,
 														"second-value": "1"
 													}
+												},
+												{
+													"id": "has-key",
+													"objectClass": "astar_came_from",
+													"sid": 176648063125862,
+													"parameters": {
+														"key": "str(next)"
+													},
+													"isInverted": true
 												}
 											],
 											"actions": [],
-											"sid": 385920262192790,
+											"sid": 726552269448751,
 											"children": [
 												{
 													"eventType": "block",
@@ -262,7 +260,7 @@
 														{
 															"id": "has-key",
 															"objectClass": "astar_cost_so_far",
-															"sid": 218143402067447,
+															"sid": 151385714902909,
 															"parameters": {
 																"key": "str(next)"
 															},
@@ -271,7 +269,7 @@
 														{
 															"id": "compare-eventvar",
 															"objectClass": "System",
-															"sid": 785289660214256,
+															"sid": 232658519956350,
 															"parameters": {
 																"variable": "new_cost",
 																"comparison": 2,
@@ -283,63 +281,64 @@
 														{
 															"id": "add-key",
 															"objectClass": "astar_cost_so_far",
-															"sid": 548933236794936,
+															"sid": 211676746102968,
 															"parameters": {
 																"key": "str(next)",
 																"value": "new_cost"
 															}
 														},
 														{
-															"callFunction": "astar_frontier_put",
-															"sid": 621607458159009,
-															"disabled": true,
-															"parameters": [
-																"next",
-																"new_cost+Functions.astar_heuristic(Functions.grid_index_to_x(goal, 1, 1), Functions.grid_index_to_y(goal, 1, 1), Functions.grid_index_to_x(next, 1, 1), Functions.grid_index_to_y(next, 1, 1))"
-															]
-														},
-														{
-															"callFunction": "astar_frontier_put",
-															"sid": 522801628360125,
-															"parameters": [
-																"next",
-																"new_cost+Functions.astar_heuristic(Functions.grid_index_to_x(goal, 1, 0), Functions.grid_index_to_y(goal, 1, 0), Functions.grid_index_to_x(next, 1, 0), Functions.grid_index_to_y(next, 1, 0))"
-															]
-														},
-														{
-															"callFunction": "draw_string_on_cell",
-															"sid": 216834413515244,
-															"parameters": [
-																"current",
-																"3",
-																"str(astar_cost_so_far.Get(str(current)))",
-																"10",
-																"\"red\"",
-																"100"
-															]
-														},
-														{
 															"id": "add-key",
 															"objectClass": "astar_came_from",
-															"sid": 645888852890382,
+															"sid": 690474530261489,
 															"parameters": {
 																"key": "str(next)",
 																"value": "current"
 															}
 														},
 														{
-															"callFunction": "draw_rectangle_on_cell",
-															"sid": 683628498192872,
+															"callFunction": "astar_frontier_put",
+															"sid": 143676628440015,
 															"parameters": [
 																"next",
-																"\"blue\"",
-																"25",
-																true,
-																"1"
+																"new_cost+Functions.astar_heuristic(Functions.grid_index_to_x(goal, 1, 0), Functions.grid_index_to_y(goal, 1, 0), Functions.grid_index_to_x(next, 1, 0), Functions.grid_index_to_y(next, 1, 0))"
 															]
 														}
 													],
-													"sid": 872853276351454,
+													"sid": 886883042037499,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [],
+															"actions": [
+																{
+																	"callFunction": "draw_string_on_cell",
+																	"sid": 886568159290764,
+																	"parameters": [
+																		"current",
+																		"3",
+																		"str(astar_cost_so_far.Get(str(current)))",
+																		"10",
+																		"\"red\"",
+																		"100"
+																	]
+																},
+																{
+																	"callFunction": "draw_rectangle_on_cell",
+																	"sid": 709822345444931,
+																	"disabled": true,
+																	"parameters": [
+																		"next",
+																		"\"blue\"",
+																		"25",
+																		true,
+																		"1"
+																	]
+																}
+															],
+															"sid": 924302622824927
+														}
+													],
 													"isOrBlock": true
 												}
 											]
@@ -349,6 +348,92 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "while",
+							"objectClass": "System",
+							"sid": 905725710878139
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 572893518450328,
+							"parameters": {
+								"variable": "current",
+								"comparison": 1,
+								"value": "start"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 127972361269152,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "push",
+									"objectClass": "astar_path",
+									"sid": 184298609808328,
+									"parameters": {
+										"where": "back",
+										"value": "current",
+										"axis": "x"
+									}
+								},
+								{
+									"callFunction": "draw_rectangle_on_cell",
+									"sid": 790949228513088,
+									"parameters": [
+										"current",
+										"\"green\"",
+										"45",
+										true,
+										"1"
+									]
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 551757998254394,
+									"parameters": {
+										"variable": "current",
+										"value": "astar_came_from.Get(str(current))"
+									}
+								}
+							],
+							"sid": 301863887769717
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "push",
+							"objectClass": "astar_path",
+							"sid": 465372658726130,
+							"parameters": {
+								"where": "back",
+								"value": "start",
+								"axis": "x"
+							}
+						},
+						{
+							"id": "reverse",
+							"objectClass": "astar_path",
+							"sid": 222189981822217,
+							"parameters": {
+								"axis": "x"
+							}
+						}
+					],
+					"sid": 113192947488274
 				}
 			]
 		},
@@ -486,7 +571,7 @@
 															"objectClass": "astar_neighbours",
 															"sid": 778389986104781,
 															"parameters": {
-																"json": "Functions.grid_get_neighbours(current)"
+																"json": "Functions.grid_get_neighbours(current, 1)"
 															}
 														},
 														{
@@ -723,7 +808,7 @@
 															"objectClass": "astar_neighbours",
 															"sid": 664415298543181,
 															"parameters": {
-																"json": "Functions.grid_get_neighbours(current)"
+																"json": "Functions.grid_get_neighbours(current, 1)"
 															}
 														},
 														{
@@ -1082,7 +1167,7 @@
 															"objectClass": "astar_neighbours",
 															"sid": 614694725727269,
 															"parameters": {
-																"json": "Functions.grid_get_neighbours(current)"
+																"json": "Functions.grid_get_neighbours(current, 1)"
 															}
 														},
 														{
@@ -1439,7 +1524,7 @@
 																	"objectClass": "astar_neighbours",
 																	"sid": 448941604718436,
 																	"parameters": {
-																		"json": "Functions.grid_get_neighbours(current)"
+																		"json": "Functions.grid_get_neighbours(current, 1)"
 																	}
 																},
 																{

@@ -703,6 +703,13 @@
 							"initialValue": "-1",
 							"comment": "Индекс клетки.",
 							"sid": 218682453461699
+						},
+						{
+							"name": "diagonals",
+							"type": "boolean",
+							"initialValue": "true",
+							"comment": "",
+							"sid": 860283374400839
 						}
 					],
 					"eventType": "function-block",
@@ -945,6 +952,235 @@
 												}
 											],
 											"sid": 238726241213335
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Диагонали"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 131079850632837,
+											"parameters": {
+												"variable": "diagonals"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 382528477599175,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 604780804430080,
+													"parameters": {
+														"first-value": "Functions.grid_is_index_valid(index - grid_config.Get(\"gridWidth\") + 1)",
+														"comparison": 0,
+														"second-value": "1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "вверх-вправо"
+												}
+											],
+											"sid": 742433050329108,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 474943500366455,
+															"parameters": {
+																"first-value": "Functions.grid_index_to_x(index, 0 , 0)",
+																"comparison": 2,
+																"second-value": "grid_config.Get(\"gridWidth\") - 1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "push",
+															"objectClass": "grid_custom_array",
+															"sid": 862823373721233,
+															"parameters": {
+																"where": "back",
+																"value": "index - grid_config.Get(\"gridWidth\") + 1",
+																"axis": "x"
+															}
+														}
+													],
+													"sid": 327680782210702
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 387279756869847,
+													"parameters": {
+														"first-value": "Functions.grid_index_to_x(index, 0 , 0)",
+														"comparison": 4,
+														"second-value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "вверх-влево"
+												}
+											],
+											"sid": 430248307625152,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 955560149618023,
+															"parameters": {
+																"first-value": "Functions.grid_is_index_valid(index - grid_config.Get(\"gridWidth\") - 1)",
+																"comparison": 0,
+																"second-value": "1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "push",
+															"objectClass": "grid_custom_array",
+															"sid": 873881485883289,
+															"parameters": {
+																"where": "back",
+																"value": "index - grid_config.Get(\"gridWidth\") - 1",
+																"axis": "x"
+															}
+														}
+													],
+													"sid": 658396645593385
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 114486141996018,
+													"parameters": {
+														"first-value": "Functions.grid_index_to_x(index, 0 , 0)",
+														"comparison": 2,
+														"second-value": "grid_config.Get(\"gridWidth\") - 1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "вниз-вправо"
+												}
+											],
+											"sid": 913661500781121,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 501121092211387,
+															"parameters": {
+																"first-value": "Functions.grid_is_index_valid(index + grid_config.Get(\"gridWidth\"))",
+																"comparison": 0,
+																"second-value": "1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "push",
+															"objectClass": "grid_custom_array",
+															"sid": 300944952179768,
+															"parameters": {
+																"where": "back",
+																"value": "index + grid_config.Get(\"gridWidth\") + 1",
+																"axis": "x"
+															}
+														}
+													],
+													"sid": 194493648187916
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 641398563009301,
+													"parameters": {
+														"first-value": "Functions.grid_index_to_x(index, 0 , 0)",
+														"comparison": 4,
+														"second-value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "comment",
+													"text": "вниз-влево"
+												}
+											],
+											"sid": 795466203286740,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 916298072402352,
+															"parameters": {
+																"first-value": "Functions.grid_is_index_valid(index + grid_config.Get(\"gridWidth\") - 1)",
+																"comparison": 0,
+																"second-value": "1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "push",
+															"objectClass": "grid_custom_array",
+															"sid": 815171747345512,
+															"parameters": {
+																"where": "back",
+																"value": "index + grid_config.Get(\"gridWidth\") - 1",
+																"axis": "x"
+															}
+														}
+													],
+													"sid": 138939201985044
+												}
+											]
 										}
 									]
 								}
@@ -1411,6 +1647,11 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
+						{
+							"callFunction": "draw_clear",
+							"sid": 988533811939446,
+							"disabled": true
+						},
 						{
 							"callFunction": "grid_redraw",
 							"sid": 928542133147336

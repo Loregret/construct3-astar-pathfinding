@@ -85,11 +85,37 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "TODO:\n- Функцию выбора и получение цвета\n- Выбор цвета для текста"
+			"text": "- Избавиться от зависимостей в поиске пути\n- нормальное отображение и очистку\n"
 		},
 		{
-			"eventType": "comment",
-			"text": "- Избавиться от зависимостей в поиске пути\n\n"
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 147023418432524,
+					"parameters": {
+						"mouse-button": "right",
+						"click-type": "clicked"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-at-x",
+					"objectClass": "grid_cells",
+					"sid": 565477289188263,
+					"parameters": {
+						"x": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)",
+						"value": "0"
+					}
+				},
+				{
+					"callFunction": "grid_update",
+					"sid": 961384769942496
+				}
+			],
+			"sid": 925095910628317
 		},
 		{
 			"eventType": "block",
@@ -133,27 +159,6 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 998663356158388,
-					"parameters": {
-						"interval-seconds": "0.1"
-					}
-				}
-			],
-			"actions": [
-				{
-					"callFunction": "astar_djikstra_fill",
-					"sid": 200827482729333
-				}
-			],
-			"sid": 807957766765378,
-			"disabled": true
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
 					"sid": 723859175260482
@@ -190,84 +195,28 @@
 								true,
 								"2"
 							]
-						},
-						{
-							"callFunction": "draw_coordinates",
-							"sid": 532639106130186,
-							"disabled": true
-						},
+						}
+					],
+					"sid": 997024148670114
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
 						{
 							"callFunction": "draw_indexes",
 							"sid": 105229666631802
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 461924575247992,
-							"parameters": {
-								"x": "25",
-								"value": "999"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 404157353648143,
-							"parameters": {
-								"x": "24",
-								"value": "999"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 160160001980534,
-							"parameters": {
-								"x": "23",
-								"value": "999"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 390855678884067,
-							"parameters": {
-								"x": "41",
-								"value": "999"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 140169158781019,
-							"parameters": {
-								"x": "40",
-								"value": "999"
-							}
-						},
-						{
-							"id": "set-at-x",
-							"objectClass": "grid_cells",
-							"sid": 814258436976965,
-							"parameters": {
-								"x": "39",
-								"value": "999"
-							}
 						},
 						{
 							"callFunction": "draw_movement_cost",
 							"sid": 766547216035135
 						},
 						{
-							"callFunction": "astar_djikstra_init",
-							"sid": 309579295477808,
-							"disabled": true,
-							"parameters": [
-								"72"
-							]
+							"callFunction": "draw_coordinates",
+							"sid": 617409184993545
 						}
 					],
-					"sid": 997024148670114
+					"sid": 332802564692371
 				}
 			]
 		},
