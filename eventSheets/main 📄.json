@@ -43,7 +43,7 @@
 			"eventType": "variable",
 			"name": "grid_height",
 			"type": "number",
-			"initialValue": "5",
+			"initialValue": "6",
 			"comment": "Высота сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -78,16 +78,6 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 348825377449189
-		},
-		{
-			"eventType": "variable",
-			"name": "current_unit",
-			"type": "number",
-			"initialValue": "-1",
-			"comment": "Текущий юнит.",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 852728852352226
 		},
 		{
 			"eventType": "comment",
