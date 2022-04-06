@@ -33,7 +33,7 @@
 			"eventType": "variable",
 			"name": "grid_width",
 			"type": "number",
-			"initialValue": "16",
+			"initialValue": "10",
 			"comment": "Ширина сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -43,7 +43,7 @@
 			"eventType": "variable",
 			"name": "grid_height",
 			"type": "number",
-			"initialValue": "8",
+			"initialValue": "5",
 			"comment": "Высота сетки",
 			"isStatic": false,
 			"isConstant": false,
@@ -90,10 +90,14 @@
 			"sid": 852728852352226
 		},
 		{
+			"eventType": "comment",
+			"text": "[h3]Приветствую![/h3]\n\n[b]Организация:[/b]\n\n[item] Лист [b]Main[/b] является связующим звеном всех листов. \n[item] Лист [b]Grid[/b] отвечает за все события, связанные с сеткой и её отображением.\n[item] Лист [b]Astar[/b] отвечает за события для просчета пути и все, что с этим связано.\n[item] Лист [b]Camera[/b] отвечает за события для управления камерой.\n\n[b]Управление:[/b]\n\n[item] [b]Левый клик мыши[/b] для выбора юнита, а также отправки в определенную клетку.\n[item] [b]Правый клик мыши[/b] для того, чтобы заблокировать клетку.\n[item] [b]Колесо мыши[/b] для приближения/отдаления камеры.\n[item] [b]Зажать Колесо мыши[/b] для передвижения камеры.\n\n[b]Послесловие:[/b]\n\nСкорее всего, вы мало что поймете из данного исходника из-за перегруженности кода. \nДанный исходник сам по себе требует урока, для понимания её концепции.\nТем не менее надеюсь, вы извлечете отсюда что-то полезное.\n\nУдачи."
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Start",
-			"description": "",
+			"title": "Старт",
+			"description": "Стартовые события.",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -120,7 +124,6 @@
 									"id": "add-key",
 									"objectClass": "grid_config",
 									"sid": 971099199260369,
-									"disabled": true,
 									"parameters": {
 										"key": "\"draw_indexes\"",
 										"value": "1"
@@ -133,6 +136,16 @@
 									"disabled": true,
 									"parameters": {
 										"key": "\"draw_coordinates\"",
+										"value": "1"
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "grid_config",
+									"sid": 177488291978305,
+									"disabled": true,
+									"parameters": {
+										"key": "\"draw_move_cost\"",
 										"value": "1"
 									}
 								},
@@ -177,7 +190,7 @@
 								},
 								{
 									"callFunction": "draw_grid",
-									"sid": 720171989583638,
+									"sid": 476344878861385,
 									"parameters": [
 										true,
 										"2"
@@ -200,17 +213,17 @@
 								},
 								{
 									"callFunction": "create_unit",
-									"sid": 880463937878471,
+									"sid": 290855691515564,
 									"parameters": [
-										"55",
+										"1",
 										"\"warrior\""
 									]
 								},
 								{
 									"callFunction": "create_unit",
-									"sid": 461013194811401,
+									"sid": 888538755911702,
 									"parameters": [
-										"80",
+										"15",
 										"\"ant\""
 									]
 								}
@@ -225,8 +238,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Controls",
-			"description": "",
+			"title": "Управление",
+			"description": "События для управления картой и юнитами.",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -247,7 +260,18 @@
 					"children": [
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 768492889122404,
+									"parameters": {
+										"first-value": "Functions.grid_is_position_within_canvas(Mouse.X, Mouse.Y)",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
 							"actions": [
 								{
 									"type": "comment",
@@ -291,85 +315,34 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "cursor-is-over-object",
-									"objectClass": "Mouse",
-									"sid": 158472113091929,
-									"parameters": {
-										"object": "grid_unit"
-									}
-								},
-								{
-									"id": "is-playing",
-									"objectClass": "grid_unit",
-									"sid": 266321126397570,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "\"move\""
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Выделение юнита."
-								},
-								{
-									"callFunction": "unit_select",
-									"sid": 716881056426332,
-									"parameters": [
-										"grid_unit.UID"
-									]
-								},
-								{
-									"callFunction": "grid_update",
-									"sid": 974055941615620
-								}
-							],
-							"sid": 615935563858319
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 801445427285431
-								},
-								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 971380326630961,
+									"sid": 759586935950967,
 									"parameters": {
-										"first-value": "Functions.is_mouse_within_canvas",
+										"first-value": "Functions.grid_is_position_within_canvas(Mouse.X, Mouse.Y)",
 										"comparison": 0,
 										"second-value": "1"
 									}
 								}
 							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Отправка юнита."
-								}
-							],
-							"sid": 386562018761698,
+							"actions": [],
+							"sid": 499954088130525,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "pick-by-unique-id",
-											"objectClass": "grid_unit",
-											"sid": 999260077953025,
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 393254705677068,
 											"parameters": {
-												"unique-id": " Functions.unit_get_selected_unit"
+												"object": "grid_unit"
 											}
 										},
 										{
 											"id": "is-playing",
 											"objectClass": "grid_unit",
-											"sid": 793954470511891,
+											"sid": 537098109919944,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"move\""
@@ -379,46 +352,110 @@
 									],
 									"actions": [
 										{
-											"callFunction": "grid_update",
-											"sid": 609603974004161
+											"type": "comment",
+											"text": "Выделение юнита."
 										},
 										{
-											"callFunction": "astar_find_path",
-											"sid": 798751742123530,
+											"callFunction": "unit_select",
+											"sid": 707178635383921,
 											"parameters": [
-												"grid_unit.index",
-												"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)",
-												true
+												"grid_unit.UID"
 											]
 										},
 										{
-											"callFunction": "astar_draw_path",
-											"sid": 113181717390652
+											"callFunction": "grid_update",
+											"sid": 982636106076713
 										}
 									],
-									"sid": 929405335248603,
+									"sid": 226789960742686
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 773729687776450
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Отправка юнита."
+										}
+									],
+									"sid": 685798262543919,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "is-empty",
-													"objectClass": "astar_path",
-													"sid": 554748992910625,
+													"id": "pick-by-unique-id",
+													"objectClass": "grid_unit",
+													"sid": 758619870477286,
+													"parameters": {
+														"unique-id": " Functions.unit_get_selected_unit"
+													}
+												},
+												{
+													"id": "is-playing",
+													"objectClass": "grid_unit",
+													"sid": 577595912051726,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"move\""
+													},
 													"isInverted": true
 												}
 											],
 											"actions": [
 												{
-													"callFunction": "unit_move_to",
-													"sid": 272300423002278,
+													"callFunction": "grid_update",
+													"sid": 918544490397581
+												},
+												{
+													"callFunction": "astar_find_path",
+													"sid": 950527287865943,
 													"parameters": [
-														"grid_unit.UID",
-														"astar_path.Front"
+														"grid_unit.index",
+														"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)",
+														true
 													]
+												},
+												{
+													"callFunction": "astar_draw_path",
+													"sid": 792961978086107
 												}
 											],
-											"sid": 998371639785732
+											"sid": 201462402093363,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-empty",
+															"objectClass": "astar_path",
+															"sid": 745237483004056,
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"type": "comment",
+															"text": "Инициализировать движение (дальше сработает цикл в листе Astar)"
+														},
+														{
+															"callFunction": "unit_move_to",
+															"sid": 583691601712793,
+															"parameters": [
+																"grid_unit.UID",
+																"astar_path.Front"
+															]
+														}
+													],
+													"sid": 557367365714700
+												}
+											]
 										}
 									]
 								}
@@ -432,8 +469,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Unit",
-			"description": "",
+			"title": "Движение юнита",
+			"description": "Событие для цикличного движения юнита по расчитанному пути.",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -532,67 +569,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Functions",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"functionName": "is_mouse_within_canvas",
-					"functionDescription": "Проверяет находится ли курсор в границах канваса.",
-					"functionCategory": "#main",
-					"functionReturnType": "number",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 980944894524313,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-between-values",
-									"objectClass": "System",
-									"sid": 812939547142203,
-									"parameters": {
-										"value": "Mouse.X",
-										"lower-bound": "grid_drawing_canvas.X",
-										"upper-bound": "grid_drawing_canvas.X + grid_drawing_canvas.Width"
-									}
-								},
-								{
-									"id": "is-between-values",
-									"objectClass": "System",
-									"sid": 474599812949651,
-									"parameters": {
-										"value": "Mouse.Y",
-										"lower-bound": "grid_drawing_canvas.Y",
-										"upper-bound": "grid_drawing_canvas.Y + grid_drawing_canvas.Height"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 510029365603407,
-									"parameters": {
-										"value": "1"
-									}
-								}
-							],
-							"sid": 721876001531222
-						}
-					]
-				}
-			],
-			"sid": 154537399774771
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Debug",
+			"title": "Дебаг",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [

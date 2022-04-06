@@ -13,6 +13,71 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"functionName": "grid_is_position_within_canvas",
+					"functionDescription": "Находится ли позиция внутри канваса.",
+					"functionCategory": "#grid",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "X",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 766881796648048
+						},
+						{
+							"name": "Y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 953148312920256
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 811308495513493,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 664318732479131,
+									"parameters": {
+										"value": "X",
+										"lower-bound": "grid_drawing_canvas.X",
+										"upper-bound": "grid_drawing_canvas.X + grid_drawing_canvas.Width"
+									}
+								},
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 333258741063061,
+									"parameters": {
+										"value": "Y",
+										"lower-bound": "grid_drawing_canvas.Y",
+										"upper-bound": "grid_drawing_canvas.Y + grid_drawing_canvas.Height"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 764770956357296,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 926703579227648
+						}
+					]
+				},
+				{
 					"functionName": "grid_get_index_count",
 					"functionDescription": "Получить полное кол-во индексов.",
 					"functionCategory": "#grid",
@@ -1638,272 +1703,6 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"functionName": "grid_update",
-					"functionDescription": "Обновление сетки.",
-					"functionCategory": "#grid",
-					"functionReturnType": "none",
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "draw_clear",
-							"sid": 988533811939446
-						},
-						{
-							"callFunction": "grid_redraw",
-							"sid": 928542133147336
-						}
-					],
-					"sid": 558504791211945,
-					"children": [
-						{
-							"eventType": "comment",
-							"text": "Цикличная отрисовка."
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for",
-									"objectClass": "System",
-									"sid": 246138147340371,
-									"parameters": {
-										"name": "\"index\"",
-										"start-index": "0",
-										"end-index": "grid_cells.Width-1"
-									}
-								}
-							],
-							"actions": [],
-							"sid": 903230064912303,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Индексы"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-value",
-											"objectClass": "grid_config",
-											"sid": 705955350795468,
-											"parameters": {
-												"key": "\"draw_indexes\"",
-												"comparison": 0,
-												"value": "1"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 551008336690173,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-at-x",
-													"objectClass": "grid_cells",
-													"sid": 614678687048797,
-													"parameters": {
-														"x": "loopindex",
-														"comparison": 1,
-														"value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "draw_string_on_cell",
-													"sid": 421273890453516,
-													"parameters": [
-														"loopindex",
-														"1",
-														"str(\"[b]\" & loopindex & \"[/b]\")",
-														"15",
-														"\"black\"",
-														"100"
-													]
-												}
-											],
-											"sid": 648362321170946
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Координаты"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-value",
-											"objectClass": "grid_config",
-											"sid": 969049727178838,
-											"parameters": {
-												"key": "\"draw_coordinates\"",
-												"comparison": 0,
-												"value": "1"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 536344031979148,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-at-x",
-													"objectClass": "grid_cells",
-													"sid": 128286200976465,
-													"parameters": {
-														"x": "loopindex",
-														"comparison": 1,
-														"value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "draw_string_on_cell",
-													"sid": 938149393398000,
-													"parameters": [
-														"loopindex",
-														"3",
-														"str((Functions.grid_index_to_x(loopindex, 0, 0) & \", \") & Functions.grid_index_to_y(loopindex, 0, 0))",
-														"10",
-														"\"black\"",
-														"100"
-													]
-												}
-											],
-											"sid": 356583441977217
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Блокированные клетки."
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-value",
-											"objectClass": "grid_config",
-											"sid": 126088867808912,
-											"parameters": {
-												"key": "\"draw_blocked\"",
-												"comparison": 0,
-												"value": "1"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 613485039097776,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-at-x",
-													"objectClass": "grid_cells",
-													"sid": 910182605389104,
-													"parameters": {
-														"x": "loopindex",
-														"comparison": 0,
-														"value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "draw_rectangle_on_cell",
-													"sid": 392927790966548,
-													"parameters": [
-														"loopindex",
-														"\"black\"",
-														"65",
-														true,
-														"1"
-													]
-												}
-											],
-											"sid": 464155760055909
-										}
-									]
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Единичная отрисовка."
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [],
-							"sid": 664138045037748,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Выделенные юнита."
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-value",
-											"objectClass": "grid_config",
-											"sid": 399035404671416,
-											"parameters": {
-												"key": "\"draw_selection\"",
-												"comparison": 0,
-												"value": "1"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 397487721132344,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "pick-by-unique-id",
-													"objectClass": "grid_unit",
-													"sid": 924933786692684,
-													"parameters": {
-														"unique-id": "Functions.unit_get_selected_unit"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "draw_rectangle_on_cell",
-													"sid": 444655827341326,
-													"parameters": [
-														"grid_unit.index",
-														"\"green\"",
-														"25",
-														true,
-														"2"
-													]
-												}
-											],
-											"sid": 560269374433874
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
 					"functionName": "grid_create",
 					"functionDescription": "Создает логику сетки.",
 					"functionCategory": "#grid",
@@ -2187,6 +1986,325 @@
 				{
 					"eventType": "comment",
 					"text": "[h2] Функции с Canvas[/h2]\n\n- Глобальные функции для управления Drawing Canvas."
+				},
+				{
+					"functionName": "grid_update",
+					"functionDescription": "Обновление сетки.",
+					"functionCategory": "#grid",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"callFunction": "draw_clear",
+							"sid": 896890548609779
+						},
+						{
+							"callFunction": "grid_redraw",
+							"sid": 381116251111166
+						}
+					],
+					"sid": 331163711832774,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Цикличная отрисовка."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 364632952978302,
+									"parameters": {
+										"name": "\"index\"",
+										"start-index": "0",
+										"end-index": "grid_cells.Width-1"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 934815896078294,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Индексы"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 348432586787596,
+											"parameters": {
+												"key": "\"draw_indexes\"",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 945714141111161,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-at-x",
+													"objectClass": "grid_cells",
+													"sid": 971802786400748,
+													"parameters": {
+														"x": "loopindex",
+														"comparison": 1,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_string_on_cell",
+													"sid": 584678683400414,
+													"parameters": [
+														"loopindex",
+														"1",
+														"str(\"[b]\" & loopindex & \"[/b]\")",
+														"15",
+														"\"black\"",
+														"100"
+													]
+												}
+											],
+											"sid": 375944550222246
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Координаты"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 433665384630151,
+											"parameters": {
+												"key": "\"draw_coordinates\"",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 298637829756746,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-at-x",
+													"objectClass": "grid_cells",
+													"sid": 992034420101306,
+													"parameters": {
+														"x": "loopindex",
+														"comparison": 1,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_string_on_cell",
+													"sid": 478171688970513,
+													"parameters": [
+														"loopindex",
+														"3",
+														"str((Functions.grid_index_to_x(loopindex, 0, 0) & \", \") & Functions.grid_index_to_y(loopindex, 0, 0))",
+														"10",
+														"\"black\"",
+														"100"
+													]
+												}
+											],
+											"sid": 714196235636814
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Стоимость пути"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 616821906780900,
+											"parameters": {
+												"key": "\"draw_move_cost\"",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 825313597643076,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-at-x",
+													"objectClass": "grid_cells",
+													"sid": 754665274478894,
+													"parameters": {
+														"x": "loopindex",
+														"comparison": 1,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_string_on_cell",
+													"sid": 139033878348671,
+													"parameters": [
+														"loopindex",
+														"4",
+														"str(grid_cells.At(loopindex))",
+														"10",
+														"\"blue\"",
+														"100"
+													]
+												}
+											],
+											"sid": 505429982461779
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Блокированные клетки."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 157244727565226,
+											"parameters": {
+												"key": "\"draw_blocked\"",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 693549504775192,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-at-x",
+													"objectClass": "grid_cells",
+													"sid": 349840075996071,
+													"parameters": {
+														"x": "loopindex",
+														"comparison": 0,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_rectangle_on_cell",
+													"sid": 997983137819364,
+													"parameters": [
+														"loopindex",
+														"\"black\"",
+														"65",
+														true,
+														"1"
+													]
+												}
+											],
+											"sid": 695151438233619
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Единичная отрисовка."
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [],
+							"sid": 933921194888535,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Выделенные юнита."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 146432691498294,
+											"parameters": {
+												"key": "\"draw_selection\"",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 583340398695713,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "grid_unit",
+													"sid": 722704598773515,
+													"parameters": {
+														"unique-id": "Functions.unit_get_selected_unit"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_rectangle_on_cell",
+													"sid": 348385794847350,
+													"parameters": [
+														"grid_unit.index",
+														"\"green\"",
+														"25",
+														true,
+														"2"
+													]
+												}
+											],
+											"sid": 683998647832261
+										}
+									]
+								}
+							]
+						}
+					]
 				},
 				{
 					"functionName": "grid_redraw",
