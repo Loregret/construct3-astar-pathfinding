@@ -52,7 +52,7 @@
 					"type": "grid_unit",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "warrior",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -62,14 +62,8 @@
 						"index": -1
 					},
 					"behaviors": {
-						"MoveTo": {
+						"Tween": {
 							"properties": {
-								"max-speed": 350,
-								"acceleration": 1000,
-								"deceleration": 1000,
-								"rotate-speed": 0,
-								"set-angle": false,
-								"stop-on-solids": false,
 								"enabled": true
 							}
 						}

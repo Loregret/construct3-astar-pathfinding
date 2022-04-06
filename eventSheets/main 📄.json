@@ -70,160 +70,162 @@
 			"sid": 981812038493186
 		},
 		{
-			"eventType": "comment",
-			"text": "Промежутки: большие значения могут вызвать фрустрацию, т.к. промежуток косвенно является частью клетки и забирает часть размера."
-		},
-		{
 			"eventType": "variable",
 			"name": "cell_offset",
 			"type": "number",
 			"initialValue": "5",
-			"comment": "Промежутки между клетками.",
+			"comment": "Промежутки между клетками. (с ними следует быть осторожнее)",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 348825377449189
 		},
 		{
-			"eventType": "comment",
-			"text": "- Избавиться от зависимостей в поиске пути\n- нормальное отображение и очистку\n"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-click",
-					"objectClass": "Mouse",
-					"sid": 147023418432524,
-					"parameters": {
-						"mouse-button": "right",
-						"click-type": "clicked"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-at-x",
-					"objectClass": "grid_cells",
-					"sid": 565477289188263,
-					"parameters": {
-						"x": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)",
-						"value": "0"
-					}
-				},
-				{
-					"callFunction": "grid_update",
-					"sid": 961384769942496
-				}
-			],
-			"sid": 925095910628317
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-click",
-					"objectClass": "Mouse",
-					"sid": 183126648346306,
-					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked"
-					}
-				}
-			],
-			"actions": [
-				{
-					"callFunction": "grid_update",
-					"sid": 825758723281655
-				},
-				{
-					"callFunction": "astar_greedy_search",
-					"sid": 839168398047435,
-					"disabled": true,
-					"parameters": [
-						"0",
-						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
-					]
-				},
-				{
-					"callFunction": "astar_patf",
-					"sid": 898291412069726,
-					"parameters": [
-						"0",
-						"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
-					]
-				}
-			],
-			"sid": 196195483783230
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 723859175260482
-				}
-			],
-			"actions": [],
-			"sid": 861262203267799,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "grid_create",
-							"sid": 549902450508053,
-							"parameters": [
-								"grid_width",
-								"grid_height",
-								"cell_size",
-								"cell_offset"
-							]
-						}
-					],
-					"sid": 249353197126343
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "draw_grid",
-							"sid": 739070983555119,
-							"parameters": [
-								true,
-								"2"
-							]
-						}
-					],
-					"sid": 997024148670114
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"callFunction": "draw_indexes",
-							"sid": 105229666631802
-						},
-						{
-							"callFunction": "draw_movement_cost",
-							"sid": 766547216035135
-						},
-						{
-							"callFunction": "draw_coordinates",
-							"sid": 617409184993545
-						}
-					],
-					"sid": 332802564692371
-				}
-			]
+			"eventType": "variable",
+			"name": "current_unit",
+			"type": "number",
+			"initialValue": "-1",
+			"comment": "Текущий юнит.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 852728852352226
 		},
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "WIP",
+			"title": "Start",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 199475657126236
+						}
+					],
+					"actions": [],
+					"sid": 876684893832576,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Настройки отрисовки сетки"
+								},
+								{
+									"id": "add-key",
+									"objectClass": "grid_config",
+									"sid": 971099199260369,
+									"disabled": true,
+									"parameters": {
+										"key": "\"draw_indexes\"",
+										"value": "1"
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "grid_config",
+									"sid": 316875332158165,
+									"disabled": true,
+									"parameters": {
+										"key": "\"draw_coordinates\"",
+										"value": "1"
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "grid_config",
+									"sid": 415374783846366,
+									"parameters": {
+										"key": "\"draw_blocked\"",
+										"value": "1"
+									}
+								},
+								{
+									"id": "add-key",
+									"objectClass": "grid_config",
+									"sid": 959432055754247,
+									"parameters": {
+										"key": "\"draw_selection\"",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 771676579018900
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Создание сетки"
+								},
+								{
+									"callFunction": "grid_create",
+									"sid": 402965618314951,
+									"parameters": [
+										"grid_width",
+										"grid_height",
+										"cell_size",
+										"cell_offset"
+									]
+								},
+								{
+									"callFunction": "draw_grid",
+									"sid": 720171989583638,
+									"parameters": [
+										true,
+										"2"
+									]
+								},
+								{
+									"callFunction": "grid_update",
+									"sid": 129713098580630
+								}
+							],
+							"sid": 893800275665830
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Создание юнитов"
+								},
+								{
+									"callFunction": "create_unit",
+									"sid": 880463937878471,
+									"parameters": [
+										"55",
+										"\"warrior\""
+									]
+								},
+								{
+									"callFunction": "create_unit",
+									"sid": 461013194811401,
+									"parameters": [
+										"80",
+										"\"ant\""
+									]
+								}
+							],
+							"sid": 656800075866427
+						}
+					]
+				}
+			],
+			"sid": 434327720786105
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Controls",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -233,7 +235,49 @@
 						{
 							"id": "on-click",
 							"objectClass": "Mouse",
-							"sid": 957282142579075,
+							"sid": 765214479223468,
+							"parameters": {
+								"mouse-button": "right",
+								"click-type": "clicked"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 179464215055276,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Постройка непроходимого блока."
+								},
+								{
+									"id": "set-at-x",
+									"objectClass": "grid_cells",
+									"sid": 781866473412409,
+									"parameters": {
+										"x": "Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)",
+										"value": "0"
+									}
+								},
+								{
+									"callFunction": "grid_update",
+									"sid": 693502987230054
+								}
+							],
+							"sid": 231981474919111
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-click",
+							"objectClass": "Mouse",
+							"sid": 802610161928079,
 							"parameters": {
 								"mouse-button": "left",
 								"click-type": "clicked"
@@ -241,18 +285,63 @@
 						}
 					],
 					"actions": [],
-					"sid": 901926493902813,
-					"disabled": true,
+					"sid": 402422963671018,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 158472113091929,
+									"parameters": {
+										"object": "grid_unit"
+									}
+								},
+								{
+									"id": "is-playing",
+									"objectClass": "grid_unit",
+									"sid": 266321126397570,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"move\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Выделение юнита."
+								},
+								{
+									"callFunction": "unit_select",
+									"sid": 716881056426332,
+									"parameters": [
+										"grid_unit.UID"
+									]
+								},
+								{
+									"callFunction": "grid_update",
+									"sid": 974055941615620
+								}
+							],
+							"sid": 615935563858319
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 801445427285431
+								},
+								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 125662304084728,
+									"sid": 971380326630961,
 									"parameters": {
-										"first-value": "Functions.grid_is_index_valid(Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0))",
+										"first-value": "Functions.is_mouse_within_canvas",
 										"comparison": 0,
 										"second-value": "1"
 									}
@@ -260,147 +349,269 @@
 							],
 							"actions": [
 								{
-									"callFunction": "draw_clear",
-									"sid": 397616871045969
-								},
-								{
-									"callFunction": "grid_update",
-									"sid": 575396551810748
-								},
-								{
-									"callFunction": "astar_breadth_first_search",
-									"sid": 272649326106145,
-									"parameters": [
-										"grid_unit.index",
-										"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
-									]
+									"type": "comment",
+									"text": "Отправка юнита."
 								}
 							],
-							"sid": 573752034170846,
-							"disabled": true,
+							"sid": 386562018761698,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "for",
-											"objectClass": "System",
-											"sid": 782208154064840,
+											"id": "pick-by-unique-id",
+											"objectClass": "grid_unit",
+											"sid": 999260077953025,
 											"parameters": {
-												"name": "\"i\"",
-												"start-index": "0",
-												"end-index": "astar_path.Width-1"
+												"unique-id": " Functions.unit_get_selected_unit"
 											}
+										},
+										{
+											"id": "is-playing",
+											"objectClass": "grid_unit",
+											"sid": 793954470511891,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"move\""
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [
 										{
-											"callFunction": "unit_move_to",
-											"sid": 142297562251818,
+											"callFunction": "grid_update",
+											"sid": 609603974004161
+										},
+										{
+											"callFunction": "astar_find_path",
+											"sid": 798751742123530,
 											"parameters": [
-												"grid_unit.UID",
-												"astar_path.At(astar_path.Width-1)"
+												"grid_unit.index",
+												"Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)",
+												true
 											]
 										},
 										{
-											"id": "pop",
-											"objectClass": "astar_path",
-											"sid": 608394736113205,
-											"parameters": {
-												"where": "back",
-												"axis": "x"
-											}
+											"callFunction": "astar_draw_path",
+											"sid": 113181717390652
 										}
 									],
-									"sid": 545528601950266,
-									"disabled": true
+									"sid": 929405335248603,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-empty",
+													"objectClass": "astar_path",
+													"sid": 554748992910625,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "unit_move_to",
+													"sid": 272300423002278,
+													"parameters": [
+														"grid_unit.UID",
+														"astar_path.Front"
+													]
+												}
+											],
+											"sid": 998371639785732
+										}
+									]
 								}
 							]
 						}
 					]
-				},
+				}
+			],
+			"sid": 515869054491074
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Unit",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 116115881977522
+							"id": "on-tweens-finished",
+							"objectClass": "grid_unit",
+							"sid": 532576768291507,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"move\""
+							}
 						}
 					],
-					"actions": [],
-					"sid": 444250700611410,
-					"disabled": true,
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Двигает юнита по всем клеткам в пути."
+						}
+					],
+					"sid": 359645452214438,
 					"children": [
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-size",
+									"objectClass": "astar_path",
+									"sid": 243697830661763,
+									"parameters": {
+										"axis": "x",
+										"comparison": 4,
+										"value": "1"
+									}
+								},
+								{
+									"id": "is-empty",
+									"objectClass": "astar_path",
+									"sid": 544851194134545,
+									"isInverted": true
+								}
+							],
 							"actions": [
 								{
-									"callFunction": "create_unit",
-									"sid": 990276919915259,
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 437105693533505
+								},
+								{
+									"id": "pop",
+									"objectClass": "astar_path",
+									"sid": 106649016349897,
+									"parameters": {
+										"where": "front",
+										"axis": "x"
+									}
+								},
+								{
+									"callFunction": "unit_move_to",
+									"sid": 534415339194833,
 									"parameters": [
-										"55"
+										"grid_unit.UID",
+										"astar_path.Front"
 									]
 								}
 							],
-							"sid": 366121882308532,
-							"disabled": true
+							"sid": 234072706869837
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
-							"actions": [
+							"conditions": [
 								{
-									"callFunction": "grid_block_index",
-									"sid": 976245245171011,
-									"parameters": [
-										"66"
-									]
-								},
-								{
-									"callFunction": "grid_block_index",
-									"sid": 196142013539467,
-									"parameters": [
-										"67"
-									]
-								},
-								{
-									"callFunction": "grid_block_index",
-									"sid": 201374979129819,
-									"parameters": [
-										"68"
-									]
-								},
-								{
-									"callFunction": "grid_block_index",
-									"sid": 896707289291406,
-									"parameters": [
-										"69"
-									]
+									"id": "else",
+									"objectClass": "System",
+									"sid": 719843750223761
 								}
 							],
-							"sid": 664679391056562,
-							"disabled": true
+							"actions": [
+								{
+									"callFunction": "grid_update",
+									"sid": 262993237587795
+								},
+								{
+									"type": "comment",
+									"text": "Если путь окончен - обновить визуал сетки."
+								}
+							],
+							"sid": 120717943784012
 						}
 					]
-				},
+				}
+			],
+			"sid": 309925950043237
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Functions",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "is_mouse_within_canvas",
+					"functionDescription": "Проверяет находится ли курсор в границах канваса.",
+					"functionCategory": "#main",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 980944894524313,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 812939547142203,
+									"parameters": {
+										"value": "Mouse.X",
+										"lower-bound": "grid_drawing_canvas.X",
+										"upper-bound": "grid_drawing_canvas.X + grid_drawing_canvas.Width"
+									}
+								},
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 474599812949651,
+									"parameters": {
+										"value": "Mouse.Y",
+										"lower-bound": "grid_drawing_canvas.Y",
+										"upper-bound": "grid_drawing_canvas.Y + grid_drawing_canvas.Height"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 510029365603407,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 721876001531222
+						}
+					]
+				}
+			],
+			"sid": 154537399774771
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Debug",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "every-tick",
 							"objectClass": "System",
-							"sid": 280605340931678
+							"sid": 123795996029334
 						},
 						{
 							"id": "is-in-preview",
 							"objectClass": "System",
-							"sid": 990643212448579
+							"sid": 877720643399568
 						}
 					],
 					"actions": [],
-					"sid": 738525779134100,
+					"sid": 799806170249741,
 					"children": [
 						{
 							"eventType": "block",
@@ -409,15 +620,22 @@
 								{
 									"id": "set-text",
 									"objectClass": "debug_text",
-									"sid": 833599010523894,
+									"sid": 920363874241524,
 									"parameters": {
 										"text": "\"\""
 									}
-								},
+								}
+							],
+							"sid": 272811384339988
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 930530920597990,
+									"sid": 567723998285591,
 									"parameters": {
 										"text": "\"[b]FPS: [/b]\" & fps"
 									}
@@ -425,15 +643,22 @@
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 677594436087707,
+									"sid": 818191395806971,
 									"parameters": {
 										"text": "newline"
 									}
-								},
+								}
+							],
+							"sid": 398684712828563
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 881693509462984,
+									"sid": 600933006027778,
 									"parameters": {
 										"text": "\"[b]Mouse: [/b]\" & int(Mouse.X) & \", \" & int(Mouse.Y)"
 									}
@@ -441,15 +666,22 @@
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 418514684415102,
+									"sid": 390879676182593,
 									"parameters": {
 										"text": "newline"
 									}
-								},
+								}
+							],
+							"sid": 367639870209030
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 371051412416560,
+									"sid": 241016536571283,
 									"parameters": {
 										"text": "\"[b]Grid Size: [/b]\" & grid_config.Get(\"gridWidth\") & \", \" & grid_config.Get(\"gridHeight\")"
 									}
@@ -457,15 +689,22 @@
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 605589763408958,
+									"sid": 317344775759333,
 									"parameters": {
 										"text": "newline"
 									}
-								},
+								}
+							],
+							"sid": 971780669854562
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 796449095417298,
+									"sid": 529047591572163,
 									"parameters": {
 										"text": "\"[b]Cell Index:[/b] \" & Functions.grid_pos_to_index(Mouse.X, Mouse.Y, 0)"
 									}
@@ -473,15 +712,22 @@
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 414321420376948,
+									"sid": 871397446076021,
 									"parameters": {
 										"text": "newline"
 									}
-								},
+								}
+							],
+							"sid": 265729524659465
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 980095004357213,
+									"sid": 332976830020214,
 									"parameters": {
 										"text": "\"[b]Cell XY:[/b] \" & int(Mouse.X / grid_config.Get(\"cellSize\")) & \", \" & int(Mouse.Y / grid_config.Get(\"cellSize\"))"
 									}
@@ -489,27 +735,41 @@
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 801535644700926,
+									"sid": 285418783652154,
 									"parameters": {
 										"text": "newline"
+									}
+								}
+							],
+							"sid": 987153676272912
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "append-text",
+									"objectClass": "debug_text",
+									"sid": 358274269995534,
+									"parameters": {
+										"text": "\"[b]Grid Size: [/b]\" & Functions.grid_get_real_width & \", \" & Functions.grid_get_real_height"
 									}
 								},
 								{
 									"id": "append-text",
 									"objectClass": "debug_text",
-									"sid": 310071808596305,
+									"sid": 549839731264678,
 									"parameters": {
-										"text": "\"[b]Grid Size: [/b]\" & Functions.grid_get_real_width & \", \" & Functions.grid_get_real_height"
+										"text": "newline"
 									}
 								}
 							],
-							"sid": 816871832257220,
-							"disabled": true
+							"sid": 671613426363101
 						}
 					]
 				}
 			],
-			"sid": 803037949434059
+			"sid": 418335270532547
 		}
 	],
 	"sid": 604163391678533

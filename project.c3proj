@@ -55,17 +55,9 @@
 			"bundled": false
 		},
 		{
-			"type": "plugin",
-			"id": "Browser",
-			"name": "Browser",
-			"author": "Scirra",
-			"version": "r285.3",
-			"bundled": false
-		},
-		{
 			"type": "behavior",
-			"id": "MoveTo",
-			"name": "Move To",
+			"id": "Tween",
+			"name": "Tween",
 			"author": "Scirra",
 			"version": "r285.3",
 			"bundled": false
@@ -81,9 +73,7 @@
 	],
 	"uniqueId": "93ythsvn5zn",
 	"objectTypes": {
-		"items": [
-			"debug_text"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -100,7 +90,7 @@
 			{
 				"items": [
 					"Mouse",
-					"Browser"
+					"debug_text"
 				],
 				"subfolders": [],
 				"name": "system"
@@ -183,7 +173,7 @@
 	},
 	"properties": {
 		"description": "Шаблон для поиска пути по клеткам на сетке.",
-		"version": "0.7",
+		"version": "1.0",
 		"author": "Loregret",
 		"authorEmail": "loregrets@yahoo.com",
 		"authorWebsite": "tinyurl.com/loregret",

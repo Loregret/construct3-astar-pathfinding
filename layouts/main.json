@@ -29,7 +29,7 @@
 			"forceOwnTexture": false,
 			"renderingMode": "3d",
 			"drawOrder": "z-order",
-			"useRenderCells": false,
+			"useRenderCells": true,
 			"blendMode": "normal",
 			"zElevation": 0,
 			"global": false
@@ -89,7 +89,7 @@
 			"forceOwnTexture": false,
 			"renderingMode": "3d",
 			"drawOrder": "z-order",
-			"useRenderCells": false,
+			"useRenderCells": true,
 			"blendMode": "normal",
 			"zElevation": 0,
 			"global": false
@@ -138,7 +138,7 @@
 						"text": "...",
 						"enable-bbcode": true,
 						"font": "Arial",
-						"size": 12,
+						"size": 8,
 						"line-height": 0,
 						"bold": false,
 						"italic": false,

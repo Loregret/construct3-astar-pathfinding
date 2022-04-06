@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне самой функции. \nЭто означает, что вы можете скопировать в своей проект папку [b]grid + этот Лист Событий[/b]. \nТаким образом, вы получите полностью рабочий функционал сетки."
+			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне этого листа.\nЭто означает, что вы можете скопировать в своей проект папку [b]grid + этот Лист Событий[/b]. \nТаким образом, вы получите полностью рабочий функционал сетки."
 		},
 		{
 			"eventType": "group",
@@ -1649,8 +1649,7 @@
 					"actions": [
 						{
 							"callFunction": "draw_clear",
-							"sid": 988533811939446,
-							"disabled": true
+							"sid": 988533811939446
 						},
 						{
 							"callFunction": "grid_redraw",
@@ -1661,7 +1660,7 @@
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Отрисовка кастомных фигур."
+							"text": "Цикличная отрисовка."
 						},
 						{
 							"eventType": "block",
@@ -1682,36 +1681,223 @@
 							"children": [
 								{
 									"eventType": "comment",
+									"text": "Индексы"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 705955350795468,
+											"parameters": {
+												"key": "\"draw_indexes\"",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 551008336690173,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-at-x",
+													"objectClass": "grid_cells",
+													"sid": 614678687048797,
+													"parameters": {
+														"x": "loopindex",
+														"comparison": 1,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_string_on_cell",
+													"sid": 421273890453516,
+													"parameters": [
+														"loopindex",
+														"1",
+														"str(\"[b]\" & loopindex & \"[/b]\")",
+														"15",
+														"\"black\"",
+														"100"
+													]
+												}
+											],
+											"sid": 648362321170946
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Координаты"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 969049727178838,
+											"parameters": {
+												"key": "\"draw_coordinates\"",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 536344031979148,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-at-x",
+													"objectClass": "grid_cells",
+													"sid": 128286200976465,
+													"parameters": {
+														"x": "loopindex",
+														"comparison": 1,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_string_on_cell",
+													"sid": 938149393398000,
+													"parameters": [
+														"loopindex",
+														"3",
+														"str((Functions.grid_index_to_x(loopindex, 0, 0) & \", \") & Functions.grid_index_to_y(loopindex, 0, 0))",
+														"10",
+														"\"black\"",
+														"100"
+													]
+												}
+											],
+											"sid": 356583441977217
+										}
+									]
+								},
+								{
+									"eventType": "comment",
 									"text": "Блокированные клетки."
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-at-x",
-											"objectClass": "grid_cells",
-											"sid": 745593110091381,
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 126088867808912,
 											"parameters": {
-												"x": "loopindex",
+												"key": "\"draw_blocked\"",
 												"comparison": 0,
-												"value": "0"
+												"value": "1"
 											}
 										}
 									],
-									"actions": [
+									"actions": [],
+									"sid": 613485039097776,
+									"children": [
 										{
-											"callFunction": "draw_rectangle_on_cell",
-											"sid": 303523358542767,
-											"parameters": [
-												"loopindex",
-												"\"purple\"",
-												"45",
-												true,
-												"1"
-											]
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-at-x",
+													"objectClass": "grid_cells",
+													"sid": 910182605389104,
+													"parameters": {
+														"x": "loopindex",
+														"comparison": 0,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_rectangle_on_cell",
+													"sid": 392927790966548,
+													"parameters": [
+														"loopindex",
+														"\"black\"",
+														"65",
+														true,
+														"1"
+													]
+												}
+											],
+											"sid": 464155760055909
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Единичная отрисовка."
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [],
+							"sid": 664138045037748,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Выделенные юнита."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "grid_config",
+											"sid": 399035404671416,
+											"parameters": {
+												"key": "\"draw_selection\"",
+												"comparison": 0,
+												"value": "1"
+											}
 										}
 									],
-									"sid": 613485039097776
+									"actions": [],
+									"sid": 397487721132344,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "grid_unit",
+													"sid": 924933786692684,
+													"parameters": {
+														"unique-id": "Functions.unit_get_selected_unit"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "draw_rectangle_on_cell",
+													"sid": 444655827341326,
+													"parameters": [
+														"grid_unit.index",
+														"\"green\"",
+														"25",
+														true,
+														"2"
+													]
+												}
+											],
+											"sid": 560269374433874
+										}
+									]
 								}
 							]
 						}
@@ -1866,7 +2052,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Разблокировать клетку."
+						}
+					],
 					"sid": 359524174182645,
 					"children": [
 						{
@@ -1908,7 +2099,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Заблокировать клетку."
+						}
+					],
 					"sid": 381243955099857,
 					"children": [
 						{
@@ -2188,10 +2384,10 @@
 										{
 											"id": "set-size",
 											"objectClass": "grid_drawing_canvas",
-											"sid": 646038731656758,
+											"sid": 529804039142103,
 											"parameters": {
-												"width": "Functions.grid_get_real_width + cell_size",
-												"height": "Functions.grid_get_real_height + cell_size"
+												"width": "Functions.grid_get_real_width + 2",
+												"height": "Functions.grid_get_real_height + 2"
 											}
 										}
 									],
@@ -2538,7 +2734,12 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получение цветов."
+						}
+					],
 					"sid": 379549473622313,
 					"children": [
 						{
@@ -3186,7 +3387,7 @@
 							"name": "originPosition",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "0 - TopLeft, 1 - center, 2 - BottomRight, 3 - bottom",
+							"comment": "0 - TopLeft, 1 - center, 2 - BottomRight, 3 - bottom, 4 - topright",
 							"sid": 639817642797747
 						},
 						{
@@ -3319,11 +3520,11 @@
 							"actions": [
 								{
 									"callFunction": "draw_string",
-									"sid": 167648316985689,
+									"sid": 737038155569391,
 									"parameters": [
 										"color",
 										"opacity",
-										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.75",
+										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
 										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) * 0.85",
 										"string",
 										"fontSize",
@@ -3370,6 +3571,43 @@
 								}
 							],
 							"sid": 119552302260370
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 683292593798196
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 149959643421484,
+									"parameters": {
+										"variable": "originPosition",
+										"comparison": 0,
+										"value": "4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "draw_string",
+									"sid": 787182652804956,
+									"parameters": [
+										"color",
+										"opacity",
+										"Functions.grid_index_to_x(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 1.25",
+										"Functions.grid_index_to_y(index, 1, 0) + (grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")) / 5",
+										"string",
+										"fontSize",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")",
+										"grid_config.Get(\"cellSize\") - grid_config.Get(\"cellOffset\")"
+									]
+								}
+							],
+							"sid": 684304932490242
 						}
 					]
 				},
@@ -3611,6 +3849,137 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"eventType": "variable",
+					"name": "selected_unit",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 201288976721679
+				},
+				{
+					"functionName": "unit_get_selected_unit",
+					"functionDescription": "Получить UID активного юнита.",
+					"functionCategory": "#unit",
+					"functionReturnType": "number",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Получить UID выделенного юнита."
+						}
+					],
+					"sid": 226449104079545,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 251177878390561,
+									"parameters": {
+										"value": "selected_unit"
+									}
+								}
+							],
+							"sid": 732283146248083
+						}
+					]
+				},
+				{
+					"functionName": "unit_clear_selection",
+					"functionDescription": "Очистить выделение юнитов.",
+					"functionCategory": "#unit",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Очистить выделение юнитов."
+						}
+					],
+					"sid": 266465096023474,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 230638678744032,
+									"parameters": {
+										"variable": "selected_unit",
+										"value": "-1"
+									}
+								}
+							],
+							"sid": 286531041613275
+						}
+					]
+				},
+				{
+					"functionName": "unit_select",
+					"functionDescription": "Выбрать юнита по UID.",
+					"functionCategory": "#unit",
+					"functionReturnType": "none",
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "UID",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "UID номер Юнита.",
+							"sid": 822046630461130
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Выбрать юнита."
+						}
+					],
+					"sid": 305731090093077,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "grid_unit",
+									"sid": 133823554854438,
+									"parameters": {
+										"unique-id": "UID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 221742182247950,
+									"parameters": {
+										"variable": "selected_unit",
+										"value": "grid_unit.UID"
+									}
+								}
+							],
+							"sid": 950220977053902
+						}
+					]
+				},
+				{
 					"functionName": "create_unit",
 					"functionDescription": "Создать юнита и поместить его на определенную клетку.",
 					"functionCategory": "#grid",
@@ -3623,6 +3992,13 @@
 							"initialValue": "-1",
 							"comment": "Индекс клетки на которую нужно поместить юнита.",
 							"sid": 429914104043413
+						},
+						{
+							"name": "animation",
+							"type": "string",
+							"initialValue": "",
+							"comment": "Анимация юнита.",
+							"sid": 262819151943786
 						}
 					],
 					"eventType": "function-block",
@@ -3667,6 +4043,15 @@
 										"grid_unit.UID",
 										"index"
 									]
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "grid_unit",
+									"sid": 678136131816944,
+									"parameters": {
+										"animation": "animation",
+										"from": "beginning"
+									}
 								}
 							],
 							"sid": 406310802914378
@@ -3740,10 +4125,10 @@
 								{
 									"id": "set-at-x",
 									"objectClass": "grid_cells",
-									"sid": 411595592165422,
+									"sid": 354757340410177,
 									"parameters": {
 										"x": "index",
-										"value": "0"
+										"value": "-1"
 									}
 								}
 							],
@@ -3795,10 +4180,13 @@
 									}
 								},
 								{
-									"id": "is-moving",
+									"id": "is-playing",
 									"objectClass": "grid_unit",
-									"sid": 747614965951829,
-									"behaviorType": "MoveTo",
+									"sid": 950634680271840,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"move\""
+									},
 									"isInverted": true
 								}
 							],
@@ -3840,14 +4228,25 @@
 											}
 										},
 										{
-											"id": "move-to-position",
+											"id": "move-to-top",
 											"objectClass": "grid_unit",
-											"sid": 619967058649679,
-											"behaviorType": "MoveTo",
+											"sid": 736201322153541
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "grid_unit",
+											"sid": 242866178303341,
+											"behaviorType": "Tween",
 											"parameters": {
-												"x": "Functions.grid_index_to_x(index, 1, 1)",
-												"y": "Functions.grid_index_to_y(index, 1, 1)",
-												"mode": "direct"
+												"tags": "\"move\"",
+												"property": "position",
+												"end-x": "Functions.grid_index_to_x(index, 1, 1)",
+												"end-y": "Functions.grid_index_to_y(index, 1, 1)",
+												"time": "0.425",
+												"ease": "easeoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no"
 											}
 										},
 										{
@@ -3857,11 +4256,6 @@
 												"grid_unit.UID",
 												"index"
 											]
-										},
-										{
-											"callFunction": "grid_update",
-											"sid": 705593322121644,
-											"disabled": true
 										}
 									],
 									"sid": 763058987118534

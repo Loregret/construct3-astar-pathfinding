@@ -13,9 +13,9 @@
 	],
 	"behaviorTypes": [
 		{
-			"behaviorId": "MoveTo",
-			"name": "MoveTo",
-			"sid": 751988772203467
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 494452992689006
 		}
 	],
 	"effectTypes": [],
@@ -54,10 +54,85 @@
 						},
 						"useCollisionPoly": true,
 						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4684097,
+						"collisionPoly": {
+							"points": [
+								0.15384615384615385,
+								0.15384615384615385,
+								0.5,
+								0.015384615384615385,
+								0.8307692307692308,
+								0.15384615384615385,
+								0.9692307692307692,
+								0.5,
+								0.8307692307692308,
+								0.8307692307692308,
+								0.5,
+								0.9692307692307692,
+								0.15384615384615385,
+								0.8307692307692308,
+								0.015384615384615385,
+								0.5
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
 					}
 				],
 				"sid": 475907838817588,
-				"name": "Animation 1",
+				"name": "warrior",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2303680,
+						"collisionPoly": {
+							"points": [
+								0.15384615384615385,
+								0.15384615384615385,
+								0.5,
+								0.015384615384615385,
+								0.8307692307692308,
+								0.15384615384615385,
+								0.9692307692307692,
+								0.5,
+								0.8307692307692308,
+								0.8307692307692308,
+								0.5,
+								0.9692307692307692,
+								0.15384615384615385,
+								0.8307692307692308,
+								0.015384615384615385,
+								0.5
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 817004601960313,
+				"name": "ant",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
