@@ -2,19 +2,15 @@
 	"name": "Grid 📄",
 	"events": [
 		{
-			"eventType": "comment",
-			"text": "[h3] Все функции из этого списка зависимы только от объектов из папки grid[/h3]\n\nЯ сделал все функции с расчетом на то, чтобы они не были привязаны к переменным и данным вне этого листа.\nЭто означает, что вы можете скопировать в своей проект папку [b]grid + этот Лист Событий[/b]. \nТаким образом, вы получите полностью рабочий функционал сетки."
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Сетка - получение данных 🗄️",
-			"description": "Функции для получения данных о сетке.",
+			"title": "Grid - Data 🗄️",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
 					"functionName": "grid_is_position_within_canvas",
-					"functionDescription": "Находится ли позиция внутри канваса.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -79,7 +75,7 @@
 				},
 				{
 					"functionName": "grid_get_index_count",
-					"functionDescription": "Получить полное кол-во индексов.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -87,10 +83,6 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить полное кол-во индексов."
-						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
@@ -104,7 +96,7 @@
 				},
 				{
 					"functionName": "grid_get_height",
-					"functionDescription": "Получить высоту сетки в клетках.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -112,10 +104,6 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить высоту сетки."
-						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
@@ -129,7 +117,7 @@
 				},
 				{
 					"functionName": "grid_get_width",
-					"functionDescription": "Получить ширину сетки в клетках.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -137,10 +125,6 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить ширину сетки."
-						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
@@ -154,7 +138,7 @@
 				},
 				{
 					"functionName": "grid_get_real_height",
-					"functionDescription": "Получить реальную ширину сетки в пикселях.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -162,10 +146,6 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить реальную высоту сетки."
-						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
@@ -179,7 +159,7 @@
 				},
 				{
 					"functionName": "grid_get_real_width",
-					"functionDescription": "Получить реальную ширину сетки в пикселях.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -187,10 +167,6 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить реальную ширину сетки."
-						},
 						{
 							"id": "set-function-return-value",
 							"objectClass": "Functions",
@@ -204,7 +180,7 @@
 				},
 				{
 					"functionName": "grid_index_to_x",
-					"functionDescription": "Возвращает Х положение указанного индекса.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -213,32 +189,27 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 809496154519055
 						},
 						{
 							"name": "get_real_coordinate",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
+							"comment": "",
 							"sid": 399938994238307
 						},
 						{
 							"name": "get_center",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Получить центральную позицию клетки (если real_coordinate = 0). [b]Данная переменная типа boolean: принимается 1 или 0",
+							"comment": "",
 							"sid": 218800474812381
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": " Вывести [b]Х[/b] координату для определенного индекса."
-						}
-					],
+					"actions": [],
 					"sid": 332790062553500,
 					"children": [
 						{
@@ -253,18 +224,9 @@
 									}
 								}
 							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты Центра клетки."
-								}
-							],
+							"actions": [],
 							"sid": 186047214495306,
 							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -288,10 +250,6 @@
 										}
 									],
 									"sid": 983476507418489
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
 								},
 								{
 									"eventType": "block",
@@ -325,18 +283,9 @@
 									"sid": 247379737250287
 								}
 							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты верхнего левого угла клетки."
-								}
-							],
+							"actions": [],
 							"sid": 498691816804737,
 							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -360,10 +309,6 @@
 										}
 									],
 									"sid": 717469854220358
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
 								},
 								{
 									"eventType": "block",
@@ -392,7 +337,7 @@
 				},
 				{
 					"functionName": "grid_index_to_y",
-					"functionDescription": "Возвращает Y положение указанного индекса.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -401,32 +346,27 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 986309586774039
 						},
 						{
 							"name": "get_real_coordinate",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Получить реальные координаты вместо логических. [b]Данная переменная типа boolean: принимается 1 или 0",
+							"comment": "",
 							"sid": 384247316510384
 						},
 						{
 							"name": "get_center",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Получить центральную позицию клетки (если real_coordinate = 0). [b]Данная переменная типа boolean: принимается 1 или 0",
+							"comment": "",
 							"sid": 744043986030420
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Вывести [b]У[/b] координату для определенного индекса."
-						}
-					],
+					"actions": [],
 					"sid": 936999516539743,
 					"children": [
 						{
@@ -441,18 +381,9 @@
 									}
 								}
 							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты Центра клетки."
-								}
-							],
+							"actions": [],
 							"sid": 757156134418748,
 							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -476,10 +407,6 @@
 										}
 									],
 									"sid": 371383780766209
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
 								},
 								{
 									"eventType": "block",
@@ -513,18 +440,9 @@
 									"sid": 872470285653613
 								}
 							],
-							"actions": [
-								{
-									"type": "comment",
-									"text": "Получить координаты верхнего левого угла клетки."
-								}
-							],
+							"actions": [],
 							"sid": 578014272352023,
 							"children": [
-								{
-									"eventType": "comment",
-									"text": "Реальные координаты (15, 30, 45...)"
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -548,10 +466,6 @@
 										}
 									],
 									"sid": 934915810176752
-								},
-								{
-									"eventType": "comment",
-									"text": "Логические координаты (0, 1, 2...)"
 								},
 								{
 									"eventType": "block",
@@ -580,7 +494,7 @@
 				},
 				{
 					"functionName": "grid_pos_to_index",
-					"functionDescription": "Выводит индекс клетки, находящейся на указанной позиции.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -589,32 +503,27 @@
 							"name": "x",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "X координата",
+							"comment": "",
 							"sid": 839813809592288
 						},
 						{
 							"name": "y",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "У координата",
+							"comment": "",
 							"sid": 588193306560752
 						},
 						{
 							"name": "logical_coordinates",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Являются ли вводимые координаты логическими, поставьте 0, если координаты физические (к примеру, 13.450, 23.55)). [b]Данная переменная типа boolean: принимается 1 или 0",
+							"comment": "",
 							"sid": 329856647551542
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить индекс, введя позицию (в массиве либо реальные в пикселях)"
-						}
-					],
+					"actions": [],
 					"sid": 635177453630727,
 					"children": [
 						{
@@ -674,7 +583,7 @@
 				},
 				{
 					"functionName": "grid_is_index_valid",
-					"functionDescription": "Проверяет валидность индекса.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -683,18 +592,13 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 687269176114983
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Проверяет валидность индекса."
-						}
-					],
+					"actions": [],
 					"sid": 852145344790061,
 					"children": [
 						{
@@ -757,7 +661,7 @@
 				},
 				{
 					"functionName": "grid_get_neighbours",
-					"functionDescription": "Функция для того, чтобы получить список соседей для определенного индекса.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "string",
 					"functionIsAsync": false,
@@ -766,7 +670,7 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 218682453461699
 						},
 						{
@@ -779,18 +683,9 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить список соседей в виде json массива."
-						}
-					],
+					"actions": [],
 					"sid": 966153858063798,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "Очистка"
-						},
 						{
 							"eventType": "block",
 							"conditions": [],
@@ -825,10 +720,6 @@
 							]
 						},
 						{
-							"eventType": "comment",
-							"text": "Заполнить кастомный массив индексами соседей"
-						},
-						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
@@ -837,12 +728,7 @@
 								{
 									"eventType": "block",
 									"conditions": [],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "вверх"
-										}
-									],
+									"actions": [],
 									"sid": 868021531276600,
 									"children": [
 										{
@@ -889,12 +775,7 @@
 											}
 										}
 									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "влево"
-										}
-									],
+									"actions": [],
 									"sid": 223279063146582,
 									"children": [
 										{
@@ -930,12 +811,7 @@
 								{
 									"eventType": "block",
 									"conditions": [],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "вниз"
-										}
-									],
+									"actions": [],
 									"sid": 698796687462134,
 									"children": [
 										{
@@ -982,12 +858,7 @@
 											}
 										}
 									],
-									"actions": [
-										{
-											"type": "comment",
-											"text": "вправо"
-										}
-									],
+									"actions": [],
 									"sid": 101597455973814,
 									"children": [
 										{
@@ -1021,10 +892,6 @@
 									]
 								},
 								{
-									"eventType": "comment",
-									"text": "Диагонали"
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -1053,12 +920,7 @@
 													}
 												}
 											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "вверх-вправо"
-												}
-											],
+											"actions": [],
 											"sid": 742433050329108,
 											"children": [
 												{
@@ -1105,12 +967,7 @@
 													}
 												}
 											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "вверх-влево"
-												}
-											],
+											"actions": [],
 											"sid": 430248307625152,
 											"children": [
 												{
@@ -1157,12 +1014,7 @@
 													}
 												}
 											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "вниз-вправо"
-												}
-											],
+											"actions": [],
 											"sid": 913661500781121,
 											"children": [
 												{
@@ -1209,12 +1061,7 @@
 													}
 												}
 											],
-											"actions": [
-												{
-													"type": "comment",
-													"text": "вниз-влево"
-												}
-											],
+											"actions": [],
 											"sid": 795466203286740,
 											"children": [
 												{
@@ -1252,10 +1099,6 @@
 							]
 						},
 						{
-							"eventType": "comment",
-							"text": "Отправить массив как json"
-						},
-						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
@@ -1284,10 +1127,6 @@
 									"sid": 107290272010790
 								}
 							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Очистка x2"
 						},
 						{
 							"eventType": "block",
@@ -1326,7 +1165,7 @@
 				},
 				{
 					"functionName": "grid_is_indexes_neighbours",
-					"functionDescription": "Проверяет являются ли клетки соседями",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -1349,24 +1188,15 @@
 							"name": "diagonals",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Проверять ли по диагонали.",
+							"comment": "",
 							"sid": 994113582827973
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Проверить являются ли клетки соседними."
-						}
-					],
+					"actions": [],
 					"sid": 108019161890209,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "По горизонтали"
-						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -1405,10 +1235,6 @@
 							"isOrBlock": true
 						},
 						{
-							"eventType": "comment",
-							"text": "По вертикали"
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -1444,10 +1270,6 @@
 							],
 							"sid": 143945463104266,
 							"isOrBlock": true
-						},
-						{
-							"eventType": "comment",
-							"text": "По диагонали"
 						},
 						{
 							"eventType": "block",
@@ -1544,7 +1366,7 @@
 				},
 				{
 					"functionName": "grid_get_index_cost",
-					"functionDescription": "Получить стоимость пути указанного индекса.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -1553,18 +1375,13 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 554963582034256
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить стоимость пути указанного индекса."
-						}
-					],
+					"actions": [],
 					"sid": 161315182582957,
 					"children": [
 						{
@@ -1586,7 +1403,7 @@
 				},
 				{
 					"functionName": "grid_is_index_free",
-					"functionDescription": "Выводит 1 если индекс свободен, 0 - если занят.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
@@ -1595,18 +1412,13 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 257018980966119
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Проверка на незанятость клетки."
-						}
-					],
+					"actions": [],
 					"sid": 644716912672895,
 					"children": [
 						{
@@ -1660,19 +1472,14 @@
 				},
 				{
 					"functionName": "grid_get_cells_array_as_json",
-					"functionDescription": "Получить массив клеток.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "string",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить массив клеток."
-						}
-					],
+					"actions": [],
 					"sid": 907169408681189,
 					"children": [
 						{
@@ -1698,13 +1505,13 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Сетка - логика 🗄️",
-			"description": "Логическая часть сетки.",
+			"title": "Grid - Logic🗄️",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
 					"functionName": "grid_create",
-					"functionDescription": "Создает логику сетки.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -1713,45 +1520,36 @@
 							"name": "gridWidth",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Ширина сетки из клеток (к примеру, число 2 = две клетки)",
+							"comment": "",
 							"sid": 362616262114461
 						},
 						{
 							"name": "gridHeight",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Высота сетки из клеток (к примеру, число 2 = две клетки)",
+							"comment": "",
 							"sid": 198736064118897
 						},
 						{
 							"name": "cellSize",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Размер клетки из пикселей. (К примеру, число 50 будет равняться клетке 50х50) [Размеры с разными показателями ширины/высоты в текущей версии шаблона не доступны]",
+							"comment": "",
 							"sid": 573472005673769
 						},
 						{
 							"name": "cellOffset",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Промежуток между клетками в пикселях. (В расчет берется промежутки, как по горизонтали, так и по вертикали.)",
+							"comment": "",
 							"sid": 942338668684232
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Создание массива сетки."
-						}
-					],
+					"actions": [],
 					"sid": 367029715266783,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "Конфигурация сетки: все функции черпают данные о сетке из этого словаря."
-						},
 						{
 							"eventType": "block",
 							"conditions": [],
@@ -1796,17 +1594,9 @@
 							"sid": 247489312980533
 						},
 						{
-							"eventType": "comment",
-							"text": "Заполнение ячеек массива."
-						},
-						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
-								{
-									"type": "comment",
-									"text": "Делаем массив одномерным, т.к. с ним удобнее работать."
-								},
 								{
 									"id": "set-size",
 									"objectClass": "grid_cells",
@@ -1816,10 +1606,6 @@
 										"height": "1",
 										"depth": "1"
 									}
-								},
-								{
-									"type": "comment",
-									"text": "Заполняю массив единицами. Это число будет символизировать стоимость пути. 0 - путь недоступен."
 								},
 								{
 									"id": "clear",
@@ -1836,7 +1622,7 @@
 				},
 				{
 					"functionName": "grid_unblock_index",
-					"functionDescription": "Разблокирует клетку.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -1845,18 +1631,13 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 154391309974676
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Разблокировать клетку."
-						}
-					],
+					"actions": [],
 					"sid": 359524174182645,
 					"children": [
 						{
@@ -1883,7 +1664,7 @@
 				},
 				{
 					"functionName": "grid_block_index",
-					"functionDescription": "Блокирует клетку.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -1892,18 +1673,13 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 350205810310020
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Заблокировать клетку."
-						}
-					],
+					"actions": [],
 					"sid": 381243955099857,
 					"children": [
 						{
@@ -1934,25 +1710,20 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Сетка - прочее 🗄️",
-			"description": "Минорные функции сетки, которые не вписываются в обычные категории.",
+			"title": "Grid - Misc 🗄️",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
 					"functionName": "grid_scroll_to_center",
-					"functionDescription": "Навести камеру на центр сетки.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Наводка камеры на центр сетки."
-						}
-					],
+					"actions": [],
 					"sid": 739882707195290,
 					"children": [
 						{
@@ -1979,17 +1750,13 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Рисование 🖌️ глобальное",
-			"description": "Функции для отображения фигур и чисел на экране игрока.",
+			"title": "Drawing Global 🖌️",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "comment",
-					"text": "[h2] Функции с Canvas[/h2]\n\n- Глобальные функции для управления Drawing Canvas."
-				},
-				{
 					"functionName": "grid_update",
-					"functionDescription": "Обновление сетки.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -2009,10 +1776,6 @@
 					"sid": 331163711832774,
 					"children": [
 						{
-							"eventType": "comment",
-							"text": "Цикличная отрисовка."
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -2029,10 +1792,6 @@
 							"actions": [],
 							"sid": 934815896078294,
 							"children": [
-								{
-									"eventType": "comment",
-									"text": "Индексы"
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -2081,10 +1840,6 @@
 											"sid": 375944550222246
 										}
 									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Координаты"
 								},
 								{
 									"eventType": "block",
@@ -2136,10 +1891,6 @@
 									]
 								},
 								{
-									"eventType": "comment",
-									"text": "Стоимость пути"
-								},
-								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -2187,10 +1938,6 @@
 											"sid": 505429982461779
 										}
 									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Блокированные клетки."
 								},
 								{
 									"eventType": "block",
@@ -2243,19 +1990,11 @@
 							]
 						},
 						{
-							"eventType": "comment",
-							"text": "Единичная отрисовка."
-						},
-						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [],
 							"sid": 933921194888535,
 							"children": [
-								{
-									"eventType": "comment",
-									"text": "Выделенные юнита."
-								},
 								{
 									"eventType": "block",
 									"conditions": [
@@ -2308,19 +2047,14 @@
 				},
 				{
 					"functionName": "grid_redraw",
-					"functionDescription": "Перерисовка сетки без нужды вводить параметры.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Перерисовка сетки без нужды вводить параметры."
-						}
-					],
+					"actions": [],
 					"sid": 956484407772088,
 					"children": [
 						{
@@ -2342,19 +2076,14 @@
 				},
 				{
 					"functionName": "draw_clear",
-					"functionDescription": "Очистка сетки полностью.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Очистка сетки полностью."
-						}
-					],
+					"actions": [],
 					"sid": 432588178476505,
 					"children": [
 						{
@@ -2380,12 +2109,8 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": "[h2] Главная функция для рисовки сетки. [/h3]\n\n- Она принимает параметры для клеток и сетки, и с помощью Drawing Canvas рисует сетку на экране игрока. \n- Так же наводит камеру на центр сетки, если включен опциональный boolean."
-				},
-				{
 					"functionName": "draw_grid",
-					"functionDescription": "Нарисовать сетку с заданными величинами.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -2401,24 +2126,15 @@
 							"name": "line_thickness",
 							"type": "number",
 							"initialValue": "1",
-							"comment": "Толщина рамки клетки.",
+							"comment": "",
 							"sid": 840864471889385
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование сетки с помощью [b]Drawing Canvas[/b]."
-						}
-					],
+					"actions": [],
 					"sid": 479381254057023,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "Создание сетки"
-						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -2451,7 +2167,7 @@
 									"name": "x_position",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "Х позиция клетки.",
+									"comment": "",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 543313323961822
@@ -2461,7 +2177,7 @@
 									"name": "y_position",
 									"type": "number",
 									"initialValue": "0",
-									"comment": "Y позиция клетки.",
+									"comment": "",
 									"isStatic": true,
 									"isConstant": false,
 									"sid": 201285140767988
@@ -2496,10 +2212,6 @@
 									"conditions": [],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "Подстраивание размера полотна под размеры сетки."
-										},
-										{
 											"id": "set-size",
 											"objectClass": "grid_drawing_canvas",
 											"sid": 529804039142103,
@@ -2515,10 +2227,6 @@
 									"eventType": "block",
 									"conditions": [],
 									"actions": [
-										{
-											"type": "comment",
-											"text": "Рисовка границ и заливки клетки."
-										},
 										{
 											"id": "fill-rect",
 											"objectClass": "grid_drawing_canvas",
@@ -2550,10 +2258,6 @@
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "Огранка клеток"
-										},
-										{
 											"id": "add-key",
 											"objectClass": "grid_config",
 											"sid": 467453277901706,
@@ -2581,10 +2285,6 @@
 							]
 						},
 						{
-							"eventType": "comment",
-							"text": "Наводка камеры на центр"
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -2607,24 +2307,15 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": "[h2] Циклические функции[/h3]\n\n- Рисование по всем клеткам, циклически."
-				},
-				{
 					"functionName": "draw_movement_cost",
-					"functionDescription": "Рисует стоиомость пути для клеток.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование логической координаты каждой клетки на сетке."
-						}
-					],
+					"actions": [],
 					"sid": 559918781891327,
 					"children": [
 						{
@@ -2680,19 +2371,14 @@
 				},
 				{
 					"functionName": "draw_coordinates",
-					"functionDescription": "Рисует координаты клеток.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование логической координаты каждой клетки на сетке."
-						}
-					],
+					"actions": [],
 					"sid": 692954948025498,
 					"children": [
 						{
@@ -2748,19 +2434,14 @@
 				},
 				{
 					"functionName": "draw_indexes",
-					"functionDescription": "Рисует индексы клеток.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование индекса каждой клетки на сетке."
-						}
-					],
+					"actions": [],
 					"sid": 215657112845069,
 					"children": [
 						{
@@ -2820,17 +2501,13 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Рисование 🖌️ локальное",
-			"description": "Функции для отображения фигур и чисел на экране игрока.",
+			"title": "Drawing Local 🖌️",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "comment",
-					"text": "[h2]Рисование по координатам[/h3]\n\n- Рисование по X, Y координатам."
-				},
-				{
 					"functionName": "get_color",
-					"functionDescription": "Получить цвет в rgba() из строки. (Возможные варианты см. в функции)",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "any",
 					"functionIsAsync": false,
@@ -2839,25 +2516,20 @@
 							"name": "color",
 							"type": "string",
 							"initialValue": "",
-							"comment": "Выбор цвета квадрата. (Варианты: red, green, blue, black)",
+							"comment": "",
 							"sid": 189035108106010
 						},
 						{
 							"name": "opacity",
 							"type": "number",
 							"initialValue": "100",
-							"comment": "Прозрачность объекта.",
+							"comment": "",
 							"sid": 129650967094502
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Получение цветов."
-						}
-					],
+					"actions": [],
 					"sid": 379549473622313,
 					"children": [
 						{
@@ -3076,7 +2748,7 @@
 				},
 				{
 					"functionName": "draw_string",
-					"functionDescription": "Рисует числа/текст в определенной точке.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -3085,67 +2757,62 @@
 							"name": "color",
 							"type": "string",
 							"initialValue": "",
-							"comment": "Выбор цвета квадрата. (Варианты: red, green, blue, black)",
+							"comment": "",
 							"sid": 447940431062157
 						},
 						{
 							"name": "opacity",
 							"type": "number",
 							"initialValue": "100",
-							"comment": "Прозрачность объекта.",
+							"comment": "",
 							"sid": 787201778611642
 						},
 						{
 							"name": "x",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "X координата",
+							"comment": "",
 							"sid": 766916966849166
 						},
 						{
 							"name": "y",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "У координата",
+							"comment": "",
 							"sid": 808218504550791
 						},
 						{
 							"name": "string",
 							"type": "string",
 							"initialValue": "",
-							"comment": "Отображаемый текст",
+							"comment": "",
 							"sid": 300630115436314
 						},
 						{
 							"name": "fontSize",
 							"type": "number",
 							"initialValue": "10",
-							"comment": "Размер шрифта.",
+							"comment": "",
 							"sid": 866468243379637
 						},
 						{
 							"name": "textWidth",
 							"type": "number",
 							"initialValue": "45",
-							"comment": "Ширина текстового объекта.",
+							"comment": "",
 							"sid": 905366840114653
 						},
 						{
 							"name": "textHeight",
 							"type": "number",
 							"initialValue": "45",
-							"comment": "Высота текстого объекта.",
+							"comment": "",
 							"sid": 397297737856243
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование текста на любой позиции."
-						}
-					],
+					"actions": [],
 					"sid": 563053453620251,
 					"children": [
 						{
@@ -3213,7 +2880,7 @@
 				},
 				{
 					"functionName": "draw_circle",
-					"functionDescription": "Рисование кругов.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -3222,66 +2889,57 @@
 							"name": "color",
 							"type": "string",
 							"initialValue": "",
-							"comment": "Выбор цвета квадрата. (Варианты: red, green, blue, black)",
+							"comment": "",
 							"sid": 376234176752292
 						},
 						{
 							"name": "opacity",
 							"type": "number",
 							"initialValue": "100",
-							"comment": "Прозрачность объекта.",
+							"comment": "",
 							"sid": 448580245236208
 						},
 						{
 							"name": "x",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "X координата фигуры. (TopLeft)",
+							"comment": "",
 							"sid": 845748306082567
 						},
 						{
 							"name": "y",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Y координата фигуры. (TopLeft)",
+							"comment": "",
 							"sid": 506890929793122
 						},
 						{
 							"name": "radius",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Размер фигуры.",
+							"comment": "",
 							"sid": 526750148723604
 						},
 						{
 							"name": "fill",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Заполнение цветом.",
+							"comment": "",
 							"sid": 255792647656842
 						},
 						{
 							"name": "thickness",
 							"type": "number",
 							"initialValue": "2",
-							"comment": "Толщина линии при отсутсвии заполнения",
+							"comment": "",
 							"sid": 898849341369860
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование кругов разной величины, цветов."
-						}
-					],
+					"actions": [],
 					"sid": 513282795542469,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "Рисовка"
-						},
 						{
 							"eventType": "block",
 							"conditions": [],
@@ -3350,7 +3008,7 @@
 				},
 				{
 					"functionName": "draw_rectangle",
-					"functionDescription": "Нарисовать квадрат на drawing canvas.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -3359,66 +3017,57 @@
 							"name": "color",
 							"type": "string",
 							"initialValue": "",
-							"comment": "Выбор цвета квадрата. (Варианты: red, green, blue, black)",
+							"comment": "",
 							"sid": 211860357166292
 						},
 						{
 							"name": "opacity",
 							"type": "number",
 							"initialValue": "100",
-							"comment": "Прозрачность объекта.",
+							"comment": "",
 							"sid": 453823710790652
 						},
 						{
 							"name": "x",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "X координата фигуры. (TopLeft)",
+							"comment": "",
 							"sid": 418540345122711
 						},
 						{
 							"name": "y",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Y координата фигуры. (TopLeft)",
+							"comment": "",
 							"sid": 318053338112829
 						},
 						{
 							"name": "size",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Размер фигуры.",
+							"comment": "",
 							"sid": 491548001791563
 						},
 						{
 							"name": "fill",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Заполнение цветом.",
+							"comment": "",
 							"sid": 970901520893246
 						},
 						{
 							"name": "thickness",
 							"type": "number",
 							"initialValue": "2",
-							"comment": "Толщина линии при отсутсвии заполнения",
+							"comment": "",
 							"sid": 374075485002639
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование квадратов разной величины, цветов."
-						}
-					],
+					"actions": [],
 					"sid": 704451076355936,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "Рисовка"
-						},
 						{
 							"eventType": "block",
 							"conditions": [],
@@ -3484,12 +3133,8 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": "[h2]Рисование по клеткам[/h3]\n\n- Рисование на определенных клетках."
-				},
-				{
 					"functionName": "draw_string_on_cell",
-					"functionDescription": "Рисует текст на клетке.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -3498,7 +3143,7 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 444330378869744
 						},
 						{
@@ -3512,39 +3157,34 @@
 							"name": "string",
 							"type": "string",
 							"initialValue": "",
-							"comment": "Текст.",
+							"comment": "",
 							"sid": 590252856629342
 						},
 						{
 							"name": "fontSize",
 							"type": "number",
 							"initialValue": "10",
-							"comment": "Размер шрифта.",
+							"comment": "",
 							"sid": 437615091349032
 						},
 						{
 							"name": "color",
 							"type": "string",
 							"initialValue": "black",
-							"comment": "Цвет квадрат.",
+							"comment": "",
 							"sid": 355052455407604
 						},
 						{
 							"name": "opacity",
 							"type": "number",
 							"initialValue": "100",
-							"comment": "Прозрачность объекта.",
+							"comment": "",
 							"sid": 359278847156447
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование текста на клетке."
-						}
-					],
+					"actions": [],
 					"sid": 420950340023013,
 					"children": [
 						{
@@ -3731,7 +3371,7 @@
 				},
 				{
 					"functionName": "draw_circle_on_cell",
-					"functionDescription": "Нарисовать круг на клетке.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -3740,53 +3380,48 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки на сетке.",
+							"comment": "",
 							"sid": 144721733648576
 						},
 						{
 							"name": "color",
 							"type": "string",
 							"initialValue": "red",
-							"comment": "Цвет квадрат.",
+							"comment": "",
 							"sid": 313476989141146
 						},
 						{
 							"name": "opacity",
 							"type": "number",
 							"initialValue": "100",
-							"comment": "Прозрачность объекта.",
+							"comment": "",
 							"sid": 550553269626583
 						},
 						{
 							"name": "radius",
 							"type": "number",
 							"initialValue": "0",
-							"comment": "Размер фигуры.",
+							"comment": "",
 							"sid": 450922917496296
 						},
 						{
 							"name": "fill",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Залить квадрат цветом или нет.",
+							"comment": "",
 							"sid": 835054196024364
 						},
 						{
 							"name": "thickness",
 							"type": "number",
 							"initialValue": "1",
-							"comment": "Толщина линии (при отсутствии заливки)",
+							"comment": "",
 							"sid": 497384883509099
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование круга на клетке."
-						}
-					],
+					"actions": [],
 					"sid": 701369370554149,
 					"children": [
 						{
@@ -3848,7 +3483,7 @@
 				},
 				{
 					"functionName": "draw_rectangle_on_cell",
-					"functionDescription": "Выделить квадратом клетку.",
+					"functionDescription": "",
 					"functionCategory": "#draw",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -3857,46 +3492,41 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки на сетке.",
+							"comment": "",
 							"sid": 563062458965307
 						},
 						{
 							"name": "color",
 							"type": "string",
 							"initialValue": "red",
-							"comment": "Цвет квадрат.",
+							"comment": "",
 							"sid": 920355234843036
 						},
 						{
 							"name": "opacity",
 							"type": "number",
 							"initialValue": "100",
-							"comment": "Прозрачность объекта.",
+							"comment": "",
 							"sid": 859708492752109
 						},
 						{
 							"name": "fill",
 							"type": "boolean",
 							"initialValue": "false",
-							"comment": "Залить квадрат цветом или нет.",
+							"comment": "",
 							"sid": 666976335820725
 						},
 						{
 							"name": "thickness",
 							"type": "number",
 							"initialValue": "1",
-							"comment": "Толщина линии (при отсутствии заливки)",
+							"comment": "",
 							"sid": 642454178150492
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисование квадрата на клетке."
-						}
-					],
+					"actions": [],
 					"sid": 500475982934656,
 					"children": [
 						{
@@ -3962,8 +3592,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Юнит ♟️",
-			"description": "Объекты, находящиеся на сетке.",
+			"title": "Unit ♟️",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -3978,19 +3608,14 @@
 				},
 				{
 					"functionName": "unit_get_selected_unit",
-					"functionDescription": "Получить UID активного юнита.",
+					"functionDescription": "",
 					"functionCategory": "#unit",
 					"functionReturnType": "number",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Получить UID выделенного юнита."
-						}
-					],
+					"actions": [],
 					"sid": 226449104079545,
 					"children": [
 						{
@@ -4012,19 +3637,14 @@
 				},
 				{
 					"functionName": "unit_clear_selection",
-					"functionDescription": "Очистить выделение юнитов.",
+					"functionDescription": "",
 					"functionCategory": "#unit",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Очистить выделение юнитов."
-						}
-					],
+					"actions": [],
 					"sid": 266465096023474,
 					"children": [
 						{
@@ -4047,7 +3667,7 @@
 				},
 				{
 					"functionName": "unit_select",
-					"functionDescription": "Выбрать юнита по UID.",
+					"functionDescription": "",
 					"functionCategory": "#unit",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -4056,18 +3676,13 @@
 							"name": "UID",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "UID номер Юнита.",
+							"comment": "",
 							"sid": 822046630461130
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Выбрать юнита."
-						}
-					],
+					"actions": [],
 					"sid": 305731090093077,
 					"children": [
 						{
@@ -4099,7 +3714,7 @@
 				},
 				{
 					"functionName": "create_unit",
-					"functionDescription": "Создать юнита и поместить его на определенную клетку.",
+					"functionDescription": "",
 					"functionCategory": "#grid",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -4108,25 +3723,20 @@
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки на которую нужно поместить юнита.",
+							"comment": "",
 							"sid": 429914104043413
 						},
 						{
 							"name": "animation",
 							"type": "string",
 							"initialValue": "",
-							"comment": "Анимация юнита.",
+							"comment": "",
 							"sid": 262819151943786
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Создание юнита."
-						}
-					],
+					"actions": [],
 					"sid": 178733991174842,
 					"children": [
 						{
@@ -4178,7 +3788,7 @@
 				},
 				{
 					"functionName": "unit_place_to_index",
-					"functionDescription": "Устанавливает позицию юнита на клетку.",
+					"functionDescription": "",
 					"functionCategory": "#unit",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -4187,25 +3797,20 @@
 							"name": "UID",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "UID номер Юнита.",
+							"comment": "",
 							"sid": 133041551999892
 						},
 						{
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки.",
+							"comment": "",
 							"sid": 531321422652728
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Поместить юнита на клетку (только логика)"
-						}
-					],
+					"actions": [],
 					"sid": 899001091450671,
 					"children": [
 						{
@@ -4256,7 +3861,7 @@
 				},
 				{
 					"functionName": "unit_move_to",
-					"functionDescription": "Двигает юнита на клетку (через твин напрямую)",
+					"functionDescription": "",
 					"functionCategory": "#unit",
 					"functionReturnType": "none",
 					"functionIsAsync": false,
@@ -4265,25 +3870,20 @@
 							"name": "UID",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "UID номер Юнита.",
+							"comment": "",
 							"sid": 696002888743142
 						},
 						{
 							"name": "index",
 							"type": "number",
 							"initialValue": "-1",
-							"comment": "Индекс клетки, на которую нужно перейти.",
+							"comment": "",
 							"sid": 378245831195759
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Основная функция для передвижения юнита."
-						}
-					],
+					"actions": [],
 					"sid": 127981611395257,
 					"children": [
 						{

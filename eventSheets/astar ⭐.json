@@ -2,14 +2,10 @@
 	"name": "Astar ⭐",
 	"events": [
 		{
-			"eventType": "comment",
-			"text": "[h3] Данный лист событий сильно зависим от листа Grid. [/h2]\n\nПоиск пути зависим от листа событий Grid."
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Astar - pathfinding",
-			"description": "Основной поиск пути.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -485,10 +481,6 @@
 							]
 						}
 					]
-				},
-				{
-					"eventType": "comment",
-					"text": "Альтернативные поиски пути (быстрее чем А*, но менее точны)"
 				},
 				{
 					"functionName": "astar_greedy_search",
@@ -1338,7 +1330,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "Astar - heuristic",
-			"description": "Калькуляция дистанции между позициями в клетках.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -1405,7 +1397,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Тут используется формула [b]Manhattan distance"
+									"text": "[b]Manhattan distance"
 								},
 								{
 									"id": "set-function-return-value",
@@ -1427,7 +1419,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "Astar - clean",
-			"description": "Очистка данных.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -1646,7 +1638,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "Astar - priority queue",
-			"description": "Уникальная структура хранения данных.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -1967,7 +1959,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "Astar - misc",
-			"description": "Разное.",
+			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -1979,12 +1971,7 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Рисует путь."
-						}
-					],
+					"actions": [],
 					"sid": 209796261735141,
 					"children": [
 						{
@@ -2035,12 +2022,7 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "Двигает юнита по пути."
-						}
-					],
+					"actions": [],
 					"sid": 847818604845906,
 					"children": [
 						{

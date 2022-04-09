@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "[h2] Основные ивенты",
+			"text": "[h2] Main events",
 			"background-color": [
 				0.8588235294117647,
 				0.9490196078431372,
@@ -21,7 +21,7 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "Размеры сетки",
+			"text": "Grid size",
 			"background-color": [
 				0.8588235294117647,
 				0.9490196078431372,
@@ -34,7 +34,7 @@
 			"name": "grid_width",
 			"type": "number",
 			"initialValue": "10",
-			"comment": "Ширина сетки",
+			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 112169492892730
@@ -44,14 +44,14 @@
 			"name": "grid_height",
 			"type": "number",
 			"initialValue": "6",
-			"comment": "Высота сетки",
+			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 633060415564552
 		},
 		{
 			"eventType": "comment",
-			"text": "Размеры клетки",
+			"text": "Cell size",
 			"background-color": [
 				0.8588235294117647,
 				0.9490196078431372,
@@ -64,7 +64,7 @@
 			"name": "cell_size",
 			"type": "number",
 			"initialValue": "70",
-			"comment": "Размер одной клетки.",
+			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 981812038493186
@@ -74,20 +74,20 @@
 			"name": "cell_offset",
 			"type": "number",
 			"initialValue": "5",
-			"comment": "Промежутки между клетками. (с ними следует быть осторожнее)",
+			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 348825377449189
 		},
 		{
 			"eventType": "comment",
-			"text": "[h3]Приветствую![/h3]\n\n[b]Организация:[/b]\n\n[item] Лист [b]Main[/b] является связующим звеном всех листов. \n[item] Лист [b]Grid[/b] отвечает за все события, связанные с сеткой и её отображением.\n[item] Лист [b]Astar[/b] отвечает за события для просчета пути и все, что с этим связано.\n[item] Лист [b]Camera[/b] отвечает за события для управления камерой.\n\n[b]Управление:[/b]\n\n[item] [b]Левый клик мыши[/b] для выбора юнита, а также отправки в определенную клетку.\n[item] [b]Правый клик мыши[/b] для того, чтобы заблокировать клетку.\n[item] [b]Колесо мыши[/b] для приближения/отдаления камеры.\n[item] [b]Зажать Колесо мыши[/b] для передвижения камеры.\n\n[b]Послесловие:[/b]\n\nСкорее всего, вы мало что поймете из данного исходника из-за перегруженности кода. \nДанный исходник сам по себе требует урока, для понимания её концепции.\nТем не менее надеюсь, вы извлечете отсюда что-то полезное.\n\nУдачи."
+			"text": "[h3]Welcome![/h3]\n\nThis is A* template.\n\n[b]Controls:[/b]\n\n[item] [b]Left click[/b] for selecting unit or moving him to cell.\n[item] [b]Right click[/b] for blocking a cell.\n[item] [b]Mouse wheel[/b] for camera zoom.\n[item] [b]Mouse wheel dragging[/b] for camera movement.\n"
 		},
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Старт",
-			"description": "Стартовые события.",
+			"title": "Start",
+			"description": "Starting events.",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -108,7 +108,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Настройки отрисовки сетки"
+									"text": "Grid drawing configuration"
 								},
 								{
 									"id": "add-key",
@@ -166,7 +166,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Создание сетки"
+									"text": "Grid spawning"
 								},
 								{
 									"callFunction": "grid_create",
@@ -199,7 +199,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Создание юнитов"
+									"text": "Unit spawning"
 								},
 								{
 									"callFunction": "create_unit",
@@ -228,8 +228,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Управление",
-			"description": "События для управления картой и юнитами.",
+			"title": "Controls",
+			"description": "Controlling grid and units.",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -265,7 +265,7 @@
 							"actions": [
 								{
 									"type": "comment",
-									"text": "Постройка непроходимого блока."
+									"text": "Blocking cell from movement."
 								},
 								{
 									"id": "set-at-x",
@@ -343,7 +343,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Выделение юнита."
+											"text": "Selecting unit"
 										},
 										{
 											"callFunction": "unit_select",
@@ -371,7 +371,7 @@
 									"actions": [
 										{
 											"type": "comment",
-											"text": "Отправка юнита."
+											"text": "Sending unit to cell"
 										}
 									],
 									"sid": 685798262543919,
@@ -432,7 +432,7 @@
 													"actions": [
 														{
 															"type": "comment",
-															"text": "Инициализировать движение (дальше сработает цикл в листе Astar)"
+															"text": "Initialize unit movement"
 														},
 														{
 															"callFunction": "unit_move_to",
@@ -459,8 +459,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Движение юнита",
-			"description": "Событие для цикличного движения юнита по расчитанному пути.",
+			"title": "Unit movement cycle",
+			"description": "Unit path cycling.",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -479,7 +479,7 @@
 					"actions": [
 						{
 							"type": "comment",
-							"text": "Двигает юнита по всем клеткам в пути."
+							"text": "Unit looping path."
 						}
 					],
 					"sid": 359645452214438,
@@ -546,7 +546,7 @@
 								},
 								{
 									"type": "comment",
-									"text": "Если путь окончен - обновить визуал сетки."
+									"text": "Updating visuals after movement is done"
 								}
 							],
 							"sid": 120717943784012
@@ -559,8 +559,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Дебаг",
-			"description": "",
+			"title": "Debug",
+			"description": "Debugging tools",
 			"isActiveOnStart": true,
 			"children": [
 				{
