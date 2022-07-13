@@ -21,7 +21,7 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "Grid size",
+			"text": "[b]Grid size[/b]",
 			"background-color": [
 				0.8588235294117647,
 				0.9490196078431372,
@@ -51,7 +51,7 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "Cell size",
+			"text": "[b]Cell size[/b]",
 			"background-color": [
 				0.8588235294117647,
 				0.9490196078431372,
@@ -81,7 +81,7 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "[h3]Welcome![/h3]\n\nThis is A* template.\n\n[b]Controls:[/b]\n\n[item] [b]Left click[/b] for selecting unit or moving him to cell.\n[item] [b]Right click[/b] for blocking a cell.\n[item] [b]Mouse wheel[/b] for camera zoom.\n[item] [b]Mouse wheel dragging[/b] for camera movement.\n"
+			"text": "[h3]Welcome![/h3]\n\nThis is A* template.\n\n[b]Controls:[/b]\n\n[item] [b]Left click[/b] for selecting unit or moving him to cell.\n[item] [b]Right click[/b] for blocking a cell.\n[item] [b]Mouse wheel[/b] for camera zoom.\n[item] [b]Mouse wheel dragging[/b] for camera movement.\n\n[b]Configuration:[/b]\n[item] You can change size of the grid by changing variables above.\n[item] Lot's of grids configuration are in [b]grid_config[/b] dictionary.\n[item] You can turn off diagonal pathfinding in [b]Controls[/b] group below.\n"
 		},
 		{
 			"eventType": "group",
@@ -402,6 +402,10 @@
 												{
 													"callFunction": "grid_update",
 													"sid": 918544490397581
+												},
+												{
+													"type": "comment",
+													"text": "You can turn off diagonals by unchecking [b]diagonals[/b] boolean."
 												},
 												{
 													"callFunction": "astar_find_path",
